@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
+
+<body>
+	<nav th:replace="layout :: header"></nav>
+
+	<div class="container" id="main-content">
+		<div class="row">
+			<div class="col-6 no-padding">
+				<form class="form-inline" action="#" th:action="@{/staff/search}" method="get">
+					<input class="form-control mr-sm-2" type="search" name="term" placeholder="Search by name ..." />
+					<button class="btn btn-primary" type="submit">
+						<i class="fa fa-search"></i> Search
+					</button>
+				</form>
+			</div>
+
+			<div class="col-6 no-padding">
+				<a href="#" th:href="@{/staff/add}" class="btn btn-success float-right">
+					<i class="fa fa-plus-square"></i> New staff
+				</a>
+			</div>
+		</div>
+
+		<div class="row mt-4">
+			<div th:if="${successMessage}" class="col-12 alert alert-success alert-dismissible fade show" role="alert">
+				<span th:text="${successMessage}"></span>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+
+			<th:block th:if="${#lists.isEmpty(staffs)}">
+				<h5>No staffs</h5>
+			</th:block>
+
+			<th:block th:unless="${#lists.isEmpty(staffs)}">
+				<div class="table-responsive">
+					<h5>List Of Staffs In Rang Dong Company</h5>
+					<table class="table table-bordered table-hover">
+						<thead>
+						<tr>
+							<th>#</th>
+							<th>Name</th>
+							<th>Full Name</th>
+							<th>Sex</th>
+							<th>Email</th>
+							<th>Phone</th>
+							<th>Skill</th>
+							<th>Position</th>
+							<th>idDepartment</th>
+							<th>Action</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr th:each="staff,iterStat : ${staffs}">
+							<th scope="row" th:text="${iterStat.count}"></th>
+							<td th:text="${staff.usename}"></td>
+							<td th:text="${staff.fullname}"></td>
+							<td th:text="${staff.sex}"></td>
+							<td th:text="${staff.email}"></td>
+							<td th:text="${staff.telephone}"></td>
+							<td th:text="${staff.skill}"></td>
+							<td th:text="${staff.position}"></td>
+							<td th:text="${staff.iddepartment.iddepartment}"></td>
+							<td>
+								<a href="#" th:href="@{/staff/{id}/edit(id=${staff.id})}" class="mr-sm-2 text-primary">
+									<i class="fa fa-pencil"></i>
+								</a>
+								<a href="#" th:href="@{/staff/{id}/delete(id=${staff.id})}" class="text-danger">
+									<i class="fa fa-trash"></i>
+								</a>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</th:block>
+		</div>
+	</div><!-- /.container -->
+
+	<footer th:replace="layout :: footer"></footer>
+
+</body>
+</html>
