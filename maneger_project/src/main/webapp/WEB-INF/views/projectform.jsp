@@ -51,7 +51,8 @@
 			<tbody>
 				<tr>
 					<td colspan="1">
-						<h2>project Form</h2> <spring:url value="/project/save"
+						<img alt="" src="/images/task_scheduling.png" style="width: 50%; height: 50%">
+						<h2>Project Form</h2> <spring:url value="/project/save"
 							var="saveURL" />
 						<fieldset>
 							<form:form modelAttribute="project" method="POST"

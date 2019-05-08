@@ -52,6 +52,7 @@
 			<tbody>
 				<tr>
 					<td colspan="1">
+						<img alt="" src="/images/employee.png" style="width: 40%">
 						<h2>Staff Form</h2> <spring:url value="/staff/save" var="saveURL" />
 						<fieldset>
 							<form:form modelAttribute="staff" method="POST"

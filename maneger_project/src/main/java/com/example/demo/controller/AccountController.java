@@ -54,4 +54,13 @@ public class AccountController {
 
 		return new ModelAndView("redirect:/account");
 	}
+	
+	@GetMapping("/account/{id}/edit")
+	public String edit(@PathVariable("id") int id, Model model) {
+		model.addAttribute("account", accountService.getAccountByID(id));
+
+		return "accountform";
+	}
+
+
 }

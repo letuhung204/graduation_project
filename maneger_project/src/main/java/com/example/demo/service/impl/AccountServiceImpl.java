@@ -58,4 +58,10 @@ public class AccountServiceImpl implements AccountService {
 		return true;
 	}
 
+	@Override
+	public Account getAccountByID(int idAccount) {
+		// TODO Auto-generated method stub
+		return accountRepo.getOne(idAccount);
+	}
+
 }

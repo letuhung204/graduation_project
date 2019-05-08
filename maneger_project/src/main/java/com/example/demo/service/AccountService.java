@@ -12,4 +12,6 @@ public interface AccountService {
 	Account saveAccount(Account account);
 	
 	boolean deleteAccount(int idAccount);
+	
+	Account getAccountByID(int idAccount);
 }

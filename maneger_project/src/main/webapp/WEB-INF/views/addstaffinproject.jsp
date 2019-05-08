@@ -66,7 +66,10 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-th-list"></i></span>
-											
+											<c:forEach var="i" begin="0" end="${staffs.size()-1}">
+         											${staffs.get(i).fullName}<c:out value="${staffs.get(i).staffId}" />
+												<p>
+											</c:forEach>
 										</div>
 									</div>
 								</div>

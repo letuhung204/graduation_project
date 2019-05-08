@@ -11,7 +11,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html>
 <head>
- <base href="http://localhost:8080/" target="_blank">
+<base href="http://localhost:8080/" target="_blank">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>AdminLTE 2 | Starter</title>
@@ -242,17 +242,37 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					<li class="header">HEADER</li>
 					<!-- Optionally, you can add icons to the links -->
 					<li class="active"><a href="/account" th:href="@{/account}"><i
-							class="fa fa-link"></i> <span>Account Manager</span></a></li>
+							class="glyphicon glyphicon-lock"></i> <span>Account Management</span></a></li>
+							
+					<li class="active"><spring:url value="/department"
+							var="listURL" /> <a class="" href="${listURL}" ><i
+							class="glyphicon glyphicon-home"></i>
+							 <span>Department Management</span></a></li>
+							
 					<li class="active"><spring:url value="/staff" var="listURL" />
-						<a class="" href="${listURL}" role="list"><i
-							class="fa fa-link"></i> <span>Staff Manager</span></a></li>
-					<li class="treeview"><a href="#"><i class="fa fa-link"></i>
-							<span>Project Manager</span> <i
-							class="fa fa-angle-left pull-right"></i></a>
+						<a class="" href="${listURL}" ><i
+							class="glyphicon glyphicon-user"></i> <span>Staff Management</span></a></li>
+							
+					<li class="treeview"><a href="/project"><i
+							class="glyphicon glyphicon-glass"></i> <span>Project
+								Management</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
-							<li><a href="/project">Project Manager</a></li>
-							<li><a href="#">Task Manager</a></li>
-						</ul></li>
+							<li><a href="/project"><i class="glyphicon glyphicon-folder-open"></i> Project Management</a></li>
+							<li><a href="#"><i class="glyphicon glyphicon-folder-open"></i> Task Management</a></li>
+						</ul>
+					</li>
+					
+					<li class="active"><spring:url value="/aboutapp" var="listURL" />
+						<a class="" href="${listURL}" ><i class="glyphicon glyphicon-info-sign"></i> 
+						<span>Introduce About Web</span></a></li>
+							
+					<li class="active"><spring:url value="/aboutteam"
+							var="listURL" /> <a class="" href="${listURL}" ><i class="glyphicon glyphicon-camera"></i>
+							<span>Introduce About Team</span></a></li>
+							
+					<li class="active"><spring:url value="/feedback/add" var="listURL" />
+						<a class="" href="${listURL}" ><i class="glyphicon glyphicon-question-sign"></i>
+						<span>Help Us !</span></a></li>
 				</ul>
 				<!-- /.sidebar-menu -->
 			</section>
@@ -274,8 +294,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 			<!-- Main content -->
 			<section class="content"></section>
-			
-			<img alt="this is logo" src="https://di3xp7dfi3cq.cloudfront.net/pub/media/magefan_blog/i/t/it_project_management.jpeg" style="width: 100%;margin-top : -20%;">
+
+			<img alt="this is logo"
+				src="https://di3xp7dfi3cq.cloudfront.net/pub/media/magefan_blog/i/t/it_project_management.jpeg"
+				style="width: 100%; margin-top: -20%;">
 			<!-- /.content -->
 		</div>
 		<!-- /.content-wrapper -->

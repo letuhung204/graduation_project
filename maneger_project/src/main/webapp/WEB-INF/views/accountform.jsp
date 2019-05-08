@@ -50,7 +50,9 @@
 		<table class="table table-striped">
 			<tbody>
 				<tr>
-					<td colspan="1">
+					<td colspan="1"><img alt="this is logo"
+						src="/images/account.png"
+						style="width: 50%; display: block;">
 						<h2>Account Form</h2> <spring:url value="/account/save"
 							var="saveURL" />
 						<fieldset>
@@ -101,14 +103,14 @@
 								</div>
 								<div class="form-group">
 									<label class="control-label col-sm-2 requiredField">
-										PassWord </label>
+										PassWord <span class="asteriskField"> *</span></label>
 									<div class="col-md-8 inputGroupContainer">
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-list-alt"></i></span>
 											<form:input path="password" id="password"
-												placeholder="password" class="form-control"
-												required="true" type="password"></form:input>
+												placeholder="password" class="form-control" required="true"
+												type="password"></form:input>
 										</div>
 									</div>
 								</div>
@@ -123,9 +125,9 @@
 											<form:select path="roleId" class="form-control" id="sel1"
 												style="height:30px" required="required">
 												<form:option value="" label="--- Select ---" />
-												<form:option value = "1" label="ADMIN"/> 
-												<form:option value = "2" label="MANAGER"/> 
-												<form:option value = "3" label="STAFF"/> 
+												<form:option value="1" label="ADMIN" />
+												<form:option value="2" label="MANAGER" />
+												<form:option value="3" label="STAFF" />
 											</form:select>
 										</div>
 									</div>
@@ -137,8 +139,7 @@
 								</div>
 
 							</form:form>
-						</fieldset>
-					</td>
+						</fieldset></td>
 				</tr>
 			</tbody>
 		</table>
