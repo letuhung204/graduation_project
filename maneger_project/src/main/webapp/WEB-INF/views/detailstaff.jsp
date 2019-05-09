@@ -241,37 +241,43 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					<li class="header">HEADER</li>
 					<!-- Optionally, you can add icons to the links -->
 					<li class="active"><a href="/account" th:href="@{/account}"><i
-							class="glyphicon glyphicon-lock"></i> <span>Account Management</span></a></li>
-							
+							class="glyphicon glyphicon-lock"></i> <span>Account
+								Management</span></a></li>
+
 					<li class="active"><spring:url value="/department"
-							var="listURL" /> <a class="" href="${listURL}" ><i
-							class="glyphicon glyphicon-home"></i>
-							 <span>Department Management</span></a></li>
-							
+							var="listURL" /> <a class="" href="${listURL}"><i
+							class="glyphicon glyphicon-home"></i> <span>Department
+								Management</span></a></li>
+
 					<li class="active"><spring:url value="/staff" var="listURL" />
-						<a class="" href="${listURL}" ><i
-							class="glyphicon glyphicon-user"></i> <span>Staff Management</span></a></li>
-							
+						<a class="" href="${listURL}"><i
+							class="glyphicon glyphicon-user"></i> <span>Staff
+								Management</span></a></li>
+
 					<li class="treeview"><a href="/project"><i
 							class="glyphicon glyphicon-glass"></i> <span>Project
 								Management</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
-							<li><a href="/project"><i class="glyphicon glyphicon-folder-open"></i> Project Management</a></li>
-							<li><a href="#"><i class="glyphicon glyphicon-folder-open"></i> Task Management</a></li>
-						</ul>
-					</li>
-					
+							<li><a href="/project"><i
+									class="glyphicon glyphicon-folder-open"></i> Project Management</a></li>
+							<li><a href="#"><i
+									class="glyphicon glyphicon-folder-open"></i> Task Management</a></li>
+						</ul></li>
+
 					<li class="active"><spring:url value="/aboutapp" var="listURL" />
-						<a class="" href="${listURL}" ><i class="glyphicon glyphicon-info-sign"></i> 
-						<span>Introduce About Web</span></a></li>
-							
+						<a class="" href="${listURL}"><i
+							class="glyphicon glyphicon-info-sign"></i> <span>Introduce
+								About Web</span></a></li>
+
 					<li class="active"><spring:url value="/aboutteam"
-							var="listURL" /> <a class="" href="${listURL}" ><i class="glyphicon glyphicon-camera"></i>
-							<span>Introduce About Team</span></a></li>
-							
+							var="listURL" /> <a class="" href="${listURL}"><i
+							class="glyphicon glyphicon-camera"></i> <span>Introduce
+								About Team</span></a></li>
+
 					<li class="active"><spring:url value="/feedback" var="listURL" />
-						<a class="" href="${listURL}" ><i class="glyphicon glyphicon-question-sign"></i>
-						<span>Help Us !</span></a></li>
+						<a class="" href="${listURL}"><i
+							class="glyphicon glyphicon-question-sign"></i> <span>Help
+								Us !</span></a></li>
 				</ul>
 				<!-- /.sidebar-menu -->
 			</section>
@@ -292,88 +298,88 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			</section>
 
 			<!-- Main content -->
-			<section class="content"></section>
-			<div class="container" style="margin-top: -15%">
-				<div class="box box-info">
-					<div style="float: left">
-						<img alt="" src="dist/img/21.png" style="width: 30%">
-					</div>
-					<div class="box-header with-border">
-						<h1>Detail Infomation Of Staff</h1>
-					</div>
-					<!-- /.box-header -->
-					<!-- form start -->
-					<form:form class="form-horizontal" modelAttribute="staff"
-						var="staff">
-						<div class="box-body">
-							<div class="col-md-6 row">
-								<div class="col-md-12">
-									<label>Fist Name: <c:out value=" ${staff.firstName}"></c:out></label>
-								</div>
-								<div class="col-md-12">
-									<label>Last Name: <c:out value=" ${staff.lastName}"></c:out></label>
-								</div>
-								<div class="col-md-12">
-									<label>Full Name: <c:out value=" ${staff.fullName}"></c:out></label>
-								</div>
-								<div class="col-md-12">
-									<label>Email: <c:out value=" ${staff.email}"></c:out></label>
-								</div>
-								<div class="col-md-12">
-									<label>Skill: <c:out value=" ${staff.skill}"></c:out></label>
-								</div>
-								<div class="col-md-12">
-									<label>Account ID:<c:out
-											value=" ${staff.accountId.accountId}"></c:out></label>
-								</div>
-								<div class="col-md-12">
-									<label>Department ID: <c:out
-											value=" ${staff.departmentId.departmentId}"></c:out></label>
-								</div>
-								<div class="col-md-12">
-									<label>Role ID: <c:out
-											value=" ${staff.accountId.roleId.roleId}"></c:out></label>
-								</div>
-							</div>
-
-							<div class="col-md-6 row">
-								<div class="col-md-12">
-									<label>Possition: <c:out value=" ${staff.possition}"></c:out></label>
-								</div>
-								<div class="col-md-12">
-									<label>Telephone: <c:out value=" ${staff.telephone}"></c:out></label>
-								</div>
-								<div class="col-md-12 row">
-									<div class="col-md-3">
-										<label>Discription: </label>
+			<section class="content">
+				<div class="container">
+					<div class="box box-info">
+						<div style="float: left">
+							<img alt="" src="dist/img/21.png" style="width: 30%">
+						</div>
+						<div class="box-header with-border">
+							<h1>Detail Infomation Of Staff</h1>
+						</div>
+						<!-- /.box-header -->
+						<!-- form start -->
+						<form:form class="form-horizontal" modelAttribute="staff"
+							var="staff">
+							<div class="box-body">
+								<div class="col-md-6 row">
+									<div class="col-md-12">
+										<label>Fist Name: <c:out value=" ${staff.firstName}"></c:out></label>
 									</div>
-									<div class="col-md-6">
-										<textarea readonly="true"><c:out
-												value=" ${staff.discription}"></c:out></textarea>
+									<div class="col-md-12">
+										<label>Last Name: <c:out value=" ${staff.lastName}"></c:out></label>
 									</div>
+									<div class="col-md-12">
+										<label>Full Name: <c:out value=" ${staff.fullName}"></c:out></label>
+									</div>
+									<div class="col-md-12">
+										<label>Email: <c:out value=" ${staff.email}"></c:out></label>
+									</div>
+									<div class="col-md-12">
+										<label>Skill: <c:out value=" ${staff.skill}"></c:out></label>
+									</div>
+									<div class="col-md-12">
+										<label>Account ID:<c:out
+												value=" ${staff.accountId.accountId}"></c:out></label>
+									</div>
+									<div class="col-md-12">
+										<label>Department ID: <c:out
+												value=" ${staff.departmentId.departmentId}"></c:out></label>
+									</div>
+									<div class="col-md-12">
+										<label>Role ID: <c:out
+												value=" ${staff.accountId.roleId.roleId}"></c:out></label>
+									</div>
+								</div>
 
+								<div class="col-md-6 row">
+									<div class="col-md-12">
+										<label>Possition: <c:out value=" ${staff.possition}"></c:out></label>
+									</div>
+									<div class="col-md-12">
+										<label>Telephone: <c:out value=" ${staff.telephone}"></c:out></label>
+									</div>
+									<div class="col-md-12 row">
+										<div class="col-md-3">
+											<label>Discription: </label>
+										</div>
+										<div class="col-md-6">
+											<textarea readonly="true" style="width: 100%"><c:out
+													value=" ${staff.discription}" ></c:out></textarea>
+										</div>
+
+									</div>
+									<div class="col-md-12">
+										<label>Account name: <c:out
+												value=" ${staff.accountId.accountName}"></c:out></label>
+									</div>
+									<div class="col-md-12">
+										<label>Department name: <c:out
+												value=" ${staff.departmentId.departmentName}"></c:out>
+										</label>
+									</div>
+									<div class="col-md-12">
+										<label>RoleName: <c:out
+												value=" ${staff.accountId.roleId.roleName}"></c:out></label>
+									</div>
 								</div>
-								<div class="col-md-12">
-									<label>Account name: <c:out
-											value=" ${staff.accountId.accountName}"></c:out></label>
-								</div>
-								<div class="col-md-12">
-									<label>Department name: <c:out
-											value=" ${staff.departmentId.departmentName}"></c:out>
-									</label>
-								</div>
-								<div class="col-md-12">
-									<label>RoleName: <c:out
-											value=" ${staff.accountId.roleId.roleName}"></c:out></label>
-								</div>
-							</div>
-					</form:form>
+						</form:form>
+					</div>
 				</div>
-			</div>
-			<!-- /.box-body -->
-
+				<!-- /.box-body -->
+			
 			<!-- /.box-footer -->
-
+			</section>
 		</div>
 	</div>
 

@@ -1,5 +1,9 @@
 package com.example.demo.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.entity.Project;
+import com.example.demo.entity.Staff;
+import com.example.demo.entity.Task;
 import com.example.demo.service.ProjectService;
 import com.example.demo.service.StaffService;
 
@@ -82,6 +88,7 @@ public class ProjectController {
 	@GetMapping(value = "/project/{id}/task")
 	public ModelAndView getTask(@PathVariable int id) {
 		ModelAndView model = new ModelAndView();
+		model.addObject("project", projectService.getProjecByiD(id));
 		model.addObject("tasks", projectService.getListTaskOfProject(id));
 		model.setViewName("listtaskofproject");
 		return model;
@@ -91,6 +98,7 @@ public class ProjectController {
 	@GetMapping(value = "/project/{id}/staff")
 	public ModelAndView getstaff(@PathVariable int id) {
 		ModelAndView model = new ModelAndView();
+		model.addObject("project", projectService.getProjecByiD(id));
 		model.addObject("staffs", projectService.getListStaffOfProject(id));
 		model.setViewName("liststaffofproject");
 		return model;
@@ -100,6 +108,7 @@ public class ProjectController {
 	@GetMapping(value = "/project/{id}/staff/add")
 	public ModelAndView addStaffProject(@PathVariable int id) {
 		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("project", projectService.getProjecByiD(id));
 		modelAndView.addObject("staffs", staffService.findAll());
 		modelAndView.setViewName("addstaffinproject");
 		return modelAndView;
@@ -116,5 +125,17 @@ public class ProjectController {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("progessproject");
 		return modelAndView;
+	}
+
+	@GetMapping(value = "/project/{id}/addtask")
+	public String addTask(@PathVariable("id") int id, Model model) {
+		List<Staff> listStaff = projectService.getListStaffOfProject(id);
+		Map<Integer, String> staffs = new HashMap<>();
+		listStaff.forEach(item -> staffs.put(item.getStaffId(), item.getFullName()));
+		model.addAttribute("staffs", staffs);
+		Task task = new Task();
+		task.setProjectId(projectService.getProjecByiD(id));
+		model.addAttribute("task", task);
+		return "taskform";
 	}
 }

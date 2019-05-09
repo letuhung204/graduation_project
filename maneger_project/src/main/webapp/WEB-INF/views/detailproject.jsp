@@ -240,37 +240,43 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					<li class="header">HEADER</li>
 					<!-- Optionally, you can add icons to the links -->
 					<li class="active"><a href="/account" th:href="@{/account}"><i
-							class="glyphicon glyphicon-lock"></i> <span>Account Management</span></a></li>
-							
+							class="glyphicon glyphicon-lock"></i> <span>Account
+								Management</span></a></li>
+
 					<li class="active"><spring:url value="/department"
-							var="listURL" /> <a class="" href="${listURL}" ><i
-							class="glyphicon glyphicon-home"></i>
-							 <span>Department Management</span></a></li>
-							
+							var="listURL" /> <a class="" href="${listURL}"><i
+							class="glyphicon glyphicon-home"></i> <span>Department
+								Management</span></a></li>
+
 					<li class="active"><spring:url value="/staff" var="listURL" />
-						<a class="" href="${listURL}" ><i
-							class="glyphicon glyphicon-user"></i> <span>Staff Management</span></a></li>
-							
+						<a class="" href="${listURL}"><i
+							class="glyphicon glyphicon-user"></i> <span>Staff
+								Management</span></a></li>
+
 					<li class="treeview"><a href="/project"><i
 							class="glyphicon glyphicon-glass"></i> <span>Project
 								Management</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
-							<li><a href="/project"><i class="glyphicon glyphicon-folder-open"></i> Project Management</a></li>
-							<li><a href="#"><i class="glyphicon glyphicon-folder-open"></i> Task Management</a></li>
-						</ul>
-					</li>
-					
+							<li><a href="/project"><i
+									class="glyphicon glyphicon-folder-open"></i> Project Management</a></li>
+							<li><a href="#"><i
+									class="glyphicon glyphicon-folder-open"></i> Task Management</a></li>
+						</ul></li>
+
 					<li class="active"><spring:url value="/aboutapp" var="listURL" />
-						<a class="" href="${listURL}" ><i class="glyphicon glyphicon-info-sign"></i> 
-						<span>Introduce About Web</span></a></li>
-							
+						<a class="" href="${listURL}"><i
+							class="glyphicon glyphicon-info-sign"></i> <span>Introduce
+								About Web</span></a></li>
+
 					<li class="active"><spring:url value="/aboutteam"
-							var="listURL" /> <a class="" href="${listURL}" ><i class="glyphicon glyphicon-camera"></i>
-							<span>Introduce About Team</span></a></li>
-							
+							var="listURL" /> <a class="" href="${listURL}"><i
+							class="glyphicon glyphicon-camera"></i> <span>Introduce
+								About Team</span></a></li>
+
 					<li class="active"><spring:url value="/feedback" var="listURL" />
-						<a class="" href="${listURL}" ><i class="glyphicon glyphicon-question-sign"></i>
-						<span>Help Us !</span></a></li>
+						<a class="" href="${listURL}"><i
+							class="glyphicon glyphicon-question-sign"></i> <span>Help
+								Us !</span></a></li>
 				</ul>
 				<!-- /.sidebar-menu -->
 			</section>
@@ -291,103 +297,102 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			</section>
 
 			<!-- Main content -->
-			<section class="content"></section>
-			<div class="container" style="margin-top: 0%">
-				<nav class="navbar navbar-inverse">
-					<div class="container-fluid">
-						<div class="navbar-header">
-							<a class="navbar-brand" href="/welcome">Home</a>
-						</div>
-						<ul class="nav navbar-nav">
-							<li class="active"><a
-								href="/project/detail/${project.projectId} ">Project width
-									name : ${project.projectName}</a></li>
-							<li><a href="/project/${project.projectId}/staff">Staff
-									Of Project</a></li>
-							<li><a href="/project/${project.projectId}/task">Task Of
-									Project</a></li>
-							<li><a href="/project/${project.projectId}/add/staff">Add
-									Staff In Project</a></li>
-							<li><a href="/project/${project.projectId}/progess">Progess
-									Project </a></li>
-							<li><a href="/project/${project.projectId}/add/staff">Add
-									Task In Staff</a></li>
-
-						</ul>
-					</div>
-				</nav>
-				<div class="box box-info">
-					<div style="float: left">
-						<img alt="" src="dist/img/project.jpg" style="width: 30%">
-					</div>
-					<div class="box-header with-border">
-						<h1>Detail Information Of Project</h1>
-					</div>
-					<!-- /.box-header -->
-					<!-- form start -->
-					<form:form class="form-horizontal" modelAttribute="project"
-						var="project">
-						<div class="box-body">
-							<div class="col-md-6 row">
-								<div class="col-md-12">
-									<label>Project Name : <c:out
-											value=" ${project.projectName}"></c:out></label>
-								</div>
-								<div class="col-md-12">
-									<label>Create Date : <c:out
-											value=" ${project.createDate}"></c:out></label>
-								</div>
-								<div class="col-md-12">
-									<label>Start Date : <c:out
-											value=" ${project.startDate}"></c:out></label>
-								</div>
-								<div class="col-md-12">
-									<label>DeadLine : <c:out
-											value=" ${project.deadlineDate}"></c:out></label>
-								</div>
-								<div class="col-md-12">
-									<label>Finish Date : <c:out
-											value=" ${project.finishDate}"></c:out></label>
-								</div>
-								<div class="col-md-12">
-									<label>Project State : </label>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar"
-											style="width: 10%;" aria-valuenow="25" aria-valuemin="0"
-											aria-valuemax="100">${project.projectState}%</div>
-									</div>
-								</div>
-								<div class="col-md-12">
-									<label>Project output : <c:out
-											value=" ${project.projectOutput}"></c:out></label>
-								</div>
-
+			<section class="content">
+				<div class="container" style="margin-top: 0%">
+					<nav class="navbar navbar-inverse">
+						<div class="container-fluid">
+							<div class="navbar-header">
+								<a class="navbar-brand" href="/welcome">Home</a>
 							</div>
+							<ul class="nav navbar-nav">
+								<li class="active"><a
+									href="/project/detail/${project.projectId} ">Project width
+										name : ${project.projectName}</a></li>
+								<li><a href="/project/${project.projectId}/staff">Staff
+										Of Project</a></li>
+								<li><a href="/project/${project.projectId}/task">Task
+										Of Project</a></li>
+								<li><a href="/project/${project.projectId}/staff/add">Add
+										Staff In Project</a></li>
+								<li><a href="/project/${project.projectId}/progess">Progess
+										Project </a></li>
 
-							<div class="col-md-6 row">
-								<div class="col-md-12">
-									<label>Amount Staff of Project : <c:out
-											value=" ${project.staffProject.size()}"></c:out></label>
-								</div>
-								<div class="col-md-12">
-									<label>Amout Task of Project : <c:out
-											value=" ${project.task.size()}"></c:out></label>
-								</div>
-								<div class="col-md-12 row">
-									<div class="col-md-3">
-										<label>Discription : </label>
+							</ul>
+						</div>
+					</nav>
+					<div class="box box-info">
+						<div style="float: left">
+							<img alt="" src="dist/img/project.jpg" style="width: 30%">
+						</div>
+						<div class="box-header with-border">
+							<h1>Detail Information Of Project</h1>
+						</div>
+						<!-- /.box-header -->
+						<!-- form start -->
+						<form:form class="form-horizontal" modelAttribute="project"
+							var="project">
+							<div class="box-body">
+								<div class="col-md-6 row">
+									<div class="col-md-12">
+										<label>Project Name : <c:out
+												value=" ${project.projectName}"></c:out></label>
 									</div>
-									<div class="col-md-6">
-										<textarea readonly="true" ><c:out
-												value=" ${project.discription}"></c:out></textarea>
+									<div class="col-md-12">
+										<label>Create Date : <c:out
+												value=" ${project.createDate}"></c:out></label>
+									</div>
+									<div class="col-md-12">
+										<label>Start Date : <c:out
+												value=" ${project.startDate}"></c:out></label>
+									</div>
+									<div class="col-md-12">
+										<label>DeadLine : <c:out
+												value=" ${project.deadlineDate}"></c:out></label>
+									</div>
+									<div class="col-md-12">
+										<label>Finish Date : <c:out
+												value=" ${project.finishDate}"></c:out></label>
+									</div>
+									<div class="col-md-12">
+										<label>Project State : </label>
+										<div class="progress">
+											<div class="progress-bar" role="progressbar"
+												style="width: 10%;" aria-valuenow="25" aria-valuemin="0"
+												aria-valuemax="100">${project.projectState}%</div>
+										</div>
+									</div>
+									<div class="col-md-12">
+										<label>Project output : <c:out
+												value=" ${project.projectOutput}"></c:out></label>
 									</div>
 
+								</div>
+
+								<div class="col-md-6 row">
+									<div class="col-md-12">
+										<label>Amount Staff of Project : <c:out
+												value=" ${project.staffProject.size()}"></c:out></label>
+									</div>
+									<div class="col-md-12">
+										<label>Amout Task of Project : <c:out
+												value=" ${project.task.size()}"></c:out></label>
+									</div>
+									<div class="col-md-12 row">
+										<div class="col-md-3">
+											<label>Discription : </label>
+										</div>
+										<div class="col-md-6">
+											<textarea readonly="true"><c:out
+													value=" ${project.discription}"></c:out></textarea>
+										</div>
+
+									</div>
 								</div>
 							</div>
-						</div>
-					</form:form>
+						</form:form>
+					</div>
 				</div>
-			</div>
+			</section>
 		</div>
 
 		<!-- /.content-wrapper -->

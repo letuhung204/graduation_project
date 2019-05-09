@@ -2,8 +2,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<c:set var="baseURL" value="${pageContext.request.localName}" />
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -28,27 +27,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 <!-- Theme style -->
-<link rel="stylesheet"
-	href="../../plugins/datatables/dataTables.bootstrap.css">
 <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
 <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect.
   -->
 <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
-<link href="../static/images/logo.png" href="@{/images/logo.png}"
+<link href="../static/images/logo.png" th:href="@{/images/logo.png}"
 	rel="shortcut icon" />
-
-<!-- Custom style -->
-<link href="css/style.css" href="@{/css/style.css}" rel="stylesheet" />
-
 <link
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
 	rel="stylesheet"
 	integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
 	crossorigin="anonymous" />
 <!-- Custom style -->
-<link href="../static/css/style.css" href="@{/css/style.css}"
+<link href="../static/css/style.css" th:href="@{/css/style.css}"
 	rel="stylesheet" />
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
@@ -57,7 +50,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		<header class="main-header">
 
 			<!-- Logo -->
-			<a href="/welcome" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
+			<a href="#" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
 				<span class="logo-mini"><b>R</b>Đ</span> <!-- logo for regular state and mobile devices -->
 				<span class="logo-lg"><b>Rạng Đông</b> Company</span>
 			</a>
@@ -248,37 +241,43 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					<li class="header">HEADER</li>
 					<!-- Optionally, you can add icons to the links -->
 					<li class="active"><a href="/account" th:href="@{/account}"><i
-							class="glyphicon glyphicon-lock"></i> <span>Account Management</span></a></li>
-							
+							class="glyphicon glyphicon-lock"></i> <span>Account
+								Management</span></a></li>
+
 					<li class="active"><spring:url value="/department"
-							var="listURL" /> <a class="" href="${listURL}" ><i
-							class="glyphicon glyphicon-home"></i>
-							 <span>Department Management</span></a></li>
-							
+							var="listURL" /> <a class="" href="${listURL}"><i
+							class="glyphicon glyphicon-home"></i> <span>Department
+								Management</span></a></li>
+
 					<li class="active"><spring:url value="/staff" var="listURL" />
-						<a class="" href="${listURL}" ><i
-							class="glyphicon glyphicon-user"></i> <span>Staff Management</span></a></li>
-							
+						<a class="" href="${listURL}"><i
+							class="glyphicon glyphicon-user"></i> <span>Staff
+								Management</span></a></li>
+
 					<li class="treeview"><a href="/project"><i
 							class="glyphicon glyphicon-glass"></i> <span>Project
 								Management</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
-							<li><a href="/project"><i class="glyphicon glyphicon-folder-open"></i> Project Management</a></li>
-							<li><a href="#"><i class="glyphicon glyphicon-folder-open"></i> Task Management</a></li>
-						</ul>
-					</li>
-					
+							<li><a href="/project"><i
+									class="glyphicon glyphicon-folder-open"></i> Project Management</a></li>
+							<li><a href="#"><i
+									class="glyphicon glyphicon-folder-open"></i> Task Management</a></li>
+						</ul></li>
+
 					<li class="active"><spring:url value="/aboutapp" var="listURL" />
-						<a class="" href="${listURL}" ><i class="glyphicon glyphicon-info-sign"></i> 
-						<span>Introduce About Web</span></a></li>
-							
+						<a class="" href="${listURL}"><i
+							class="glyphicon glyphicon-info-sign"></i> <span>Introduce
+								About Web</span></a></li>
+
 					<li class="active"><spring:url value="/aboutteam"
-							var="listURL" /> <a class="" href="${listURL}"><i class="glyphicon glyphicon-camera"></i>
-							<span>Introduce About Team</span></a></li>
-							
-					<li class="active"><spring:url value="/feedback/add" var="listURL" />
-						<a class="" href="${listURL}" ><i class="glyphicon glyphicon-question-sign"></i>
-						<span>Help Us !</span></a></li>
+							var="listURL" /> <a class="" href="${listURL}"><i
+							class="glyphicon glyphicon-camera"></i> <span>Introduce
+								About Team</span></a></li>
+
+					<li class="active"><spring:url value="/feedback" var="listURL" />
+						<a class="" href="${listURL}"><i
+							class="glyphicon glyphicon-question-sign"></i> <span>Help
+								Us !</span></a></li>
 				</ul>
 				<!-- /.sidebar-menu -->
 			</section>
@@ -300,144 +299,122 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 			<!-- Main content -->
 			<section class="content">
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="box">
-							<div class="box-header">
-								<h3 class="box-title">Bảng danh sách các task của  <a href="/staff/detail/${staff.staffId}"><c:out value="${staff.fullName}" /></a></h3>
-							</div>
-							<div class="box-header">
-								<spring:url value="/staff/add/task" var="addURL" />
-								<a class="btn btn-primary" href="${addURL}" role="button"><i class="glyphicon glyphicon-plus"></i> Create
-									Task for Staff</a>
-							</div>
-							<!-- /.box-header -->
-							<div class="box-body">
-								<table id="example1" class="table table-bordered table-striped">
-									<thead>
-										<tr>
-											<th>#</th>
-											<th>Task Name</th>
-											<th>Name Create</th>
-											<th>Name Assign</th>
-											<th>Date Create</th>
-											<th>Status</th>
-											<th>Action</th>
-											<th>Action</th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:forEach items="${tasks }" var="task" varStatus="s">
-											<tr>
-												<td><c:out value="${s.index + 1}" /></td>
-												<td><c:out value="${task.taskName}" /></td>
-												<td><c:out value="${task.nameCreate}" /></td>
-												<td><c:out value="${task.nameAssign}" /></td>
-												<td><c:out value="${task.dateCreate}" /></td>
-												<td><div class="progress" style="background-color: yellow" >
-														<div class="progress-bar" role="progressbar" 
-															style="width: <c:out value="${task.taskState}" />; color: red" aria-valuenow="25" aria-valuemin="0"
-															aria-valuemax="100"><c:out value="${task.taskState}" />%</div>
-													</div></td>
-												<td><a>delete</a></td>
-												<td><a>detail task</a></td>
-											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
-
-							</div>
-							<!-- /.box-body -->
+				<div class="container">
+					<div class="box box-info">
+						<div style="float: left">
+							<img alt="" src="dist/img/21.png" style="width: 30%">
 						</div>
+						<div class="box-header with-border">
+							<h1>Detail Infomation Of Department</h1>
+						</div>
+						<!-- /.box-header -->
+						<!-- form start -->
+						<form:form class="form-horizontal" modelAttribute="department"
+							var="department">
+							<div class="box-body">
+								<div class="col-md-6 row">
+									<div class="col-md-12">
+										<label>Deparment<c:out value=" ${department.departmentName}"></c:out></label>
+									</div>
+									<div class="col-md-12">
+										<label>Manager Name Department: <c:out value=" ${department.managerName}"></c:out></label>
+									</div>
+								</div>
+
+						</form:form>
 					</div>
 				</div>
+				<!-- /.box-body -->
+			
+			<!-- /.box-footer -->
 			</section>
-
-			<!-- /.content -->
 		</div>
-		<!-- /.content-wrapper -->
+	</div>
 
-		<!-- Main Footer -->
-		<footer class="main-footer">
-			<!-- To the right -->
-			<div class="pull-right hidden-xs">GVHD: Nguyễn Thanh Bình</div>
-			<!-- Default to the left -->
-			<strong>Team Graduation Project <a href="/welcome">Rạng Đông
-					Company</a>
-			</strong> Hùng - Thành - Đại.
-		</footer>
 
-		<!-- Control Sidebar -->
-		<aside class="control-sidebar control-sidebar-dark">
-			<!-- Create the tabs -->
-			<ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-				<li class="active"><a href="#control-sidebar-home-tab"
-					data-toggle="tab"><i class="fa fa-home"></i></a></li>
-				<li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i
-						class="fa fa-gears"></i></a></li>
-			</ul>
-			<!-- Tab panes -->
-			<div class="tab-content">
-				<!-- Home tab content -->
-				<div class="tab-pane active" id="control-sidebar-home-tab">
-					<h3 class="control-sidebar-heading">Recent Activity</h3>
-					<ul class="control-sidebar-menu">
-						<li><a href="javascript::;"> <i
-								class="menu-icon fa fa-birthday-cake bg-red"></i>
+	<!-- /.content-wrapper -->
 
-								<div class="menu-info">
-									<h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+	<!-- Main Footer -->
+	<footer class="main-footer">
+		<!-- To the right -->
+		<div class="pull-right hidden-xs">GVHD: Nguyễn Thanh Bình</div>
+		<!-- Default to the left -->
+		<strong>Team Graduation Project <a href="#">Rạng Đông
+				Company</a>
+		</strong> Hùng - Thành - Đại.
+	</footer>
 
-									<p>Will be 23 on April 24th</p>
-								</div>
-						</a></li>
-					</ul>
-					<!-- /.control-sidebar-menu -->
 
-					<h3 class="control-sidebar-heading">Tasks Progress</h3>
-					<ul class="control-sidebar-menu">
-						<li><a href="javascript::;">
-								<h4 class="control-sidebar-subheading">
-									Custom Template Design <span
-										class="label label-danger pull-right">70%</span>
-								</h4>
+	<!-- Control Sidebar -->
+	<aside class="control-sidebar control-sidebar-dark">
+		<!-- Create the tabs -->
+		<ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+			<li class="active"><a href="#control-sidebar-home-tab"
+				data-toggle="tab"><i class="fa fa-home"></i></a></li>
+			<li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i
+					class="fa fa-gears"></i></a></li>
+		</ul>
+		<!-- Tab panes -->
+		<div class="tab-content">
+			<!-- Home tab content -->
+			<div class="tab-pane active" id="control-sidebar-home-tab">
+				<h3 class="control-sidebar-heading">Recent Activity</h3>
+				<ul class="control-sidebar-menu">
+					<li><a href="javascript::;"> <i
+							class="menu-icon fa fa-birthday-cake bg-red"></i>
 
-								<div class="progress progress-xxs">
-									<div class="progress-bar progress-bar-danger"
-										style="width: 70%"></div>
-								</div>
-						</a></li>
-					</ul>
-					<!-- /.control-sidebar-menu -->
+							<div class="menu-info">
+								<h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
 
-				</div>
-				<!-- /.tab-pane -->
-				<!-- Stats tab content -->
-				<div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab
-					Content</div>
-				<!-- /.tab-pane -->
-				<!-- Settings tab content -->
-				<div class="tab-pane" id="control-sidebar-settings-tab">
-					<form method="post">
-						<h3 class="control-sidebar-heading">General Settings</h3>
+								<p>Will be 23 on April 24th</p>
+							</div>
+					</a></li>
+				</ul>
+				<!-- /.control-sidebar-menu -->
 
-						<div class="form-group">
-							<label class="control-sidebar-subheading"> Report panel
-								usage <input type="checkbox" class="pull-right" checked>
-							</label>
+				<h3 class="control-sidebar-heading">Tasks Progress</h3>
+				<ul class="control-sidebar-menu">
+					<li><a href="javascript::;">
+							<h4 class="control-sidebar-subheading">
+								Custom Template Design <span
+									class="label label-danger pull-right">70%</span>
+							</h4>
 
-							<p>Some information about this general settings option</p>
-						</div>
-						<!-- /.form-group -->
-					</form>
-				</div>
-				<!-- /.tab-pane -->
+							<div class="progress progress-xxs">
+								<div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+							</div>
+					</a></li>
+				</ul>
+				<!-- /.control-sidebar-menu -->
+
 			</div>
-		</aside>
-		<!-- /.control-sidebar -->
-		<!-- Add the sidebar's background. This div must be placed
+			<!-- /.tab-pane -->
+			<!-- Stats tab content -->
+			<div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab
+				Content</div>
+			<!-- /.tab-pane -->
+			<!-- Settings tab content -->
+			<div class="tab-pane" id="control-sidebar-settings-tab">
+				<form method="post">
+					<h3 class="control-sidebar-heading">General Settings</h3>
+
+					<div class="form-group">
+						<label class="control-sidebar-subheading"> Report panel
+							usage <input type="checkbox" class="pull-right" checked>
+						</label>
+
+						<p>Some information about this general settings option</p>
+					</div>
+					<!-- /.form-group -->
+				</form>
+			</div>
+			<!-- /.tab-pane -->
+		</div>
+	</aside>
+	<!-- /.control-sidebar -->
+	<!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
-		<div class="control-sidebar-bg"></div>
+	<div class="control-sidebar-bg"></div>
 	</div>
 	<!-- ./wrapper -->
 
@@ -449,33 +426,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	<script src="bootstrap/js/bootstrap.min.js"></script>
 	<!-- AdminLTE App -->
 	<script src="dist/js/app.min.js"></script>
-	<script src="../../plugins/jQuery/jQuery-2.2.0.min.js"></script>
-	<!-- Bootstrap 3.3.6 -->
-	<script src="../../bootstrap/js/bootstrap.min.js"></script>
-	<!-- DataTables -->
-	<script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
-	<script src="../../plugins/datatables/dataTables.bootstrap.min.js"></script>
-	<!-- SlimScroll -->
-	<script src="../../plugins/slimScroll/jquery.slimscroll.min.js"></script>
-	<!-- FastClick -->
-	<script src="../../plugins/fastclick/fastclick.js"></script>
-	<!-- AdminLTE App -->
-	<script src="../../dist/js/app.min.js"></script>
-	<!-- AdminLTE for demo purposes -->
-	<script src="../../dist/js/demo.js"></script>
-	<!-- page script -->
-	<script>
-		$(function() {
-			$("#example1").DataTable();
-			$('#example2').DataTable({
-				"paging" : true,
-				"lengthChange" : false,
-				"searching" : false,
-				"ordering" : true,
-				"info" : true,
-				"autoWidth" : false
-			});
-		});
-	</script>
+
+	<!-- Optionally, you can add Slimscroll and FastClick plugins.
+     Both of these plugins are recommended to enhance the
+     user experience. Slimscroll is required when using the
+     fixed layout. -->
 </body>
 </html>

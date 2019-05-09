@@ -30,7 +30,7 @@ public class DepartmentServiceImpl implements DepartmentService{
 	@Override
 	public Department findDepartmentById(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		return departmentRepo.getOne(id);
 	}
 
 	@Override

@@ -2,8 +2,8 @@ package com.example.demo.controller;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -79,21 +79,22 @@ public class StaffController {
 
 	@RequestMapping(value = "/staff/detail/{id}", method = RequestMethod.GET)
 	public ModelAndView detail(@PathVariable int id) {
-		
+
 		ModelAndView modelAndView = new ModelAndView();
 
 		modelAndView.addObject("staff", staffService.findOne(id));
-	
+
 		modelAndView.setViewName("detailstaff");
 		return modelAndView;
 	}
-	
-	@GetMapping(value="/staff/{id}/task")
+
+	@GetMapping(value = "/staff/{id}/task")
 	public ModelAndView getTask(@PathVariable int id) {
 		ModelAndView model = new ModelAndView();
-		model.addObject("tasks",staffService.getListTask(id));
+		model.addObject("staff", staffService.findOne(id));
+		model.addObject("tasks", staffService.getListTask(id));
 		model.setViewName("listtaskofstaff");
 		return model;
-		
+
 	}
 }

@@ -298,15 +298,35 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 			<!-- Main content -->
 			<section class="content">
+			<nav class="navbar navbar-inverse">
+						<div class="container-fluid">
+							<div class="navbar-header">
+								<a class="navbar-brand" href="/welcome">Home</a>
+							</div>
+							<ul class="nav navbar-nav">
+								<li class="active"><a
+									href="/project/detail/${project.projectId} ">Project width
+										name : ${project.projectName}</a></li>
+								<li><a href="/project/${project.projectId}/staff">Staff
+										Of Project</a></li>
+								<li><a href="/project/${project.projectId}/task">Task
+										Of Project</a></li>
+								<li><a href="/project/${project.projectId}/staff/add">Add
+										Staff In Project</a></li>
+								<li><a href="/project/${project.projectId}/progess">Progess
+										Project </a></li>
+
+							</ul>
+						</div>
+					</nav>
 				<div class="row">
 					<div class="col-xs-12">
 						<div class="box">
 							<div class="box-header">
-								<h3 class="box-title">Data Table Staff Of Project</h3>
+								<h3 class="box-title">Danh sách Staff thuộc Project : <c:out value="${project.projectName}"/></h3>
 							</div>
 							<div class="box-header">
-								<spring:url value="/project/${project.projectId}/staff/add" var="addURL" />
-								<a class="btn btn-primary" href="${addURL}" role="button"><i class="glyphicon glyphicon-plus"></i> Add Staff
+								<a class="btn btn-primary" href="/project/<c:out value="${project.projectId}"/>/staff/add" role="button"><i class="glyphicon glyphicon-plus"></i> Add Staff
 									In Project</a>
 							</div>
 							<!-- /.box-header -->
@@ -320,6 +340,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 											<th>Skill</th>
 											<th>Possition</th>
 											<th>Email</th>
+											<th>Action</th>
+											<th>Action</th>
+											<th>Action</th>
+											<th>Action</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -327,10 +351,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 											<tr>
 												<td><c:out value="${s.index + 1}" /></td>
 												<td><c:out value="${staff.firstName}" /></td>
-												<td><c:out value="${staff.fullName}" /></td>
+												<td><a href="/staff/detail/${staff.staffId}"><c:out value="${staff.fullName}" /></a></td>
 												<td><c:out value="${staff.skill}" /></td>
 												<td><c:out value="${staff.possition}" /></td>
 												<td><c:out value="${staff.email}" /></td>
+												<td><a href="project/${project.projectId}/staff/${staff.staffId}/addtask">tạo task cho staff</a></td>
+												<td><a href="/timework">log work</a></td>
+												<td><a href="/#">xóa staff khỏi project</a></td>
+												<td><a href="/staff/${staff.staffId}/task">List Task Of Staff</a></td>
 											</tr>
 										</c:forEach>
 									</tbody>

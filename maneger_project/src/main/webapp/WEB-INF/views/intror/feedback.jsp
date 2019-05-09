@@ -2,16 +2,12 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<%@ page import = "jared.simpledatabase.* %>
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
+
 <html>
 <head>
-<base href="http://localhost:8080/" target="_blank">
+
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>AdminLTE 2 | Starter</title>
@@ -300,70 +296,70 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 			<!-- Main content -->
 			<section class="content">
-<!-- 				<div class="imagebg"></div> -->
-<!-- 				<div class="row " style="margin-top: 50px"> -->
-<!-- 					<div class="col-md-6 col-md-offset-3 form-container"> -->
-<!-- 						<h2>Feedback</h2> -->
-<!-- 						<p>Please provide your feedback below:</p> -->
-<%-- 						<spring:url value="/feedback/save" var="saveURL" /> --%>
-<%-- 						<form:form modelAttribute="feedback" method="POST" --%>
-<%-- 								action="${saveURL}" role="form" method="POST" id="reused_form"> --%>
-<!-- 							<div class="row"> -->
-<!-- 								<div class="col-sm-12 form-group"> -->
-<!-- 									<label>How do you rate your overall experience?</label> -->
-<!-- 									<p> -->
-<%-- 										<label class="radio-inline"> <form:input type="radio" path="experience" --%>
-<%-- 											name="experience" id="radio_experience" value="bad" /> --%>
-<!-- 											Bad -->
-<%-- 										</label> <label class="radio-inline"> <form:input type="radio" path="experience" --%>
-<%-- 											name="experience" id="radio_experience" value="average" /> --%>
-<!-- 											Normal -->
-<%-- 										</label> <label class="radio-inline"> <form:input type="radio" path="experience" --%>
-<%-- 											name="experience" id="radio_experience" value="good" /> --%>
-<!-- 											Good -->
-<!-- 										</label> -->
-<!-- 									</p> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 							<div class="row"> -->
-<!-- 								<div class="col-sm-12 form-group"> -->
-<!-- 									<label for="comments"> Comments:</label> -->
-<%-- 									<form:textarea cssClass="form-control" type="textarea" name="comments" path="comment" --%>
-<%-- 										id="comments" placeholder="Your Comments" maxlength="6000" --%>
-<%-- 										rows="15"></form:textarea> --%>
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 							<div class="row"> -->
-<!-- 								<div class="col-sm-6 form-group"> -->
-<%-- 									<label for="name"> Your Name:</label> <form:input type="text" path="name" --%>
-<%-- 										cssClass="form-control" id="name" name="name" required /> --%>
-<!-- 								</div> -->
-<!-- 								<div class="col-sm-6 form-group"> -->
-<%-- 									<label for="email"> Email:</label> <form:input type="email" path="email" --%>
-<%-- 										cssClass="form-control" id="email" name="email" required /> --%>
-<!-- 								</div> -->
-<!-- 							</div> -->
+				<div class="imagebg"></div>
+				<div class="row " style="margin-top: 50px">
+					<div class="col-md-6 col-md-offset-3 form-container">
+						<h2>Feedback</h2>
+						<p>Please provide your feedback below:</p>
+						<spring:url value="/feedback/save" var="saveURL" />
+						<form:form modelAttribute="feedback" method="POST"
+ 								action="${saveURL}" role="form" id="reused_form"> 
+							<div class="row">
+ 								<div class="col-sm-12 form-group">
+ 									<label>How do you rate your overall experience?</label>
+ 									<p>
+ 										<label class="radio-inline"> <input type="radio" 
+ 											name="experience" id="radio_experience" value="bad" > 
+											Bad
+										</label> <label class="radio-inline"> <input type="radio" 
+											name="experience" id="radio_experience" value="average" > 
+											Normal
+										</label> <label class="radio-inline"> <input type="radio" 
+ 											name="experience" id="radio_experience" value="good" > 
+											Good
+										</label>
+									</p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-12 form-group">
+									<label for="comments"> Comments:</label>
+									<textarea Class="form-control" type="textarea" name="comments"  
+										id="comments" placeholder="Your Comments" maxlength="6000" 
+										rows="15"></textarea> 
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-6 form-group">
+									<label for="name"> Your Name:</label> <input type="text" 
+										Class="form-control" id="name" name="name" required >
+								</div>
+								<div class="col-sm-6 form-group">
+									<label for="email"> Email:</label> <input type="email" 
+										Class="form-control" id="email" name="email" required > 
+								</div>
+							</div>
 
-<!-- 							<div class="row"> -->
-<!-- 								<div class="col-sm-12 form-group"> -->
-<!-- 									<button type="submit" Class ="btn btn-lg btn-warning btn-block">Post -->
-<!-- 									</button> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
+							<div class="row">
+								<div class="col-sm-12 form-group">
+									<button type="submit" Class ="btn btn-lg btn-warning btn-block">Post
+									</button>
+								</div>
+							</div>
 
-<%-- 						</form:form> --%>
-<!-- 						<div id="success_message" -->
-<!-- 							style="width: 100%; height: 100%; display: none;"> -->
-<!-- 							<h3>Posted your feedback successfully!</h3> -->
-<!-- 						</div> -->
-<!-- 						<div id="error_message" -->
-<!-- 							style="width: 100%; height: 100%; display: none;"> -->
-<!-- 							<h3>Error</h3> -->
-<!-- 							Sorry there was an error sending your form. -->
+						</form:form>
+						<div id="success_message"
+							style="width: 100%; height: 100%; display: none;">
+							<h3>Posted your feedback successfully!</h3>
+						</div>
+						<div id="error_message"
+							style="width: 100%; height: 100%; display: none;">
+							<h3>Error</h3>
+							Sorry there was an error sending your form.
 
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
+						</div>
+					</div>
+				</div>
 
 			</section>
 

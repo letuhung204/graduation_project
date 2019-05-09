@@ -245,7 +245,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				<ul class="sidebar-menu">
 					<li class="header">HEADER</li>
 					<!-- Optionally, you can add icons to the links -->
-					<li class="active"><a href="/account" th:href="@{/account}"><i
+					<li class="active"><a href="/account" ><i
 							class="glyphicon glyphicon-lock"></i> <span>Account Management</span></a></li>
 							
 					<li class="active"><spring:url value="/department"
@@ -322,7 +322,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 											<th>Skill</th>
 											<th>Gender</th>
 											<th>Department</th>
-											<th >Action</th>
+											<th>Action</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -335,7 +335,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 												<td><c:out value="${staff.possition}" /></td>
 												<td><c:out value="${staff.skill}" /></td>
 												<td><c:out value="${staff.gender}" /></td>
-												<td><c:out value="${staff.departmentId.departmentName}" /></td>
+												<td><a href="/department/${staff.departmentId.departmentId}/detail"><c:out value="${staff.departmentId.departmentName}" /></a></td>
 												<td><spring:url value="/staff/${staff.staffId}/edit"
 														var="editURL" /> <a href="${editURL}"><i class="glyphicon glyphicon-pencil"></i></a> <spring:url
 														value="/staff/${staff.staffId}/delete" var="deleteURL" />
