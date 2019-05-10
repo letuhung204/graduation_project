@@ -34,6 +34,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 /**
  *
  * @author lthung
@@ -74,13 +76,16 @@ public class Task implements Serializable {
     @Basic(optional = false)
     @Column(name = "date_create")
     @Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm")
     private Date dateCreate;
     @Basic(optional = false)
     @Column(name = "deadline_date")
     @Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm")
     private Date deadlineDate;
     @Column(name = "finish_date")
     @Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm")
     private Date finishDate;
     @Column(name = "task_state")
     private Integer taskState;

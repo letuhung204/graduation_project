@@ -241,7 +241,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				<ul class="sidebar-menu">
 					<li class="header">HEADER</li>
 					<!-- Optionally, you can add icons to the links -->
-					<li class="active"><a href="/account" th:href="@{/account}"><i
+					<li class="active"><a href="/account"><i
 							class="glyphicon glyphicon-lock"></i> <span>Account Management</span></a></li>
 							
 					<li class="active"><spring:url value="/department"

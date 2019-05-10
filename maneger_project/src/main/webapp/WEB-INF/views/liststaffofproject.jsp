@@ -301,7 +301,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<nav class="navbar navbar-inverse">
 						<div class="container-fluid">
 							<div class="navbar-header">
-								<a class="navbar-brand" href="/welcome">Home</a>
+								<a class="navbar-brand" href="/project">Home</a>
 							</div>
 							<ul class="nav navbar-nav">
 								<li class="active"><a
@@ -355,10 +355,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 												<td><c:out value="${staff.skill}" /></td>
 												<td><c:out value="${staff.possition}" /></td>
 												<td><c:out value="${staff.email}" /></td>
-												<td><a href="project/${project.projectId}/staff/${staff.staffId}/addtask">tạo task cho staff</a></td>
+												<td><a href="project/${project.projectId}/staff/${staff.staffId}/task/add">tạo task cho staff</a></td>
 												<td><a href="/timework">log work</a></td>
-												<td><a href="/#">xóa staff khỏi project</a></td>
-												<td><a href="/staff/${staff.staffId}/task">List Task Of Staff</a></td>
+												<td><a href="project/${project.projectId}/staff/${staff.staffId}/delete">xóa staff khỏi project</a></td>
+												<td><a href="project/${project.projectId}/staff/${staff.staffId}/task">List Task Of Staff</a></td>
 											</tr>
 										</c:forEach>
 									</tbody>

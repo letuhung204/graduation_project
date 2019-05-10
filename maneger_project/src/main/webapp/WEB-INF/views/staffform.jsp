@@ -447,7 +447,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 											</div>
 
 											<div class="form-group">
-												<label class="col-md-2 control-label">ID Department
+												<label class="col-md-2 control-label">Department Name
 													<span style="color: red"> * </span>
 												</label>
 												<div class="col-md-8 inputGroupContainer">
@@ -464,7 +464,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 											</div>
 
 											<div class="form-group">
-												<label class="col-md-2 control-label">ID Account <span
+												<label class="col-md-2 control-label">Account Name<span
 													style="color: red"> * </span></label>
 												<div class="col-md-8 inputGroupContainer">
 													<div class="input-group">

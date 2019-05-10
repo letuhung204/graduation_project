@@ -24,11 +24,17 @@ public interface ProjectRepo extends JpaRepository<Project, Integer> {
 
 	@Query("select s from Staff s inner join s.staffProject sp  where sp.projectId= :projectId")
 	List<Staff> fetchStaff(@Param("projectId") int projectId);
-
+	
+	@Query("select s from Staff s left join s.staffProject sp  where sp.projectId <> :projectId or s.staffId not in (select staffId from StaffProject)")
+	List<Staff> getListStaffNotInproject(@Param("projectId") int projectId);
+	
 	@Modifying
 	@Transactional
 	@Query(value= "insert into Staff_Project(staff_id,project_id) value (:staffId, :projectId)", nativeQuery = true)
 	void insertStaffInproject(@Param("staffId") int staffId, @Param("projectId") int projectId);
 	
-
+	@Modifying
+	@Transactional
+	@Query(value= "delete sp from Staff_Project sp where sp.staff_id= :staffId AND sp.project_id= :project_id", nativeQuery = true)
+	void deleteStaffInProject(@Param("staffId") int staffId, @Param("project_id") int projectId);
 }

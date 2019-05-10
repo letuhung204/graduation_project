@@ -45,7 +45,7 @@ public class TaskController {
         return "taskform";
     }
 
-    @GetMapping(value = "project/{id}/staff/{idstaff}/addtask")
+    @GetMapping(value = "project/{id}/staff/{idstaff}/task/add")
     public String addTaskToStaff(@PathVariable("id") int id, @PathVariable("idstaff") int idstaff, Model model) {
         Task task = new Task();
         task.setProjectId(projectService.getProjecByiD(id));

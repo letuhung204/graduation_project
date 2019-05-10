@@ -373,8 +373,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 												<i class="fa fa-calendar"> </i>
 											</div>
 											<form:input class="form-control" id="createDate"
-												name="createDate" path="createDate" placeholder="MM/DD/YYYY"
-												type="text" />
+												name="createDate" path="createDate" 
+												type="datetime-local" />
 										</div>
 									</div>
 								</div>
@@ -388,8 +388,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 												<i class="fa fa-calendar"> </i>
 											</div>
 											<form:input class="form-control" id="startDate"
-												name="startDate" path="startDate" placeholder="MM/DD/YYYY"
-												type="text" />
+												name="startDate" path="startDate" 
+												type="datetime-local" />
 										</div>
 									</div>
 								</div>
@@ -404,7 +404,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 											</div>
 											<form:input class="form-control" id="deadlineDate"
 												name="deadlineDate" path="deadlineDate"
-												placeholder="MM/DD/YYYY" type="text" />
+												 type="datetime-local" />
 										</div>
 									</div>
 								</div>
@@ -418,8 +418,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 												<i class="fa fa-calendar"> </i>
 											</div>
 											<form:input class="form-control" id="finishDate"
-												name="finishDate" path="finishDate" placeholder="MM/DD/YYYY"
-												type="text" />
+												name="finishDate" path="finishDate" 
+												type="datetime-local" />
 										</div>
 									</div>
 								</div>

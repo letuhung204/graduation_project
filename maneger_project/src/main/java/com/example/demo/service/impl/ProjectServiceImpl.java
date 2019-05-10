@@ -73,4 +73,16 @@ public class ProjectServiceImpl implements ProjectService{
 		projectRepo.insertStaffInproject(idStaff, idProject);
 	}
 
+	@Override
+	public List<Staff> getListStaffNotInProject(int idProject) {
+		// TODO Auto-generated method stub
+		return projectRepo.getListStaffNotInproject(idProject);
+	}
+
+	@Override
+	public Boolean deleteStaffIdInProject(int idStaff, int idProject) {
+		projectRepo.deleteStaffInProject(idStaff, idProject);
+		return true;
+	}
+
 }

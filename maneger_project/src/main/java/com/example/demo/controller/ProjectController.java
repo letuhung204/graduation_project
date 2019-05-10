@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -109,12 +110,23 @@ public class ProjectController {
 	public ModelAndView addStaffProject(@PathVariable int id) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("project", projectService.getProjecByiD(id));
-		modelAndView.addObject("staffs", staffService.findAll());
+		List<Staff> listStaff = projectService.getListStaffNotInProject(id);
+		if(listStaff.isEmpty()) {
+			modelAndView.setViewName("404");
+			return modelAndView;
+		}
+		Map<Integer, String> staffs = new HashMap<>();
+		listStaff.forEach(item -> staffs.put(item.getStaffId(), item.getFullName()));
+
+		modelAndView.addObject("staffs", staffs);
+		for (int i = 0; i < listStaff.size() - 1; i++) {
+			modelAndView.addObject("staff", listStaff.get(i));
+		}
 		modelAndView.setViewName("addstaffinproject");
 		return modelAndView;
 	}
 
-	@GetMapping(value = "/project/{id}/staff/{idStaff}/add")
+	@PostMapping(value = "/project/{id}/staff/{idStaff}/add")
 	public String addStaffInproject(@PathVariable int id, @PathVariable int idStaff) {
 		projectService.addStaffInProject(id, idStaff);
 		return "redirect:/project/{id}/staff";
@@ -137,5 +149,11 @@ public class ProjectController {
 		task.setProjectId(projectService.getProjecByiD(id));
 		model.addAttribute("task", task);
 		return "taskform";
+	}
+
+	@GetMapping(value = "/project/{id}/staff/{idStaff}/delete")
+	public String deleteStaffInProject(@PathVariable int id, @PathVariable int idStaff) {
+		projectService.deleteStaffIdInProject(idStaff, id);
+		return "redirect:/project/{id}/staff";
 	}
 }

@@ -23,5 +23,9 @@ public interface ProjectService {
 	List<Project> searchProject(String keyworld);
 	
 	void addStaffInProject(int idProject,int idStaff);
+	
+	List<Staff> getListStaffNotInProject(int idProject);
+	
+	Boolean deleteStaffIdInProject(int idStaff,int idProject);
 
 }

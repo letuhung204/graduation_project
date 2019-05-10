@@ -248,37 +248,43 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					<li class="header">HEADER</li>
 					<!-- Optionally, you can add icons to the links -->
 					<li class="active"><a href="/account" th:href="@{/account}"><i
-							class="glyphicon glyphicon-lock"></i> <span>Account Management</span></a></li>
-							
+							class="glyphicon glyphicon-lock"></i> <span>Account
+								Management</span></a></li>
+
 					<li class="active"><spring:url value="/department"
-							var="listURL" /> <a class="" href="${listURL}" ><i
-							class="glyphicon glyphicon-home"></i>
-							 <span>Department Management</span></a></li>
-							
+							var="listURL" /> <a class="" href="${listURL}"><i
+							class="glyphicon glyphicon-home"></i> <span>Department
+								Management</span></a></li>
+
 					<li class="active"><spring:url value="/staff" var="listURL" />
-						<a class="" href="${listURL}" ><i
-							class="glyphicon glyphicon-user"></i> <span>Staff Management</span></a></li>
-							
+						<a class="" href="${listURL}"><i
+							class="glyphicon glyphicon-user"></i> <span>Staff
+								Management</span></a></li>
+
 					<li class="treeview"><a href="/project"><i
 							class="glyphicon glyphicon-glass"></i> <span>Project
 								Management</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
-							<li><a href="/project"><i class="glyphicon glyphicon-folder-open"></i> Project Management</a></li>
-							<li><a href="#"><i class="glyphicon glyphicon-folder-open"></i> Task Management</a></li>
-						</ul>
-					</li>
-					
+							<li><a href="/project"><i
+									class="glyphicon glyphicon-folder-open"></i> Project Management</a></li>
+							<li><a href="#"><i
+									class="glyphicon glyphicon-folder-open"></i> Task Management</a></li>
+						</ul></li>
+
 					<li class="active"><spring:url value="/aboutapp" var="listURL" />
-						<a class="" href="${listURL}" ><i class="glyphicon glyphicon-info-sign"></i> 
-						<span>Introduce About Web</span></a></li>
-							
+						<a class="" href="${listURL}"><i
+							class="glyphicon glyphicon-info-sign"></i> <span>Introduce
+								About Web</span></a></li>
+
 					<li class="active"><spring:url value="/aboutteam"
-							var="listURL" /> <a class="" href="${listURL}"><i class="glyphicon glyphicon-camera"></i>
-							<span>Introduce About Team</span></a></li>
-							
-					<li class="active"><spring:url value="/feedback/add" var="listURL" />
-						<a class="" href="${listURL}" ><i class="glyphicon glyphicon-question-sign"></i>
-						<span>Help Us !</span></a></li>
+							var="listURL" /> <a class="" href="${listURL}"><i
+							class="glyphicon glyphicon-camera"></i> <span>Introduce
+								About Team</span></a></li>
+
+					<li class="active"><spring:url value="/feedback/add"
+							var="listURL" /> <a class="" href="${listURL}"><i
+							class="glyphicon glyphicon-question-sign"></i> <span>Help
+								Us !</span></a></li>
 				</ul>
 				<!-- /.sidebar-menu -->
 			</section>
@@ -300,16 +306,44 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 			<!-- Main content -->
 			<section class="content">
+				<nav class="navbar navbar-inverse">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<a class="navbar-brand" href="/project">Home</a>
+						</div>
+						<ul class="nav navbar-nav">
+							<li class="active"><a
+								href="/project/detail/${project.projectId} ">Project width
+									name : ${project.projectName}</a></li>
+							<li><a href="/project/${project.projectId}/staff">Staff
+									Of Project</a></li>
+							<li><a href="/project/${project.projectId}/task">Task Of
+									Project</a></li>
+							<li><a href="/project/${project.projectId}/staff/add">Add
+									Staff In Project</a></li>
+							<li><a href="/project/${project.projectId}/progess">Progess
+									Project </a></li>
+
+						</ul>
+					</div>
+				</nav>
 				<div class="row">
 					<div class="col-xs-12">
 						<div class="box">
 							<div class="box-header">
-								<h3 class="box-title">Bảng danh sách các task của  <a href="/staff/detail/${staff.staffId}"><c:out value="${staff.fullName}" /></a></h3>
+								<h3 class="box-title">
+									Bảng danh sách các task của <a
+										href="/staff/detail/${staff.staffId}"><c:out
+											value="${staff.fullName}" /></a>
+								</h3>
 							</div>
 							<div class="box-header">
-								<spring:url value="/staff/add/task" var="addURL" />
-								<a class="btn btn-primary" href="${addURL}" role="button"><i class="glyphicon glyphicon-plus"></i> Create
-									Task for Staff</a>
+								<spring:url
+									value="project/${project.projectId}/staff/${staff.staffId}/task/add"
+									var="addURL" />
+								<a class="btn btn-primary" href="${addURL}" role="button"><i
+									class="glyphicon glyphicon-plus"></i> Create Task for Staff : <c:out
+										value="${staff.fullName}" /></a>
 							</div>
 							<!-- /.box-header -->
 							<div class="box-body">
@@ -334,10 +368,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 												<td><c:out value="${task.nameCreate}" /></td>
 												<td><c:out value="${task.nameAssign}" /></td>
 												<td><c:out value="${task.dateCreate}" /></td>
-												<td><div class="progress" style="background-color: yellow" >
-														<div class="progress-bar" role="progressbar" 
-															style="width: <c:out value="${task.taskState}" />; color: red" aria-valuenow="25" aria-valuemin="0"
-															aria-valuemax="100"><c:out value="${task.taskState}" />%</div>
+												<td><div class="progress"
+														style="background-color: yellow">
+														<div class="progress-bar" role="progressbar"
+															style="width: <c:out value="${task.taskState}" />; color: red"
+															aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+															<c:out value="${task.taskState}" />%
+														</div>
 													</div></td>
 												<td><a>delete</a></td>
 												<td><a>detail task</a></td>
@@ -362,8 +399,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<!-- To the right -->
 			<div class="pull-right hidden-xs">GVHD: Nguyễn Thanh Bình</div>
 			<!-- Default to the left -->
-			<strong>Team Graduation Project <a href="/welcome">Rạng Đông
-					Company</a>
+			<strong>Team Graduation Project <a href="/welcome">Rạng
+					Đông Company</a>
 			</strong> Hùng - Thành - Đại.
 		</footer>
 

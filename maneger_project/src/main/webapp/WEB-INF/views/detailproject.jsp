@@ -302,7 +302,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					<nav class="navbar navbar-inverse">
 						<div class="container-fluid">
 							<div class="navbar-header">
-								<a class="navbar-brand" href="/welcome">Home</a>
+								<a class="navbar-brand" href="/project">Home</a>
 							</div>
 							<ul class="nav navbar-nav">
 								<li class="active"><a
