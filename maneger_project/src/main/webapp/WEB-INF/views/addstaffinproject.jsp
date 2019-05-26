@@ -11,7 +11,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html>
 <head>
-<base href="http://localhost:8080/" target="_blank">
+<base href="http://localhost:8080/" >
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>AdminLTE 2 | Starter</title>
@@ -51,7 +51,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		<header class="main-header">
 
 			<!-- Logo -->
-			<a href="#" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
+			<a href="welcome" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
 				<span class="logo-mini"><b>R</b>Đ</span> <!-- logo for regular state and mobile devices -->
 				<span class="logo-lg"><b>Rạng Đông</b> Company</span>
 			</a>
@@ -159,7 +159,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							data-toggle="dropdown"> <!-- The user image in the navbar-->
 								<img src="dist/img/hung.jpg" class="user-image" alt="User Image">
 								<!-- hidden-xs hides the username on small devices so only the image appears. -->
-								<span class="hidden-xs">Lê Tử Hùng</span>
+								<span class="hidden-xs">${username}</span>
 						</a>
 							<ul class="dropdown-menu">
 								<!-- The user image in the menu -->
@@ -167,7 +167,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 									class="img-circle" alt="User Image">
 
 									<p>
-										Lê Tử Hùng - Web Developer <small>Member since Nov.
+										${username} - Web Developer <small>Member since Nov.
 											2019</small>
 									</p></li>
 								<!-- Menu Body -->
@@ -217,7 +217,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<img src="dist/img/hung.jpg" class="img-circle" alt="User Image">
 					</div>
 					<div class="pull-left info">
-						<p>Lê Tử Hùng</p>
+						<p>${username}</p>
 						<!-- Status -->
 						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
 					</div>
@@ -241,17 +241,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				<ul class="sidebar-menu">
 					<li class="header">HEADER</li>
 					<!-- Optionally, you can add icons to the links -->
-					<li class="active"><a href="/account" th:href="@{/account}"><i
+					<li class="active"><a href="/account"><i
 							class="glyphicon glyphicon-lock"></i> <span>Account
 								Management</span></a></li>
-
-					<li class="active"><spring:url value="/department"
-							var="listURL" /> <a class="" href="${listURL}"><i
+					<li class="active"><a class="" href="/department"><i
 							class="glyphicon glyphicon-home"></i> <span>Department
 								Management</span></a></li>
 
-					<li class="active"><spring:url value="/staff" var="listURL" />
-						<a class="" href="${listURL}"><i
+					<li class="active"><a class="" href="/staff"><i
 							class="glyphicon glyphicon-user"></i> <span>Staff
 								Management</span></a></li>
 
@@ -264,19 +261,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							<li><a href="#"><i
 									class="glyphicon glyphicon-folder-open"></i> Task Management</a></li>
 						</ul></li>
-
-					<li class="active"><spring:url value="/aboutapp" var="listURL" />
-						<a class="" href="${listURL}"><i
+					<li class="active"><a class="" href="/getfeedback"><i
+							class="glyphicon glyphicon-wrench"></i> <span>FeedBack
+								Management</span></a></li>
+					<li class="active"><a class="" href="/aboutapp"><i
 							class="glyphicon glyphicon-info-sign"></i> <span>Introduce
 								About Web</span></a></li>
 
-					<li class="active"><spring:url value="/aboutteam"
-							var="listURL" /> <a class="" href="${listURL}"><i
+					<li class="active"><a class="" href="/aboutteam"><i
 							class="glyphicon glyphicon-camera"></i> <span>Introduce
 								About Team</span></a></li>
 
-					<li class="active"><spring:url value="/feedback/add"
-							var="listURL" /> <a class="" href="${listURL}"><i
+					<li class="active"><a class="" href="/feedback/add"><i
 							class="glyphicon glyphicon-question-sign"></i> <span>Help
 								Us !</span></a></li>
 				</ul>
@@ -301,15 +297,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<!-- Main content -->
 			<section class="content">
 				<div class="container">
-				<img alt="" src="images/addStaff.png">
+					<img alt="" src="images/addStaff.png">
 					<table class="table table-striped">
 						<tbody>
 							<tr>
 								<td colspan="1">
-									<h2>ADD STAFF IN PROJECT HAVE NAME : ${project.projectName}</h2>
+									<h2>ADD STAFF IN PROJECT HAVE NAME :
+										${project.projectName}</h2>
 									<fieldset>
 										<form:form modelAttribute="staff" method="POST"
-											action="project/${project.projectId}/staff/${staff.staffId}/add"
+											action="project/${project.projectId}/staff/add/${staff.staffId}"
 											cssClass="well form-horizontal">
 
 											<div class="form-group">
@@ -332,8 +329,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 											<div class="text-center">
 												<button type="submit" class="btn btn-primary">Add
 													Staff In project</button>
-												<button type="button" class="btn btn-primary"
-													onclick="return window.location='/project/${project.projectId}/staff';">Cancel</button>
+												<a type="button" class="btn btn-primary" href="/project/${project.projectId}/staff"
+													onclick="return confirm('Bạn chắc chắn muốn ngừng thực hiện tác vụ không ?')">Cancel</a>
 											</div>
 										</form:form>
 									</fieldset>

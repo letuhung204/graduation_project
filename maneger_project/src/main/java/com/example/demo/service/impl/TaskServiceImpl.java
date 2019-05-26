@@ -20,4 +20,11 @@ public class TaskServiceImpl implements TaskService {
 	public Task findById(int id) {
 		return taskRepo.getOne(id);
 	}
+
+	@Override
+	public boolean deleteTask(int id) {
+		// TODO Auto-generated method stub
+		 taskRepo.deleteById(id);
+		 return true;
+	}
 }

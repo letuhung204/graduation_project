@@ -2,12 +2,16 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ page import = "jared.simpledatabase.* %>
-<!DOCTYPE html>
 
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
 <html>
 <head>
-
+<base href="http://localhost:8080/" >
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>AdminLTE 2 | Starter</title>
@@ -40,12 +44,7 @@
 <!-- Custom style -->
 <link href="../static/css/style.css" href="@{/css/style.css}"
 	rel="stylesheet" />
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Montserrat"
-	rel="stylesheet">
-<link rel="stylesheet" href="css/feedback.css">
-<script src="js/feedback.js"></script>
+<link href="/css/feedback.css" rel="stylesheet" />
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
 
@@ -53,7 +52,7 @@
 		<header class="main-header">
 
 			<!-- Logo -->
-			<a href="#" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
+			<a href="/welcome" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
 				<span class="logo-mini"><b>R</b>Đ</span> <!-- logo for regular state and mobile devices -->
 				<span class="logo-lg"><b>Rạng Đông</b> Company</span>
 			</a>
@@ -161,7 +160,7 @@
 							data-toggle="dropdown"> <!-- The user image in the navbar-->
 								<img src="dist/img/hung.jpg" class="user-image" alt="User Image">
 								<!-- hidden-xs hides the username on small devices so only the image appears. -->
-								<span class="hidden-xs">Lê Tử Hùng</span>
+								<span class="hidden-xs">${username}</span>
 						</a>
 							<ul class="dropdown-menu">
 								<!-- The user image in the menu -->
@@ -169,7 +168,7 @@
 									class="img-circle" alt="User Image">
 
 									<p>
-										Lê Tử Hùng - Web Developer <small>Member since Nov.
+										${username} - Web Developer <small>Member since Nov.
 											2019</small>
 									</p></li>
 								<!-- Menu Body -->
@@ -219,7 +218,7 @@
 						<img src="dist/img/hung.jpg" class="img-circle" alt="User Image">
 					</div>
 					<div class="pull-left info">
-						<p>Lê Tử Hùng</p>
+						<p>${username}</p>
 						<!-- Status -->
 						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
 					</div>
@@ -243,38 +242,40 @@
 				<ul class="sidebar-menu">
 					<li class="header">HEADER</li>
 					<!-- Optionally, you can add icons to the links -->
-					<li class="active"><a href="/account" th:href="@{/account}"><i
-							class="glyphicon glyphicon-lock"></i> <span>Account Management</span></a></li>
-							
-					<li class="active"><spring:url value="/department"
-							var="listURL" /> <a class="" href="${listURL}" role="list"><i
-							class="glyphicon glyphicon-home"></i>
-							 <span>Department Management</span></a></li>
-							
-					<li class="active"><spring:url value="/staff" var="listURL" />
-						<a class="" href="${listURL}" role="list"><i
-							class="glyphicon glyphicon-user"></i> <span>Staff Management</span></a></li>
-							
+					<li class="active"><a href="/account"><i
+							class="glyphicon glyphicon-lock"></i> <span>Account
+								Management</span></a></li>
+					<li class="active"><a class="" href="/department"><i
+							class="glyphicon glyphicon-home"></i> <span>Department
+								Management</span></a></li>
+
+					<li class="active"><a class="" href="/staff"><i
+							class="glyphicon glyphicon-user"></i> <span>Staff
+								Management</span></a></li>
+
 					<li class="treeview"><a href="/project"><i
 							class="glyphicon glyphicon-glass"></i> <span>Project
 								Management</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
-							<li><a href="/project"><i class="glyphicon glyphicon-folder-open"></i> Project Management</a></li>
-							<li><a href="#"><i class="glyphicon glyphicon-folder-open"></i> Task Management</a></li>
-						</ul>
-					</li>
-					
-					<li class="active"><spring:url value="/aboutapp" var="listURL" />
-						<a class="" href="${listURL}" role="list"><i class="glyphicon glyphicon-info-sign"></i> 
-						<span>Introduce About Web</span></a></li>
-							
-					<li class="active"><spring:url value="/aboutteam"
-							var="listURL" /> <a class="" href="${listURL}" role="list"><i class="glyphicon glyphicon-camera"></i>
-							<span>Introduce About Team</span></a></li>
-							
-					<li class="active"><spring:url value="/feedback" var="listURL" />
-						<a class="" href="${listURL}" role="list"><i class="glyphicon glyphicon-question-sign"></i>
-						<span>Help Us !</span></a></li>
+							<li><a href="/project"><i
+									class="glyphicon glyphicon-folder-open"></i> Project Management</a></li>
+							<li><a href="#"><i
+									class="glyphicon glyphicon-folder-open"></i> Task Management</a></li>
+						</ul></li>
+					<li class="active"><a class="" href="/getfeedback"><i
+							class="glyphicon glyphicon-wrench"></i> <span>FeedBack
+								Management</span></a></li>
+					<li class="active"><a class="" href="/aboutapp"><i
+							class="glyphicon glyphicon-info-sign"></i> <span>Introduce
+								About Web</span></a></li>
+
+					<li class="active"><a class="" href="/aboutteam"><i
+							class="glyphicon glyphicon-camera"></i> <span>Introduce
+								About Team</span></a></li>
+
+					<li class="active"><a class="" href="/feedback/add"><i
+							class="glyphicon glyphicon-question-sign"></i> <span>Help
+								Us !</span></a></li>
 				</ul>
 				<!-- /.sidebar-menu -->
 			</section>
@@ -284,84 +285,56 @@
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
-			<section class="content-header">
-				<h1>
-					Page Header <small>Optional description</small>
-				</h1>
-				<ol class="breadcrumb">
-					<li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-					<li class="active">Here</li>
-				</ol>
-			</section>
 
 			<!-- Main content -->
-			<section class="content">
-				<div class="imagebg"></div>
-				<div class="row " style="margin-top: 50px">
-					<div class="col-md-6 col-md-offset-3 form-container">
-						<h2>Feedback</h2>
-						<p>Please provide your feedback below:</p>
+			<section class="content"
+				style="background-image: url(images/backgroud.jpg)">
+				<div class="content">
+					<h1>Feedback Widget</h1>
+					<div class="main">
 						<spring:url value="/feedback/save" var="saveURL" />
-						<form:form modelAttribute="feedback" method="POST"
- 								action="${saveURL}" role="form" id="reused_form"> 
-							<div class="row">
- 								<div class="col-sm-12 form-group">
- 									<label>How do you rate your overall experience?</label>
- 									<p>
- 										<label class="radio-inline"> <input type="radio" 
- 											name="experience" id="radio_experience" value="bad" > 
-											Bad
-										</label> <label class="radio-inline"> <input type="radio" 
-											name="experience" id="radio_experience" value="average" > 
-											Normal
-										</label> <label class="radio-inline"> <input type="radio" 
- 											name="experience" id="radio_experience" value="good" > 
-											Good
-										</label>
-									</p>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-12 form-group">
-									<label for="comments"> Comments:</label>
-									<textarea Class="form-control" type="textarea" name="comments"  
-										id="comments" placeholder="Your Comments" maxlength="6000" 
-										rows="15"></textarea> 
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-6 form-group">
-									<label for="name"> Your Name:</label> <input type="text" 
-										Class="form-control" id="name" name="name" required >
-								</div>
-								<div class="col-sm-6 form-group">
-									<label for="email"> Email:</label> <input type="email" 
-										Class="form-control" id="email" name="email" required > 
-								</div>
-							</div>
+						<form:form class="form-horizontal" modelAttribute="feedback"
+							var="feedback" action="${saveURL}" method="POST">
+							<h5>Your Name</h5>
+							<form:input type="text" value="Type here"
+								onfocus="this.value = '';"
+								onblur="if (this.value == '') {this.value = 'Type here';}"
+								required="true" path="name" />
+							<h5>Email</h5>
+							<form:input type="text" value="tuhung204@mail.com"
+								onfocus="this.value = '';"
+								onblur="if (this.value == '') {this.value = 'tuhung204@mail.com';}"
+								required="true" path="email" />
+							<h5>
+								Your Review <span>( Tips and Guidelines ) </span>
+							</h5>
+							<form:textarea path="review" id="review" placeholder="review"
+								class="form-control" required="true" rows="5"></form:textarea>
 
-							<div class="row">
-								<div class="col-sm-12 form-group">
-									<button type="submit" Class ="btn btn-lg btn-warning btn-block">Post
-									</button>
+							<h5>Overall Satisfaction</h5>
+							<div class="radio-btns">
+								<div class="swit">
+									<form:select path="experience" class="form-control" id="sel1"
+										style="height:30px; width: 94%" required="required">
+										<form:option value="excellent" label="--- Select ---" />
+										<form:option value="excellent" label="excellent" />
+										<form:option value="good" label="good" />
+										<form:option value="faire" label="faire" />
+										<form:option value="poor" label="poor" />
+									</form:select>
+									<div class="clear"></div>
 								</div>
 							</div>
+							<h5>Is there anything you would like to tell us?</h5>
+							<form:textarea path="comment" id="comment" placeholder="comment"
+								class="form-control" required="true" rows="5"></form:textarea>
+							<input type="submit" value="Send Feedback">
 
 						</form:form>
-						<div id="success_message"
-							style="width: 100%; height: 100%; display: none;">
-							<h3>Posted your feedback successfully!</h3>
-						</div>
-						<div id="error_message"
-							style="width: 100%; height: 100%; display: none;">
-							<h3>Error</h3>
-							Sorry there was an error sending your form.
-
-						</div>
 					</div>
 				</div>
-
 			</section>
+
 
 			<!-- /.content -->
 		</div>

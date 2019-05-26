@@ -25,6 +25,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  *
@@ -56,8 +57,19 @@ public class Department implements Serializable {
     private String discription;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "departmentId")
     private Collection<Staff> staffCollection;
+    
+    @Transient
+    private boolean check= true;
+    
+    public boolean isCheck() {
+		return check;
+	}
 
-    public Department() {
+	public void setCheck(boolean check) {
+		this.check = check;
+	}
+
+	public Department() {
     }
 
     public Department(Integer departmentId) {

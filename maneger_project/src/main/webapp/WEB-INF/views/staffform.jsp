@@ -11,7 +11,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html>
 <head>
-<base href="http://localhost:8080/" target="_blank">
+<base href="http://localhost:8080/" >
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>AdminLTE 2 | Starter</title>
@@ -55,7 +55,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		<header class="main-header">
 
 			<!-- Logo -->
-			<a href="#" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
+			<a href="/welcome" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
 				<span class="logo-mini"><b>R</b>Đ</span> <!-- logo for regular state and mobile devices -->
 				<span class="logo-lg"><b>Rạng Đông</b> Company</span>
 			</a>
@@ -163,7 +163,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							data-toggle="dropdown"> <!-- The user image in the navbar-->
 								<img src="dist/img/hung.jpg" class="user-image" alt="User Image">
 								<!-- hidden-xs hides the username on small devices so only the image appears. -->
-								<span class="hidden-xs">Lê Tử Hùng</span>
+								<span class="hidden-xs">${username}</span>
 						</a>
 							<ul class="dropdown-menu">
 								<!-- The user image in the menu -->
@@ -171,7 +171,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 									class="img-circle" alt="User Image">
 
 									<p>
-										Lê Tử Hùng - Web Developer <small>Member since Nov.
+										${username} - Web Developer <small>Member since Nov.
 											2019</small>
 									</p></li>
 								<!-- Menu Body -->
@@ -221,7 +221,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<img src="dist/img/hung.jpg" class="img-circle" alt="User Image">
 					</div>
 					<div class="pull-left info">
-						<p>Lê Tử Hùng</p>
+						<p>${username}</p>
 						<!-- Status -->
 						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
 					</div>
@@ -245,17 +245,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				<ul class="sidebar-menu">
 					<li class="header">HEADER</li>
 					<!-- Optionally, you can add icons to the links -->
-					<li class="active"><a href="/account" th:href="@{/account}"><i
+					<li class="active"><a href="/account"><i
 							class="glyphicon glyphicon-lock"></i> <span>Account
 								Management</span></a></li>
-
-					<li class="active"><spring:url value="/department"
-							var="listURL" /> <a class="" href="${listURL}"><i
+					<li class="active"><a class="" href="/department"><i
 							class="glyphicon glyphicon-home"></i> <span>Department
 								Management</span></a></li>
 
-					<li class="active"><spring:url value="/staff" var="listURL" />
-						<a class="" href="${listURL}"><i
+					<li class="active"><a class="" href="/staff"><i
 							class="glyphicon glyphicon-user"></i> <span>Staff
 								Management</span></a></li>
 
@@ -268,19 +265,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							<li><a href="#"><i
 									class="glyphicon glyphicon-folder-open"></i> Task Management</a></li>
 						</ul></li>
-
-					<li class="active"><spring:url value="/aboutapp" var="listURL" />
-						<a class="" href="${listURL}"><i
+					<li class="active"><a class="" href="/getfeedback"><i
+							class="glyphicon glyphicon-wrench"></i> <span>FeedBack
+								Management</span></a></li>
+					<li class="active"><a class="" href="/aboutapp"><i
 							class="glyphicon glyphicon-info-sign"></i> <span>Introduce
 								About Web</span></a></li>
 
-					<li class="active"><spring:url value="/aboutteam"
-							var="listURL" /> <a class="" href="${listURL}"><i
+					<li class="active"><a class="" href="/aboutteam"><i
 							class="glyphicon glyphicon-camera"></i> <span>Introduce
 								About Team</span></a></li>
 
-					<li class="active"><spring:url value="/feedback/add"
-							var="listURL" /> <a class="" href="${listURL}"><i
+					<li class="active"><a class="" href="/feedback/add"><i
 							class="glyphicon glyphicon-question-sign"></i> <span>Help
 								Us !</span></a></li>
 				</ul>
@@ -308,14 +304,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					<table class="table table-striped">
 						<tbody>
 							<tr>
-								<td colspan="1"><img alt="" src="/images/employee.png"
-									style="width: 40%">
+								<td colspan="1"><img alt="" src="/images/staff.png"
+									style="width: 100%; height: 120%">
 									<h2>Staff Form</h2> <spring:url value="/staff/save"
 										var="saveURL" />
 									<fieldset>
 										<form:form modelAttribute="staff" method="POST"
 											action="${saveURL}" cssClass="well form-horizontal"
-											onsubmit="return checkPhone() && validateEmail() && validateGender() && checkmaxsize()">
+											onsubmit="return checkPhone() && validateEmail() && validateGender() && checkmaxsize() && checkemailissame()">
 
 											<div class="form-group">
 												<label class="col-md-2 control-label">ID Staff<span
@@ -325,7 +321,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 														<div class="col-md-8 inputGroupContainer">
 															<div class="input-group">
 																<span class="input-group-addon"><i
-																	class="glyphicon glyphicon-user"></i></span>
+																	class="glyphicon glyphicon-tags"></i></span>
 																<form:input path="staffId" cssClass="form-control"
 																	required="required" readonly="true" />
 															</div>
@@ -335,7 +331,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 														<div class="col-md-8 inputGroupContainer">
 															<div class="input-group">
 																<span class="input-group-addon"><i
-																	class="glyphicon glyphicon-user"></i></span>
+																	class="glyphicon glyphicon-tags"></i></span>
 																<form:input id="staffId" path="staffId"
 																	cssClass="form-control" required="required"
 																	readonly="true" />
@@ -394,7 +390,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 												</div>
 											</div>
 											<div class="form-group">
-												<label class="col-md-2 control-label">Possition <span
+												<label class="col-md-2 control-label">Position <span
 													style="color: red"> * </span></label>
 												<div class="col-md-8 inputGroupContainer">
 													<div class="input-group">
@@ -447,8 +443,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 											</div>
 
 											<div class="form-group">
-												<label class="col-md-2 control-label">Department Name
-													<span style="color: red"> * </span>
+												<label class="col-md-2 control-label">Department
+													Name <span style="color: red"> * </span>
 												</label>
 												<div class="col-md-8 inputGroupContainer">
 													<div class="input-group">
@@ -473,14 +469,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 														<form:select path="accountId" class="form-control"
 															id="sel1" style="height:30px" required="required">
 															<form:option value="" label="--- Select ---" />
-															<form:options items="${accounts }" />
+															<form:options items="${accounts }" id="accounts" />
 														</form:select>
 													</div>
 												</div>
 											</div>
 
 											<div class="form-group">
-												<label class="col-md-2 control-label">Discription</label>
+												<label class="col-md-2 control-label">Description</label>
 												<div class="col-md-8 inputGroupContainer">
 													<div class="input-group">
 														<span class="input-group-addon"><i
@@ -494,8 +490,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 											<div class="text-center">
 												<button type="submit" class="btn btn-primary">Save</button>
-												<button type="button" class="btn btn-primary"
-													onclick="return window.location='/staff';">Cancel</button>
+												<a type="button" class="btn btn-primary" href="/staff"
+													onclick="return confirm('Bạn chắc chắn muốn ngừng thực hiện tác vụ không ?')">Cancel</a>
 											</div>
 										</form:form>
 									</fieldset></td>
@@ -507,105 +503,4 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 			<!-- /.content -->
-		</div>
-		<!-- /.content-wrapper -->
-
-		<!-- Main Footer -->
-		<footer class="main-footer">
-			<!-- To the right -->
-			<div class="pull-right hidden-xs">GVHD: Nguyễn Thanh Bình</div>
-			<!-- Default to the left -->
-			<strong>Team Graduation Project <a href="#">Rạng Đông
-					Company</a>
-			</strong> Hùng - Thành - Đại.
-		</footer>
-
-		<!-- Control Sidebar -->
-		<aside class="control-sidebar control-sidebar-dark">
-			<!-- Create the tabs -->
-			<ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-				<li class="active"><a href="#control-sidebar-home-tab"
-					data-toggle="tab"><i class="fa fa-home"></i></a></li>
-				<li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i
-						class="fa fa-gears"></i></a></li>
-			</ul>
-			<!-- Tab panes -->
-			<div class="tab-content">
-				<!-- Home tab content -->
-				<div class="tab-pane active" id="control-sidebar-home-tab">
-					<h3 class="control-sidebar-heading">Recent Activity</h3>
-					<ul class="control-sidebar-menu">
-						<li><a href="javascript::;"> <i
-								class="menu-icon fa fa-birthday-cake bg-red"></i>
-
-								<div class="menu-info">
-									<h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-
-									<p>Will be 23 on April 24th</p>
-								</div>
-						</a></li>
-					</ul>
-					<!-- /.control-sidebar-menu -->
-
-					<h3 class="control-sidebar-heading">Tasks Progress</h3>
-					<ul class="control-sidebar-menu">
-						<li><a href="javascript::;">
-								<h4 class="control-sidebar-subheading">
-									Custom Template Design <span
-										class="label label-danger pull-right">70%</span>
-								</h4>
-
-								<div class="progress progress-xxs">
-									<div class="progress-bar progress-bar-danger"
-										style="width: 70%"></div>
-								</div>
-						</a></li>
-					</ul>
-					<!-- /.control-sidebar-menu -->
-
-				</div>
-				<!-- /.tab-pane -->
-				<!-- Stats tab content -->
-				<div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab
-					Content</div>
-				<!-- /.tab-pane -->
-				<!-- Settings tab content -->
-				<div class="tab-pane" id="control-sidebar-settings-tab">
-					<form method="post">
-						<h3 class="control-sidebar-heading">General Settings</h3>
-
-						<div class="form-group">
-							<label class="control-sidebar-subheading"> Report panel
-								usage <input type="checkbox" class="pull-right" checked>
-							</label>
-
-							<p>Some information about this general settings option</p>
-						</div>
-						<!-- /.form-group -->
-					</form>
-				</div>
-				<!-- /.tab-pane -->
-			</div>
-		</aside>
-		<!-- /.control-sidebar -->
-		<!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->
-		<div class="control-sidebar-bg"></div>
-	</div>
-	<!-- ./wrapper -->
-
-	<!-- REQUIRED JS SCRIPTS -->
-
-	<!-- jQuery 2.2.0 -->
-	<script src="plugins/jQuery/jQuery-2.2.0.min.js"></script>
-	<!-- Bootstrap 3.3.6 -->
-	<script src="bootstrap/js/bootstrap.min.js"></script>
-	<!-- AdminLTE App -->
-	<script src="dist/js/app.min.js"></script>
-
-	<!-- Optionally, you can add Slimscroll and FastClick plugins.
-     Both of these plugins are recommended to enhance the
-     user experience. Slimscroll is required when using the
-     fixed layout. -->
-</body>
-</html>
+		<jsp:include page="layout/footer.jsp" />

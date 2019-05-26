@@ -3,6 +3,7 @@ package com.example.demo.service;
 import java.util.List;
 
 import com.example.demo.entity.Account;
+import com.example.demo.entity.Role;
 
 public interface AccountService {
 	List<Account> findAllAccount();
@@ -14,4 +15,6 @@ public interface AccountService {
 	boolean deleteAccount(int idAccount);
 	
 	Account getAccountByID(int idAccount);
+	
+	Role findByRole(int idAccount);
 }

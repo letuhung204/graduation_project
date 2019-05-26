@@ -7,5 +7,7 @@ public interface TaskService {
     void saveTask(Task task);
 
     Task findById(int id);
+    
+    boolean deleteTask(int id);
 
 }

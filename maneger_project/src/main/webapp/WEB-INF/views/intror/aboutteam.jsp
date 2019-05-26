@@ -11,7 +11,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html>
 <head>
-<base href="http://localhost:8080/" target="_blank">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>AdminLTE 2 | Starter</title>
@@ -43,15 +42,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	crossorigin="anonymous" />
 <!-- Custom style -->
 <link href="css/style.css" rel="stylesheet" />
-<link href="css/card.css" rel="stylesheet" />
+<link href="css/inforteam.css" rel="stylesheet" />
+
 <body class="hold-transition skin-blue sidebar-mini">
-	<div class="wrapper">
+	<div class="wrapper" style="margin-top: -5.5%">
 
 		<!-- Main Header -->
 		<header class="main-header">
 
 			<!-- Logo -->
-			<a href="#" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
+			<a href="/welcome" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
 				<span class="logo-mini"><b>R</b>Đ</span> <!-- logo for regular state and mobile devices -->
 				<span class="logo-lg"><b>Rạng Đông</b> Company</span>
 			</a>
@@ -159,7 +159,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							data-toggle="dropdown"> <!-- The user image in the navbar-->
 								<img src="dist/img/hung.jpg" class="user-image" alt="User Image">
 								<!-- hidden-xs hides the username on small devices so only the image appears. -->
-								<span class="hidden-xs">Lê Tử Hùng</span>
+								<span class="hidden-xs">${username}</span>
 						</a>
 							<ul class="dropdown-menu">
 								<!-- The user image in the menu -->
@@ -167,7 +167,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 									class="img-circle" alt="User Image">
 
 									<p>
-										Lê Tử Hùng - Web Developer <small>Member since Nov.
+										${username} - Web Developer <small>Member since Nov.
 											2019</small>
 									</p></li>
 								<!-- Menu Body -->
@@ -217,7 +217,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<img src="dist/img/hung.jpg" class="img-circle" alt="User Image">
 					</div>
 					<div class="pull-left info">
-						<p>Lê Tử Hùng</p>
+						<p>${username}</p>
 						<!-- Status -->
 						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
 					</div>
@@ -241,17 +241,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				<ul class="sidebar-menu">
 					<li class="header">HEADER</li>
 					<!-- Optionally, you can add icons to the links -->
-					<li class="active"><a href="/account" th:href="@{/account}"><i
+					<li class="active"><a href="/account"><i
 							class="glyphicon glyphicon-lock"></i> <span>Account
 								Management</span></a></li>
-
-					<li class="active"><spring:url value="/department"
-							var="listURL" /> <a class="" href="${listURL}" role="list"><i
+					<li class="active"><a class="" href="/department"><i
 							class="glyphicon glyphicon-home"></i> <span>Department
 								Management</span></a></li>
 
-					<li class="active"><spring:url value="/staff" var="listURL" />
-						<a class="" href="${listURL}" role="list"><i
+					<li class="active"><a class="" href="/staff"><i
 							class="glyphicon glyphicon-user"></i> <span>Staff
 								Management</span></a></li>
 
@@ -264,19 +261,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							<li><a href="#"><i
 									class="glyphicon glyphicon-folder-open"></i> Task Management</a></li>
 						</ul></li>
-
-					<li class="active"><spring:url value="/aboutapp" var="listURL" />
-						<a class="" href="${listURL}" role="list"><i
+					<li class="active"><a class="" href="/getfeedback"><i
+							class="glyphicon glyphicon-wrench"></i> <span>FeedBack
+								Management</span></a></li>
+					<li class="active"><a class="" href="/aboutapp"><i
 							class="glyphicon glyphicon-info-sign"></i> <span>Introduce
 								About Web</span></a></li>
 
-					<li class="active"><spring:url value="/aboutteam"
-							var="listURL" /> <a class="" href="${listURL}" role="list"><i
+					<li class="active"><a class="" href="/aboutteam"><i
 							class="glyphicon glyphicon-camera"></i> <span>Introduce
 								About Team</span></a></li>
 
-					<li class="active"><spring:url value="/feedback" var="listURL" />
-						<a class="" href="${listURL}" role="list"><i
+					<li class="active"><a class="" href="/feedback/add"><i
 							class="glyphicon glyphicon-question-sign"></i> <span>Help
 								Us !</span></a></li>
 				</ul>
@@ -288,90 +284,58 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
-			<section class="content-header">
-				<h1>
-					Page Header <small>Optional description</small>
-				</h1>
-				<ol class="breadcrumb">
-					<li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-					<li class="active">Here</li>
-				</ol>
-			</section>
 
 			<!-- Main content -->
-			<section class="content">
-			<div class="title">
-				<p style="color: Green">Member Of Team Project</p>
-			</div>
-			<div class="box gallery">
-				<div class="card">
-					<div class="background">
-						<img alt="" src="images/hung.jpg" style="width: 100%; height: 100%">
-					</div>
-					<a href="#" class="overlay"> </a> <a href="#"> <i
-						class="fa fa-camera-retro" style="background: gray;"></i>
-					</a> <a class="thumb" href="#"></a>
-						<div class="info">
-							<h2>
-								<a href="#">Lê Tử Hùng Developer Java Web</a>
-							</h2>
-							<div class="foot">
-								<i class="line"></i> <span class="date">18 February 2015</span>
-								<a href="#" target="_blank" class="social"> <i
-									class="fa fa-facebook"></i>
-								</a> <a href="#" target="_blank" class="social"> <i
-									class="fa fa-twitter"></i>
-								</a>
+			<section class="content"
+				style="background-image: url(/images/backgroud.jpg)">
+				<div class="container">
+					<div class="row">
+						<div class="text-center">
+							<h1>INFORMATION OF MEMBER IN THE TEAM</h1>
+						</div>
+						<div class="row">
+							<div class="col-md-4">
+								<div class="well">
+									<img class="thumbnail img-responsive" alt="hung le"
+										src="images/hung.jpg" /> <span> My name is Hung Le, I
+										am 23 years old. I completed a bachelor of science in
+										Telecommunications Engineering in 2018. I have an on job
+										training experience at power and Network through huawei
+										technology limited as a field Maintanance Engineer since
+										February 2019 upto date. I want to do the job in your company
+										to improve my skills in telecommunication and also to make
+										sure your company attain its goals. </span>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="well">
+									<img class="thumbnail img-responsive" alt="thanh"
+										src="images/thanh2.jpg" /> <span> My name is Hung Le,
+										I am 23 years old. I completed a bachelor of science in
+										Telecommunications Engineering in 2018. I have an on job
+										training experience at power and Network through huawei
+										technology limited as a field Maintanance Engineer since
+										February 2019 upto date. I want to do the job in your company
+										to improve my skills in telecommunication and also to make
+										sure your company attain its goals. </span>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="well">
+									<img class="thumbnail img-responsive" alt="dai"
+										src="images/daitran.jpg" /> <span> My name is Hung Le,
+										I am 23 years old. I completed a bachelor of science in
+										Telecommunications Engineering in 2018. I have an on job
+										training experience at power and Network through huawei
+										technology limited as a field Maintanance Engineer since
+										February 2019 upto date. I want to do the job in your company
+										to improve my skills in telecommunication and also to make
+										sure your company attain its goals.</span>
+								</div>
 							</div>
 						</div>
-				</div>
-			</div>
-			<div class="box gallery">
-				<div class="card">
-					<div class="background">
-						<img alt="" src="images/trandai.jpg" style="width: 100%; height: 100%">
 					</div>
-					<a href="#" class="overlay"> </a> <a href="#"> <i
-						class="fa fa-camera-retro"></i>
-					</a> <a class="thumb" href="#"></a>
-						<div class="info">
-							<h2>
-								<a href="#">Trần Trọng Đại </a>
-							</h2>
-							<div class="foot">
-								<i class="line"></i> <span class="date">18 February 2015</span>
-								<a href="#" target="_blank" class="social"> <i
-									class="fa fa-facebook"></i>
-								</a> <a href="#" target="_blank" class="social"> <i
-									class="fa fa-twitter"></i>
-								</a>
-							</div>
-						</div>
 				</div>
-			</div>
-			<div class="box gallery">
-				<div class="card">
-					<div class="background">
-						<img alt="" src="images/thanh.jpg" style="width: 100%; height: 100%">
-					</div>
-					<a href="#" class="overlay"> </a> <a href="#"> <i
-						class="fa fa-camera-retro"></i>
-					</a> <a class="thumb" href="#"></a>
-						<div class="info">
-							<h2>
-								<a href="#">Nguyễn Tiến Thành </a>
-							</h2>
-							<div class="foot">
-								<i class="line"></i> <span class="date">18 February 2015</span>
-								<a href="#" target="_blank" class="social"> <i
-									class="fa fa-facebook"></i>
-								</a> <a href="#" target="_blank" class="social"> <i
-									class="fa fa-twitter"></i>
-								</a>
-							</div>
-						</div>
-				</div>
-			</div>
 			</section>
 			<!-- /.content -->
 		</div>

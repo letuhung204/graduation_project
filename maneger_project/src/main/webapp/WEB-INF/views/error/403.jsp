@@ -11,9 +11,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html>
 <head>
+<base href="http://localhost:8080/">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Show List Staff</title>
+<title>AdminLTE 2 | Starter</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
@@ -33,7 +34,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         apply the skin class to the body tag so the changes take effect.
   -->
 <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
-<link href="../static/images/logo.png" th:href="@{/images/logo.png}"
+<link href="../static/images/logo.png" href="@{/images/logo.png}"
 	rel="shortcut icon" />
 <link
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -41,7 +42,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
 	crossorigin="anonymous" />
 <!-- Custom style -->
-<link href="css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+<link href="/css/403.css"
+	rel="stylesheet" />
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
 
@@ -188,8 +190,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 										<a href="#" class="btn btn-default btn-flat">Profile</a>
 									</div>
 									<div class="pull-right">
-										<a href="/logout" class="btn btn-default btn-flat">Sign
-											out</a>
+										<form action="/logout" method="get">
+											<button class="btn btn-md btn-danger btn-block"
+												name="registration" type="Submit">Logout</button>
+										</form>
 									</div>
 								</li>
 							</ul>
@@ -237,18 +241,44 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				<ul class="sidebar-menu">
 					<li class="header">HEADER</li>
 					<!-- Optionally, you can add icons to the links -->
-					<li class="active"><a href="#" th:href="@{/staff}"><i
-							class="fa fa-link"></i> <span>Account Manager</span></a></li>
+					<li class="active"><a href="/account"><i
+							class="glyphicon glyphicon-lock"></i><span>Account
+								Management</span></a></li>
+
+					<li class="active"><spring:url value="/department"
+							var="listURL" /> <a class="" href="${listURL}"><i
+							class="glyphicon glyphicon-home"></i> <span>Department
+								Management</span></a></li>
+
 					<li class="active"><spring:url value="/staff" var="listURL" />
-						<a class="" href="${listURL}" role="list"><i
-							class="fa fa-link"></i> <span>Staff Manager</span></a></li>
-					<li class="treeview"><a href="#"><i class="fa fa-link"></i>
-							<span>Project Manager</span> <i
-							class="fa fa-angle-left pull-right"></i></a>
+						<a class="" href="${listURL}"><i
+							class="glyphicon glyphicon-user"></i> <span>Staff
+								Management</span></a></li>
+
+					<li class="treeview"><a href="/project"><i
+							class="glyphicon glyphicon-glass"></i> <span>Project
+								Management</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
-							<li><a href="#">Project Manager</a></li>
-							<li><a href="#">Task Manager</a></li>
+							<li><a href="/project"><i
+									class="glyphicon glyphicon-folder-open"></i> Project Management</a></li>
+							<li><a href="#"><i
+									class="glyphicon glyphicon-folder-open"></i> Task Management</a></li>
 						</ul></li>
+
+					<li class="active"><spring:url value="/aboutapp" var="listURL" />
+						<a class="" href="${listURL}"><i
+							class="glyphicon glyphicon-info-sign"></i> <span>Introduce
+								About Web</span></a></li>
+
+					<li class="active"><spring:url value="/aboutteam"
+							var="listURL" /> <a class="" href="${listURL}"><i
+							class="glyphicon glyphicon-camera"></i> <span>Introduce
+								About Team</span></a></li>
+
+					<li class="active"><spring:url value="/feedback/add"
+							var="listURL" /> <a href="${listURL}"><i
+							class="glyphicon glyphicon-question-sign"></i> <span>Help
+								Us !</span></a></li>
 				</ul>
 				<!-- /.sidebar-menu -->
 			</section>
@@ -259,51 +289,57 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
-				<h1>403 Error Page</h1>
+				<h1>
+					Page Header <small>Optional description</small>
+				</h1>
 				<ol class="breadcrumb">
-					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-					<li><a href="#">Examples</a></li>
-					<li class="active">403 error</li>
+					<li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+					<li class="active">Here</li>
 				</ol>
 			</section>
 
 			<!-- Main content -->
 			<section class="content">
-				<div class="error-page">
-					<h2 class="headline text-yellow">403</h2>
-
-					<div class="error-content">
-						<h3>
-							<i class="fa fa-warning text-yellow"></i> Oops! No authencation.
-						</h3>
-
-						<p>
-							You do not have permission to perform this action
-							 <a href="/welcome">return to dashboard</a> or try
-							using the search form.
-						</p>
-
-						<form class="search-form">
-							<div class="input-group">
-								<input type="text" name="search" class="form-control"
-									placeholder="Search">
-
-								<div class="input-group-btn">
-									<button type="submit" name="submit"
-										class="btn btn-warning btn-flat">
-										<i class="fa fa-search"></i>
-									</button>
-								</div>
-							</div>
-							<!-- /.input-group -->
-						</form>
+				<div class="maincontainer">
+					<div class="bat">
+						<img class="wing leftwing"
+							src="https://www.blissfullemon.com/wp-content/uploads/2018/09/bat-wing.png">
+						<img class="body"
+							src="https://www.blissfullemon.com/wp-content/uploads/2018/09/bat-body.png"
+							alt="bat"> <img class="wing rightwing"
+							src="https://www.blissfullemon.com/wp-content/uploads/2018/09/bat-wing.png">
 					</div>
-					<!-- /.error-content -->
+					<div class="bat">
+						<img class="wing leftwing"
+							src="https://www.blissfullemon.com/wp-content/uploads/2018/09/bat-wing.png">
+						<img class="body"
+							src="https://www.blissfullemon.com/wp-content/uploads/2018/09/bat-body.png"
+							alt="bat"> <img class="wing rightwing"
+							src="https://www.blissfullemon.com/wp-content/uploads/2018/09/bat-wing.png">
+					</div>
+					<div class="bat">
+						<img class="wing leftwing"
+							src="https://www.blissfullemon.com/wp-content/uploads/2018/09/bat-wing.png">
+						<img class="body"
+							src="https://www.blissfullemon.com/wp-content/uploads/2018/09/bat-body.png"
+							alt="bat"> <img class="wing rightwing"
+							src="https://www.blissfullemon.com/wp-content/uploads/2018/09/bat-wing.png">
+					</div>
+					<img class="foregroundimg"
+						src="https://www.blissfullemon.com/wp-content/uploads/2018/09/HauntedHouseForeground.png"
+						alt="haunted house">
+
 				</div>
-				<!-- /.error-page -->
+				<h1 class="errorcode" style="margin-top: 6%; color: green; margin-bottom: 5%">ERROR 403</h1>
+				<div class="errortext" style="color: black">Bạn không có quyền truy cập vào trang này.<a href="/welcome">Turn back now!</a> </div>
+
+
 			</section>
+
+
 			<!-- /.content -->
 		</div>
+		<!-- /.content-wrapper -->
 
 		<!-- Main Footer -->
 		<footer class="main-footer">

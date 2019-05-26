@@ -11,7 +11,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html>
 <head>
-<base href="http://localhost:8080/" target="_blank">
+<base href="http://localhost:8080/" >
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>AdminLTE 2 | Starter</title>
@@ -66,7 +66,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		<header class="main-header">
 
 			<!-- Logo -->
-			<a href="#" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
+			<a href="/welcome" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
 				<span class="logo-mini"><b>R</b>Đ</span> <!-- logo for regular state and mobile devices -->
 				<span class="logo-lg"><b>Rạng Đông</b> Company</span>
 			</a>
@@ -174,7 +174,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							data-toggle="dropdown"> <!-- The user image in the navbar-->
 								<img src="dist/img/hung.jpg" class="user-image" alt="User Image">
 								<!-- hidden-xs hides the username on small devices so only the image appears. -->
-								<span class="hidden-xs">Lê Tử Hùng</span>
+								<span class="hidden-xs">${username}</span>
 						</a>
 							<ul class="dropdown-menu">
 								<!-- The user image in the menu -->
@@ -182,7 +182,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 									class="img-circle" alt="User Image">
 
 									<p>
-										Lê Tử Hùng - Web Developer <small>Member since Nov.
+										${username} - Web Developer <small>Member since Nov.
 											2019</small>
 									</p></li>
 								<!-- Menu Body -->
@@ -232,7 +232,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<img src="dist/img/hung.jpg" class="img-circle" alt="User Image">
 					</div>
 					<div class="pull-left info">
-						<p>Lê Tử Hùng</p>
+						<p>${username}</p>
 						<!-- Status -->
 						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
 					</div>
@@ -256,38 +256,40 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				<ul class="sidebar-menu">
 					<li class="header">HEADER</li>
 					<!-- Optionally, you can add icons to the links -->
-					<li class="active"><a href="/account" th:href="@{/account}"><i
-							class="glyphicon glyphicon-lock"></i> <span>Account Management</span></a></li>
-							
-					<li class="active"><spring:url value="/department"
-							var="listURL" /> <a class="" href="${listURL}" ><i
-							class="glyphicon glyphicon-home"></i>
-							 <span>Department Management</span></a></li>
-							
-					<li class="active"><spring:url value="/staff" var="listURL" />
-						<a class="" href="${listURL}" ><i
-							class="glyphicon glyphicon-user"></i> <span>Staff Management</span></a></li>
-							
+					<li class="active"><a href="/account"><i
+							class="glyphicon glyphicon-lock"></i> <span>Account
+								Management</span></a></li>
+					<li class="active"><a class="" href="/department"><i
+							class="glyphicon glyphicon-home"></i> <span>Department
+								Management</span></a></li>
+
+					<li class="active"><a class="" href="/staff"><i
+							class="glyphicon glyphicon-user"></i> <span>Staff
+								Management</span></a></li>
+
 					<li class="treeview"><a href="/project"><i
 							class="glyphicon glyphicon-glass"></i> <span>Project
 								Management</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
-							<li><a href="/project"><i class="glyphicon glyphicon-folder-open"></i> Project Management</a></li>
-							<li><a href="#"><i class="glyphicon glyphicon-folder-open"></i> Task Management</a></li>
-						</ul>
-					</li>
-					
-					<li class="active"><spring:url value="/aboutapp" var="listURL" />
-						<a class="" href="${listURL}" ><i class="glyphicon glyphicon-info-sign"></i> 
-						<span>Introduce About Web</span></a></li>
-							
-					<li class="active"><spring:url value="/aboutteam"
-							var="listURL" /> <a class="" href="${listURL}" ><i class="glyphicon glyphicon-camera"></i>
-							<span>Introduce About Team</span></a></li>
-							
-					<li class="active"><spring:url value="/feedback/add" var="listURL" />
-						<a class="" href="${listURL}" ><i class="glyphicon glyphicon-question-sign"></i>
-						<span>Help Us !</span></a></li>
+							<li><a href="/project"><i
+									class="glyphicon glyphicon-folder-open"></i> Project Management</a></li>
+							<li><a href="#"><i
+									class="glyphicon glyphicon-folder-open"></i> Task Management</a></li>
+						</ul></li>
+					<li class="active"><a class="" href="/getfeedback"><i
+							class="glyphicon glyphicon-wrench"></i> <span>FeedBack
+								Management</span></a></li>
+					<li class="active"><a class="" href="/aboutapp"><i
+							class="glyphicon glyphicon-info-sign"></i> <span>Introduce
+								About Web</span></a></li>
+
+					<li class="active"><a class="" href="/aboutteam"><i
+							class="glyphicon glyphicon-camera"></i> <span>Introduce
+								About Team</span></a></li>
+
+					<li class="active"><a class="" href="/feedback/add"><i
+							class="glyphicon glyphicon-question-sign"></i> <span>Help
+								Us !</span></a></li>
 				</ul>
 				<!-- /.sidebar-menu -->
 			</section>
@@ -310,191 +312,195 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<!-- Main content -->
 			<section class="content">
 				<div class="container">
-		<table class="table table-striped">
-			<tbody>
-				<tr>
-					<td colspan="1">
-						<img alt="" src="/images/task_scheduling.png" style="width: 50%; height: 50%">
-						<h2>Project Form</h2> <spring:url value="/project/save"
-							var="saveURL" />
-						<fieldset>
-							<form:form modelAttribute="project" method="POST"
-								action="${saveURL}" cssClass="well form-horizontal"
-								onsubmit="return checkPhone() && validateEmail() && validateGender() && checkmaxsize()">
+					<table class="table table-striped">
+						<tbody>
+							<tr>
+								<td colspan="1"><img alt=""
+									src="/images/task_scheduling.png"
+									style="width: 50%; height: 50%">
+									<h2>Project Form</h2> <spring:url value="/project/save"
+										var="saveURL" />
+									<fieldset>
+										<form:form modelAttribute="project" method="POST"
+											action="${saveURL}" cssClass="well form-horizontal"
+											onsubmit="return checkPhone() && validateEmail() && validateGender() && checkmaxsize()">
 
-								<div class="form-group">
-									<label class="control-label col-sm-2 requiredField"> ID
-										Project <span class="asteriskField"> * </span>
-									</label>
-									<c:choose>
-										<c:when test="${not empty project.projectId }">
-											<div class="col-md-8 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-user"></i></span>
-													<form:input path="projectId" cssClass="form-control"
-														required="required" readonly="true" />
+											<div class="form-group">
+												<label class="control-label col-sm-2 requiredField">
+													ID Project <span class="asteriskField"> * </span>
+												</label>
+												<c:choose>
+													<c:when test="${not empty project.projectId }">
+														<div class="col-md-8 inputGroupContainer">
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-tags"></i></span>
+																<form:input path="projectId" cssClass="form-control"
+																	required="required" readonly="true" />
+															</div>
+														</div>
+													</c:when>
+													<c:otherwise>
+														<div class="col-md-8 inputGroupContainer">
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-tags"></i></span>
+																<form:input id="projectId" path="projectId"
+																	cssClass="form-control" readonly="true" />
+															</div>
+														</div>
+
+													</c:otherwise>
+												</c:choose>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-sm-2 requiredField"
+													for="date"> Project Name <span
+													class="asteriskField"> * </span>
+												</label>
+												<div class="col-md-8 inputGroupContainer">
+													<div class="input-group">
+														<span class="input-group-addon"><i
+															class="glyphicon glyphicon-book"></i></span>
+														<form:input path="projectName" cssClass="form-control"
+															id="projectName" placeholder="Project name"
+															required="true" />
+													</div>
 												</div>
 											</div>
-										</c:when>
-										<c:otherwise>
-											<div class="col-md-8 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-user"></i></span>
-													<form:input id="projectId" path="projectId"
-														cssClass="form-control" readonly="true" />
+											<div class="form-group">
+												<label class="control-label col-sm-2 requiredField"
+													for="date"> Create Date <span class="asteriskField">
+														* </span>
+												</label>
+												<div class="col-md-8 inputGroupContainer">
+													<div class="input-group">
+														<div class="input-group-addon">
+															<i class="fa fa-calendar"> </i>
+														</div>
+														<form:input class="form-control" id="createDate"
+															name="createDate" path="createDate" type="datetime-local" />
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-sm-2 requiredField"
+													for="date"> Start Date <span class="asteriskField">
+														* </span>
+												</label>
+												<div class="col-md-8 inputGroupContainer">
+													<div class="input-group">
+														<div class="input-group-addon">
+															<i class="fa fa-calendar"> </i>
+														</div>
+														<form:input class="form-control" id="startDate"
+															name="startDate" path="startDate" type="datetime-local" />
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-sm-2 requiredField"
+													for="date"> Deadline <span class="asteriskField">
+														* </span>
+												</label>
+												<div class="col-md-8 inputGroupContainer">
+													<div class="input-group">
+														<div class="input-group-addon">
+															<i class="fa fa-calendar"> </i>
+														</div>
+														<form:input class="form-control" id="deadlineDate"
+															name="deadlineDate" path="deadlineDate"
+															type="datetime-local" />
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label col-sm-2 requiredField"
+													for="date"> Finish Actual Date <span
+													class="asteriskField"> * </span>
+												</label>
+												<div class="col-md-8 inputGroupContainer">
+													<div class="input-group">
+														<div class="input-group-addon">
+															<i class="fa fa-calendar"> </i>
+														</div>
+														<form:input class="form-control" id="finishDate"
+															name="finishDate" path="finishDate" type="datetime-local" />
+													</div>
 												</div>
 											</div>
 
-										</c:otherwise>
-									</c:choose>
-								</div>
-								<div class="form-group">
-									<label class="control-label col-sm-2 requiredField" for="date">
-										Project Name <span class="asteriskField"> * </span>
-									</label>
-									<div class="col-md-8 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-user"></i></span>
-											<form:input path="projectName" cssClass="form-control"
-												id="projectName" placeholder="Project name" required="true" />
-										</div>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="control-label col-sm-2 requiredField" for="date">
-										Create Date <span class="asteriskField"> * </span>
-									</label>
-									<div class="col-md-8 inputGroupContainer">
-										<div class="input-group">
-											<div class="input-group-addon">
-												<i class="fa fa-calendar"> </i>
+											<div class="form-group">
+												<label class="control-label col-sm-2 requiredField">
+													Description<span class="asteriskField"> * </span>
+												</label>
+												<div class="col-md-8 inputGroupContainer">
+													<div class="input-group">
+														<span class="input-group-addon"><i
+															class="glyphicon glyphicon-list-alt"></i></span>
+														<form:textarea path="discription" id="discription"
+															placeholder="discription" class="form-control"
+															required="true" rows="5"></form:textarea>
+													</div>
+												</div>
 											</div>
-											<form:input class="form-control" id="createDate"
-												name="createDate" path="createDate" 
-												type="datetime-local" />
-										</div>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="control-label col-sm-2 requiredField" for="date">
-										Start Date <span class="asteriskField"> * </span>
-									</label>
-									<div class="col-md-8 inputGroupContainer">
-										<div class="input-group">
-											<div class="input-group-addon">
-												<i class="fa fa-calendar"> </i>
+
+											<div class="form-group">
+												<label class="control-label col-sm-2 requiredField">
+													Project Process <span class="asteriskField"> * </span>
+												</label>
+												<div class="col-md-8 inputGroupContainer">
+													<div class="input-group">
+														<span class="input-group-addon"><i
+															class="glyphicon glyphicon-th-list"></i></span>
+														<form:select path="projectState" class="form-control"
+															id="sel1" style="height:30px" required="required">
+															<form:option value="" label="--- Select ---" />
+															<form:option value="0" label="0%" />
+															<form:option value="10" label="10%" />
+															<form:option value="20" label="20%" />
+															<form:option value="30" label="30%" />
+															<form:option value="40" label="40%" />
+															<form:option value="50" label="50%" />
+															<form:option value="60" label="60%" />
+															<form:option value="70" label="70%" />
+															<form:option value="80" label="80%" />
+															<form:option value="90" label="90%" />
+															<form:option value="100" label="100%" />
+														</form:select>
+													</div>
+												</div>
 											</div>
-											<form:input class="form-control" id="startDate"
-												name="startDate" path="startDate" 
-												type="datetime-local" />
-										</div>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="control-label col-sm-2 requiredField" for="date">
-										Deadline <span class="asteriskField"> * </span>
-									</label>
-									<div class="col-md-8 inputGroupContainer">
-										<div class="input-group">
-											<div class="input-group-addon">
-												<i class="fa fa-calendar"> </i>
+
+											<div class="form-group">
+												<label class="control-label col-sm-2 requiredField">
+													Project Ouput <span class="asteriskField"> * </span>
+												</label>
+												<div class="col-md-8 inputGroupContainer">
+													<div class="input-group">
+														<span class="input-group-addon"><i
+															class="glyphicon glyphicon-folder-open"></i></span>
+														<form:input path="projectOutput" cssClass="form-control"
+															required="required" placeholder="Project Ouput" />
+													</div>
+												</div>
 											</div>
-											<form:input class="form-control" id="deadlineDate"
-												name="deadlineDate" path="deadlineDate"
-												 type="datetime-local" />
-										</div>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="control-label col-sm-2 requiredField" for="date">
-										Finish Actual Date <span class="asteriskField"> * </span>
-									</label>
-									<div class="col-md-8 inputGroupContainer">
-										<div class="input-group">
-											<div class="input-group-addon">
-												<i class="fa fa-calendar"> </i>
+
+											<div class="text-center">
+												<button type="submit" class="btn btn-primary">Save</button>
+												<a type="button" class="btn btn-primary" href="/project"
+												 onclick="return confirm('Bạn chắc chắn muốn ngừng thực hiện tác vụ không ?')">Cancel</a>
 											</div>
-											<form:input class="form-control" id="finishDate"
-												name="finishDate" path="finishDate" 
-												type="datetime-local" />
-										</div>
-									</div>
-								</div>
 
-								<div class="form-group">
-									<label class="control-label col-sm-2 requiredField">
-										Description<span class="asteriskField"> * </span> </label>
-									<div class="col-md-8 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-list-alt"></i></span>
-											<form:textarea path="discription" id="discription"
-												placeholder="discription" class="form-control"
-												required="true" rows="5"></form:textarea>
-										</div>
-									</div>
-								</div>
-
-								<div class="form-group">
-									<label class="control-label col-sm-2 requiredField">
-										Project Process <span class="asteriskField"> * </span>
-									</label>
-									<div class="col-md-8 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-th-list"></i></span>
-											<form:select path="projectState" class="form-control" id="sel1"
-												style="height:30px" required="required">
-												<form:option value="" label="--- Select ---" />
-												<form:option value = "0" label="0%"/> 
-												<form:option value = "10" label="10%"/> 
-												<form:option value = "20" label="20%"/> 
-												<form:option value = "30" label="30%"/>
-												<form:option value = "40" label="40%"/>  
-												<form:option value = "50" label="50%"/>  
-												<form:option value = "60" label="60%"/> 
-												<form:option value = "70" label="70%"/> 
-												<form:option value = "80" label="80%"/> 
-												<form:option value = "90" label="90%"/> 
-												<form:option value = "100" label="100%"/> 
-											</form:select>
-										</div>
-									</div>
-								</div>
-								
-								<div class="form-group">
-									<label class="control-label col-sm-2 requiredField">
-										Project Ouput <span class="asteriskField"> * </span>
-									</label>
-									<div class="col-md-8 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-folder-open"></i></span>
-											<form:input path="projectOutput" cssClass="form-control"
-												required="required" placeholder="Project Ouput" />
-										</div>
-									</div>
-								</div>
-
-								<div class="text-center">
-									<button type="submit" class="btn btn-primary">Save</button>
-									<button type="button" class="btn btn-primary"
-										onclick="return window.location='/project';">Cancel</button>
-								</div>
-
-							</form:form>
-						</fieldset>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+										</form:form>
+									</fieldset></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</section>
 
-			
+
 			<!-- /.content -->
 		</div>
 		<!-- /.content-wrapper -->
@@ -596,7 +602,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
      Both of these plugins are recommended to enhance the
      user experience. Slimscroll is required when using the
      fixed layout. -->
-     <script type="text/javascript"
+	<script type="text/javascript"
 		src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
 	<!-- Include Date Range Picker -->

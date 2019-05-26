@@ -13,8 +13,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -23,99 +21,76 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "feedback")
-@NamedQueries({
-    @NamedQuery(name = "Feedback.findAll", query = "SELECT f FROM Feedback f"),
-    @NamedQuery(name = "Feedback.findById", query = "SELECT f FROM Feedback f WHERE f.id = :id"),
-    @NamedQuery(name = "Feedback.findByExperience", query = "SELECT f FROM Feedback f WHERE f.experience = :experience"),
-    @NamedQuery(name = "Feedback.findByName", query = "SELECT f FROM Feedback f WHERE f.name = :name"),
-    @NamedQuery(name = "Feedback.findByEmail", query = "SELECT f FROM Feedback f WHERE f.email = :email"),
-    @NamedQuery(name = "Feedback.findByComment", query = "SELECT f FROM Feedback f WHERE f.comment = :comment")})
 public class Feedback implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id")
-    private Integer id;
-    @Column(name = "experience")
-    private String experience;
-    @Column(name = "name")
-    private String name;
-    @Column(name = "email")
-    private String email;
-    @Column(name = "comment")
-    private String comment;
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
+	@Column(name = "id")
+	private Integer id;
+	@Column(name = "experience")
+	private String experience;
+	@Column(name = "name")
+	private String name;
+	@Column(name = "email")
+	private String email;
+	@Column(name = "review")
+	private String review;
+	@Column(name = "comment")
+	private String comment;
+	public String getReview() {
+		return review;
+	}
 
-    public Feedback() {
-    }
+	public void setReview(String review) {
+		this.review = review;
+	}
 
-    public Feedback(Integer id) {
-        this.id = id;
-    }
+	public Feedback() {
+	}
 
-    public Integer getId() {
-        return id;
-    }
+	public Feedback(Integer id) {
+		this.id = id;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public String getExperience() {
-        return experience;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public void setExperience(String experience) {
-        this.experience = experience;
-    }
+	public String getExperience() {
+		return experience;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setExperience(String experience) {
+		this.experience = experience;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public String getComment() {
-        return comment;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
+	public String getComment() {
+		return comment;
+	}
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Feedback)) {
-            return false;
-        }
-        Feedback other = (Feedback) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "gdfgdfgdfg.Feedback[ id=" + id + " ]";
-    }
-    
 }

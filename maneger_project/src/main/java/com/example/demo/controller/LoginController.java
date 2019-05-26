@@ -44,7 +44,6 @@ public class LoginController {
 		if (accountExist != null) {
 			bindingResult.rejectValue("account", "error.email", "this is user with email name have exist in DB !");
 		}
-
 		if (bindingResult.hasErrors()) {
 			modelAndView.setViewName("registration");
 		} else {
@@ -61,15 +60,18 @@ public class LoginController {
 		ModelAndView modelAndView = new ModelAndView();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		Account account = accountService.findAccountByAccountName(auth.getName());
-		modelAndView.addObject("accountName", "Welcome " + account.getAccountName());
+		modelAndView.addObject("accountName", account.getAccountName());
 		modelAndView.addObject("adminMessage", "Content Available Only for Users with Admin Role");
 		modelAndView.setViewName("welcome");
 		return modelAndView;
 	}
 
 	@GetMapping(value = "/logout")
-	public String logout(HttpServletRequest request) {
+	public ModelAndView logout(HttpServletRequest request) {
 		request.getSession().removeAttribute("staff");
-		return "redirect:/";
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("logout", true);
+		modelAndView.setViewName("redirect:/login");
+		return modelAndView;
 	}
 }

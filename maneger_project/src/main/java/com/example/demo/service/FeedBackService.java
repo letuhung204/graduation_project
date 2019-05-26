@@ -8,4 +8,6 @@ public interface FeedBackService {
 	List<Feedback> listfeedBack();
 	
 	Feedback saveFeedback(Feedback feedback);
+	
+	Feedback getFeedBack(int id);
 }

@@ -27,6 +27,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  *
@@ -57,11 +58,22 @@ public class Account implements Serializable {
     @JoinColumn(name = "role_id", referencedColumnName = "role_id")
     @ManyToOne
     private Role roleId;
-
+    
+    @Transient
+    private boolean check = true;
+    
     public Account() {
     }
 
-    public Account(Integer accountId) {
+    public boolean isCheck() {
+		return check;
+	}
+
+	public void setCheck(boolean check) {
+		this.check = check;
+	}
+
+	public Account(Integer accountId) {
         this.accountId = accountId;
     }
 
@@ -131,7 +143,8 @@ public class Account implements Serializable {
         return true;
     }
 
-    @Override
+
+	@Override
     public String toString() {
         return "gdfgdfgdfg.Account[ accountId=" + accountId + " ]";
     }

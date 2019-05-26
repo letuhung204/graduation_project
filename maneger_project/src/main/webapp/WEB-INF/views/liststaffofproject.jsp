@@ -11,7 +11,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html>
 <head>
-<base href="http://localhost:8080/" target="_blank">
+<base href="http://localhost:8080/">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>AdminLTE 2 | Starter</title>
@@ -163,7 +163,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							data-toggle="dropdown"> <!-- The user image in the navbar-->
 								<img src="dist/img/hung.jpg" class="user-image" alt="User Image">
 								<!-- hidden-xs hides the username on small devices so only the image appears. -->
-								<span class="hidden-xs">Lê Tử Hùng</span>
+								<span class="hidden-xs">${username}</span>
 						</a>
 							<ul class="dropdown-menu">
 								<!-- The user image in the menu -->
@@ -171,7 +171,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 									class="img-circle" alt="User Image">
 
 									<p>
-										Lê Tử Hùng - Web Developer <small>Member since Nov.
+										${username} - Web Developer <small>Member since Nov.
 											2019</small>
 									</p></li>
 								<!-- Menu Body -->
@@ -221,7 +221,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<img src="dist/img/hung.jpg" class="img-circle" alt="User Image">
 					</div>
 					<div class="pull-left info">
-						<p>Lê Tử Hùng</p>
+						<p>${username}</p>
 						<!-- Status -->
 						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
 					</div>
@@ -246,37 +246,43 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					<li class="header">HEADER</li>
 					<!-- Optionally, you can add icons to the links -->
 					<li class="active"><a href="/account" th:href="@{/account}"><i
-							class="glyphicon glyphicon-lock"></i> <span>Account Management</span></a></li>
-							
+							class="glyphicon glyphicon-lock"></i> <span>Account
+								Management</span></a></li>
+
 					<li class="active"><spring:url value="/department"
-							var="listURL" /> <a class="" href="${listURL}" ><i
-							class="glyphicon glyphicon-home"></i>
-							 <span>Department Management</span></a></li>
-							
+							var="listURL" /> <a class="" href="${listURL}"><i
+							class="glyphicon glyphicon-home"></i> <span>Department
+								Management</span></a></li>
+
 					<li class="active"><spring:url value="/staff" var="listURL" />
-						<a class="" href="${listURL}" ><i
-							class="glyphicon glyphicon-user"></i> <span>Staff Management</span></a></li>
-							
+						<a class="" href="${listURL}"><i
+							class="glyphicon glyphicon-user"></i> <span>Staff
+								Management</span></a></li>
+
 					<li class="treeview"><a href="/project"><i
 							class="glyphicon glyphicon-glass"></i> <span>Project
 								Management</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
-							<li><a href="/project"><i class="glyphicon glyphicon-folder-open"></i> Project Management</a></li>
-							<li><a href="#"><i class="glyphicon glyphicon-folder-open"></i> Task Management</a></li>
-						</ul>
-					</li>
-					
+							<li><a href="/project"><i
+									class="glyphicon glyphicon-folder-open"></i> Project Management</a></li>
+							<li><a href="#"><i
+									class="glyphicon glyphicon-folder-open"></i> Task Management</a></li>
+						</ul></li>
+
 					<li class="active"><spring:url value="/aboutapp" var="listURL" />
-						<a class="" href="${listURL}" ><i class="glyphicon glyphicon-info-sign"></i> 
-						<span>Introduce About Web</span></a></li>
-							
+						<a class="" href="${listURL}"><i
+							class="glyphicon glyphicon-info-sign"></i> <span>Introduce
+								About Web</span></a></li>
+
 					<li class="active"><spring:url value="/aboutteam"
-							var="listURL" /> <a class="" href="${listURL}" ><i class="glyphicon glyphicon-camera"></i>
-							<span>Introduce About Team</span></a></li>
-							
-					<li class="active"><spring:url value="/feedback/add" var="listURL" />
-						<a class="" href="${listURL}" ><i class="glyphicon glyphicon-question-sign"></i>
-						<span>Help Us !</span></a></li>
+							var="listURL" /> <a class="" href="${listURL}"><i
+							class="glyphicon glyphicon-camera"></i> <span>Introduce
+								About Team</span></a></li>
+
+					<li class="active"><spring:url value="/feedback/add"
+							var="listURL" /> <a class="" href="${listURL}"><i
+							class="glyphicon glyphicon-question-sign"></i> <span>Help
+								Us !</span></a></li>
 				</ul>
 				<!-- /.sidebar-menu -->
 			</section>
@@ -298,36 +304,47 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 			<!-- Main content -->
 			<section class="content">
-			<nav class="navbar navbar-inverse">
-						<div class="container-fluid">
-							<div class="navbar-header">
-								<a class="navbar-brand" href="/project">Home</a>
-							</div>
-							<ul class="nav navbar-nav">
-								<li class="active"><a
-									href="/project/detail/${project.projectId} ">Project width
-										name : ${project.projectName}</a></li>
-								<li><a href="/project/${project.projectId}/staff">Staff
-										Of Project</a></li>
-								<li><a href="/project/${project.projectId}/task">Task
-										Of Project</a></li>
-								<li><a href="/project/${project.projectId}/staff/add">Add
-										Staff In Project</a></li>
-								<li><a href="/project/${project.projectId}/progess">Progess
-										Project </a></li>
-
-							</ul>
+				<nav class="navbar navbar-inverse">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<a class="navbar-brand" href="/project">Home</a>
 						</div>
-					</nav>
+						<ul class="nav navbar-nav">
+							<li class="active"><a
+								href="/project/detail/${project.projectId} ">Project width
+									name : ${project.projectName}</a></li>
+							<li><a href="/project/${project.projectId}/staff">Staff
+									Of Project</a></li>
+							<li><a href="/project/${project.projectId}/task">Task Of
+									Project</a></li>
+							<li><a href="/project/${project.projectId}/staff/add">Add
+									Staff In Project</a></li>
+							<li><a href="/project/${project.projectId}/progess">Progess
+									Project </a></li>
+
+						</ul>
+					</div>
+				</nav>
 				<div class="row">
+					<c:if test="${not empty notification}">
+						<div class="callout callout-info lead">
+							<h4>Notification !</h4>
+							<p>${notification}</p>
+						</div>
+					</c:if>
 					<div class="col-xs-12">
 						<div class="box">
 							<div class="box-header">
-								<h3 class="box-title">Danh sách Staff thuộc Project : <c:out value="${project.projectName}"/></h3>
+								<h3 class="box-title">
+									Danh sách Staff thuộc Project :
+									<c:out value="${project.projectName}" />
+								</h3>
 							</div>
 							<div class="box-header">
-								<a class="btn btn-primary" href="/project/<c:out value="${project.projectId}"/>/staff/add" role="button"><i class="glyphicon glyphicon-plus"></i> Add Staff
-									In Project</a>
+								<a class="btn btn-primary"
+									href="/project/<c:out value="${project.projectId}"/>/staff/add"
+									role="button"><i class="glyphicon glyphicon-plus"></i> Add
+									Staff In Project</a>
 							</div>
 							<!-- /.box-header -->
 							<div class="box-body">
@@ -342,7 +359,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 											<th>Email</th>
 											<th>Action</th>
 											<th>Action</th>
-											<th>Action</th>
+											<th>Delete Staff In Project</th>
 											<th>Action</th>
 										</tr>
 									</thead>
@@ -351,14 +368,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
 											<tr>
 												<td><c:out value="${s.index + 1}" /></td>
 												<td><c:out value="${staff.firstName}" /></td>
-												<td><a href="/staff/detail/${staff.staffId}"><c:out value="${staff.fullName}" /></a></td>
+												<td><a href="/staff/detail/${staff.staffId}"><c:out
+															value="${staff.fullName}" /></a></td>
 												<td><c:out value="${staff.skill}" /></td>
 												<td><c:out value="${staff.possition}" /></td>
 												<td><c:out value="${staff.email}" /></td>
-												<td><a href="project/${project.projectId}/staff/${staff.staffId}/task/add">tạo task cho staff</a></td>
+												<td><a
+													href="project/${project.projectId}/staff/${staff.staffId}/task/add">tạo
+														task cho staff</a></td>
 												<td><a href="/timework">log work</a></td>
-												<td><a href="project/${project.projectId}/staff/${staff.staffId}/delete">xóa staff khỏi project</a></td>
-												<td><a href="project/${project.projectId}/staff/${staff.staffId}/task">List Task Of Staff</a></td>
+												<td><a
+													href="project/${project.projectId}/staff/${staff.staffId}/delete"
+													onclick="return confirm('Bạn chắc chắn xoá Staff có tên : ${staff.fullName} ?');"><i
+														class="glyphicon glyphicon-trash"></i> </a></td>
+												<td><a
+													href="project/${project.projectId}/staff/${staff.staffId}/task">List
+														Task Of Staff</a></td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -380,8 +405,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<!-- To the right -->
 			<div class="pull-right hidden-xs">GVHD: Nguyễn Thanh Bình</div>
 			<!-- Default to the left -->
-			<strong>Team Graduation Project <a href="/welcome">Rạng Đông
-					Company</a>
+			<strong>Team Graduation Project <a href="/welcome">Rạng
+					Đông Company</a>
 			</strong> Hùng - Thành - Đại.
 		</footer>
 

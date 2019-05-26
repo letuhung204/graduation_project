@@ -44,12 +44,16 @@ public class SercurityConfig extends WebSecurityConfigurerAdapter {
 								.antMatchers("/images/**").permitAll()
 								.antMatchers("/login").permitAll()
 								.antMatchers("/registration").permitAll()
-								.antMatchers("/admin/**").hasAuthority("ADMIN").anyRequest()
+								.antMatchers("/feedback/add").permitAll()
+								.antMatchers("/account/add/**","/account/delete/**","/account/**/edit","/getfeedback","/displayPieChart").hasAuthority("ADMIN")
+								.antMatchers("/department/add","/department/delete/**","/department/**/edit","/staff/add").hasAnyAuthority("ADMIN","MANAGER")
+								.antMatchers("/project/add","/project/**/delete","/project/**/edit","/project/**/staff/**/delete","/project/**/staff/add","/project/**/task/delete/**").hasAnyAuthority("ADMIN","MANAGER")
+								.anyRequest()
 				.authenticated().and().csrf().disable()
 				.formLogin().loginPage("/login").failureUrl("/login?error=true")
 				.defaultSuccessUrl("/welcome").usernameParameter("email").passwordParameter("password").and()
-				.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/").and()
-				.exceptionHandling().accessDeniedPage("/403");
+				.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login?logout=true").and()
+				.exceptionHandling().accessDeniedPage("/error/403");
 		
 	}
 

@@ -11,6 +11,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html>
 <head>
+<base href="http://localhost:8080/">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>Show List Staff</title>
@@ -274,12 +275,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 					<div class="error-content">
 						<h3>
-							<i class="fa fa-warning text-yellow"></i> Oops! No authencation.
+							<i class="fa fa-warning text-yellow"></i> Oops! No Data.
 						</h3>
 
 						<p>
-							You do not have permission to perform this action
-							 <a href="/welcome">return to dashboard</a> or try
+							Dữ liệu bạn định tạo mới đã tồn tại trong DB vui lòng thử lại
+							 <a href="/welcome">return to home page</a> or try
 							using the search form.
 						</p>
 

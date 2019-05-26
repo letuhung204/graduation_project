@@ -10,7 +10,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html>
 <head>
-<base href="http://localhost:8080/" target="_blank">
+<base href="http://localhost:8080/" >
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>AdminLTE 2 | Starter</title>
@@ -41,7 +41,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
 	crossorigin="anonymous" />
 <!-- Custom style -->
-<link href="css/style.css" href="@{/css/style.css}" rel="stylesheet" />
+<link href="css/style.css" rel="stylesheet" />
+<script src="js/docs.js"></script>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
 
@@ -49,7 +50,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		<header class="main-header">
 
 			<!-- Logo -->
-			<a href="#" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
+			<a href="/welcome" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
 				<span class="logo-mini"><b>R</b>Đ</span> <!-- logo for regular state and mobile devices -->
 				<span class="logo-lg"><b>Rạng Đông</b> Company</span>
 			</a>
@@ -157,7 +158,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							data-toggle="dropdown"> <!-- The user image in the navbar-->
 								<img src="dist/img/hung.jpg" class="user-image" alt="User Image">
 								<!-- hidden-xs hides the username on small devices so only the image appears. -->
-								<span class="hidden-xs">Lê Tử Hùng</span>
+								<span class="hidden-xs">${username}</span>
 						</a>
 							<ul class="dropdown-menu">
 								<!-- The user image in the menu -->
@@ -165,7 +166,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 									class="img-circle" alt="User Image">
 
 									<p>
-										Lê Tử Hùng - Web Developer <small>Member since Nov.
+										${username} - Web Developer <small>Member since Nov.
 											2019</small>
 									</p></li>
 								<!-- Menu Body -->
@@ -215,7 +216,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<img src="dist/img/hung.jpg" class="img-circle" alt="User Image">
 					</div>
 					<div class="pull-left info">
-						<p>Lê Tử Hùng</p>
+						<p>${username}</p>
 						<!-- Status -->
 						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
 					</div>
@@ -239,17 +240,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				<ul class="sidebar-menu">
 					<li class="header">HEADER</li>
 					<!-- Optionally, you can add icons to the links -->
-					<li class="active"><a href="/account" th:href="@{/account}"><i
+					<li class="active"><a href="/account"><i
 							class="glyphicon glyphicon-lock"></i> <span>Account
 								Management</span></a></li>
-
-					<li class="active"><spring:url value="/department"
-							var="listURL" /> <a class="" href="${listURL}"><i
+					<li class="active"><a class="" href="/department"><i
 							class="glyphicon glyphicon-home"></i> <span>Department
 								Management</span></a></li>
 
-					<li class="active"><spring:url value="/staff" var="listURL" />
-						<a class="" href="${listURL}"><i
+					<li class="active"><a class="" href="/staff"><i
 							class="glyphicon glyphicon-user"></i> <span>Staff
 								Management</span></a></li>
 
@@ -262,19 +260,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							<li><a href="#"><i
 									class="glyphicon glyphicon-folder-open"></i> Task Management</a></li>
 						</ul></li>
-
-					<li class="active"><spring:url value="/aboutapp" var="listURL" />
-						<a class="" href="${listURL}"><i
+					<li class="active"><a class="" href="/getfeedback"><i
+							class="glyphicon glyphicon-wrench"></i> <span>FeedBack
+								Management</span></a></li>
+					<li class="active"><a class="" href="/aboutapp"><i
 							class="glyphicon glyphicon-info-sign"></i> <span>Introduce
 								About Web</span></a></li>
 
-					<li class="active"><spring:url value="/aboutteam"
-							var="listURL" /> <a class="" href="${listURL}"><i
+					<li class="active"><a class="" href="/aboutteam"><i
 							class="glyphicon glyphicon-camera"></i> <span>Introduce
 								About Team</span></a></li>
 
-					<li class="active"><spring:url value="/feedback" var="listURL" />
-						<a class="" href="${listURL}"><i
+					<li class="active"><a class="" href="/feedback/add"><i
 							class="glyphicon glyphicon-question-sign"></i> <span>Help
 								Us !</span></a></li>
 				</ul>
@@ -286,112 +283,185 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
-			<section class="content-header">
-				<h1>
-					Page Header <small>Optional description</small>
-				</h1>
-				<ol class="breadcrumb">
-					<li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-					<li class="active">Here</li>
-				</ol>
-			</section>
-
 			<!-- Main content -->
 			<section class="content">
-				<div class="container" style="margin-top: 0%">
+				
 					<nav class="navbar navbar-inverse">
 						<div class="container-fluid">
 							<div class="navbar-header">
-								<a class="navbar-brand" href="/project">Home</a>
+								<a class="navbar-brand" href="/project">PROJECT</a>
 							</div>
 							<ul class="nav navbar-nav">
 								<li class="active"><a
 									href="/project/detail/${project.projectId} ">Project width
 										name : ${project.projectName}</a></li>
-								<li><a href="/project/${project.projectId}/staff">Staff
-										Of Project</a></li>
-								<li><a href="/project/${project.projectId}/task">Task
-										Of Project</a></li>
-								<li><a href="/project/${project.projectId}/staff/add">Add
-										Staff In Project</a></li>
+
+								<li class="dropdown"><a class="dropdown-toggle"
+									data-toggle="dropdown" href="#">Staff Of Project <span
+										class="caret"></span></a>
+									<ul class="dropdown-menu">
+										<li><a href="/project/${project.projectId}/staff">View
+												list staff of project</a></li>
+										<li><a href="/project/${project.projectId}/staff/add">Add
+												Staff In Project</a></li>
+									</ul></li>
+
+								<li class="dropdown"><a class="dropdown-toggle"
+									data-toggle="dropdown" href="#">Task Of Project<span
+										class="caret"></span></a>
+									<ul class="dropdown-menu">
+										<li><a href="/project/${project.projectId}/task">View
+												list task of project</a></li>
+										<li><a href="/project/${project.projectId}/addtask">Create
+												Task In Project</a></li>
+									</ul></li>
 								<li><a href="/project/${project.projectId}/progess">Progess
 										Project </a></li>
-
 							</ul>
 						</div>
 					</nav>
-					<div class="box box-info">
-						<div style="float: left">
-							<img alt="" src="dist/img/project.jpg" style="width: 30%">
-						</div>
-						<div class="box-header with-border">
-							<h1>Detail Information Of Project</h1>
-						</div>
-						<!-- /.box-header -->
-						<!-- form start -->
-						<form:form class="form-horizontal" modelAttribute="project"
-							var="project">
-							<div class="box-body">
-								<div class="col-md-6 row">
-									<div class="col-md-12">
-										<label>Project Name : <c:out
-												value=" ${project.projectName}"></c:out></label>
-									</div>
-									<div class="col-md-12">
-										<label>Create Date : <c:out
-												value=" ${project.createDate}"></c:out></label>
-									</div>
-									<div class="col-md-12">
-										<label>Start Date : <c:out
-												value=" ${project.startDate}"></c:out></label>
-									</div>
-									<div class="col-md-12">
-										<label>DeadLine : <c:out
-												value=" ${project.deadlineDate}"></c:out></label>
-									</div>
-									<div class="col-md-12">
-										<label>Finish Date : <c:out
-												value=" ${project.finishDate}"></c:out></label>
-									</div>
-									<div class="col-md-12">
-										<label>Project State : </label>
-										<div class="progress">
-											<div class="progress-bar" role="progressbar"
-												style="width: 10%;" aria-valuenow="25" aria-valuemin="0"
-												aria-valuemax="100">${project.projectState}%</div>
-										</div>
-									</div>
-									<div class="col-md-12">
-										<label>Project output : <c:out
-												value=" ${project.projectOutput}"></c:out></label>
-									</div>
-
+					<img alt="" src="images/project1.png"
+						style="width: 100%; height: 400px;">
+					<h3 style="color: green;">DETAIL PROJECT INFORMATION</h3>
+					<!-- Info Boxes -->
+					<div class="row">
+						<div class="col-md-3 col-sm-6 col-xs-12">
+							<div class="info-box">
+								<span class="info-box-icon bg-green"><i
+									class="fa fa-flag-o"></i></span>
+								<div class="info-box-content">
+									<span class="info-box-text">Project Name</span> <span
+										class="info-box-number">${project.projectName}</span>
 								</div>
-
-								<div class="col-md-6 row">
-									<div class="col-md-12">
-										<label>Amount Staff of Project : <c:out
-												value=" ${project.staffProject.size()}"></c:out></label>
-									</div>
-									<div class="col-md-12">
-										<label>Amout Task of Project : <c:out
-												value=" ${project.task.size()}"></c:out></label>
-									</div>
-									<div class="col-md-12 row">
-										<div class="col-md-3">
-											<label>Discription : </label>
-										</div>
-										<div class="col-md-6">
-											<textarea readonly="true"><c:out
-													value=" ${project.discription}"></c:out></textarea>
-										</div>
-
-									</div>
-								</div>
+								<!-- /.info-box-content -->
 							</div>
-						</form:form>
+							<!-- /.info-box -->
+						</div>
+						<div class="col-md-3 col-sm-6 col-xs-12">
+							<div class="info-box">
+								<span class="info-box-icon bg-aqua"><i
+									class="fa fa-clock-o"></i></span>
+								<div class="info-box-content">
+									<span class="info-box-text">Create Date</span> <span
+										class="info-box-number">${project.createDate}</span>
+								</div>
+								<!-- /.info-box-content -->
+							</div>
+							<!-- /.info-box -->
+						</div>
+						<!-- /.col -->
+
+						<!-- /.col -->
+						<div class="col-md-3 col-sm-6 col-xs-12">
+							<div class="info-box">
+								<span class="info-box-icon bg-yellow"><i
+									class="fa fa-files-o"></i></span>
+								<div class="info-box-content">
+									<span class="info-box-text">Start Date</span> <span
+										class="info-box-number">${project.startDate}</span>
+								</div>
+								<!-- /.info-box-content -->
+							</div>
+							<!-- /.info-box -->
+						</div>
+						<!-- /.col -->
+						<div class="col-md-3 col-sm-6 col-xs-12">
+							<div class="info-box">
+								<span class="info-box-icon bg-pink"><i
+									class="fa fa-calendar"></i></span>
+								<div class="info-box-content">
+									<span class="info-box-text">Date Line</span> <span
+										class="info-box-number">${project.deadlineDate}</span>
+								</div>
+								<!-- /.info-box-content -->
+							</div>
+							<!-- /.info-box -->
+						</div>
+						<!-- /.col -->
 					</div>
-				</div>
+					<div class="row">
+						<div class="col-md-3 col-sm-6 col-xs-12">
+							<div class="info-box">
+								<span class="info-box-icon bg-blue"><i
+									class="fa fa-calendar-o"></i></span>
+								<div class="info-box-content">
+									<span class="info-box-text">Finish Date</span> <span
+										class="info-box-number">${project.finishDate}</span>
+								</div>
+								<!-- /.info-box-content -->
+							</div>
+							<!-- /.info-box -->
+						</div>
+						<div class="col-md-3 col-sm-6 col-xs-12">
+							<div class="info-box">
+								<span class="info-box-icon bg-yellow"><i
+									class="fa fa-sort-amount-desc"></i></span>
+								<div class="info-box-content">
+									<span class="info-box-text">Amount Staff</span> <span
+										class="info-box-number">${project.staffProject.size()}</span>
+								</div>
+								<!-- /.info-box-content -->
+							</div>
+							<!-- /.info-box -->
+						</div>
+						<div class="col-md-3 col-sm-6 col-xs-12">
+							<div class="info-box">
+								<span class="info-box-icon bg-red"><i
+									class="fa fa-sort-amount-desc"></i></span>
+								<div class="info-box-content">
+									<span class="info-box-text">Amount Task</span> <span
+										class="info-box-number">${project.task.size()}</span>
+								</div>
+								<!-- /.info-box-content -->
+							</div>
+							<!-- /.info-box -->
+						</div>
+						<div class="col-md-3 col-sm-6 col-xs-12">
+							<div class="info-box">
+								<span class="info-box-icon bg-aqua"><i
+									class="fa fa-desktop"></i></span>
+								<div class="info-box-content">
+									<span class="info-box-text">Project Output</span> <span
+										class="info-box-number">${project.projectOutput}</span>
+								</div>
+								<!-- /.info-box-content -->
+							</div>
+							<!-- /.info-box -->
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="info-box bg-aqua">
+								<span class="info-box-icon"><i class="fa fa-bookmark-o"></i></span>
+								<div class="info-box-content">
+									<span class="info-box-text">Project Progress</span> <span
+										class="info-box-number">${project.projectState}</span>
+									<div class="progress">
+										<div class="progress-bar"
+											style="width: <c:out value="${project.projectState}" />%"></div>
+									</div>
+									<span class="progress-description"> progress is
+										${project.projectState}% </span>
+								</div>
+								<!-- /.info-box-content -->
+							</div>
+							<!-- /.info-box -->
+						</div>
+						<!-- /.col -->
+						<div class="col-sm-6">
+							<div class="info-box">
+								<span class="info-box-icon bg-green"><i
+									class="fa fa-star-o"></i></span>
+								<div class="info-box-content">
+									<span class="info-box-text">Project Description</span> <span
+										class="info-box-number">${project.discription}</span>
+								</div>
+								<!-- /.info-box-content -->
+							</div>
+							<!-- /.info-box -->
+						</div>
+					</div>
+				<!-- /.row -->
 			</section>
 		</div>
 

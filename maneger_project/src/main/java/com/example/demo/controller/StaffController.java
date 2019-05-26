@@ -5,8 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,48 +40,66 @@ public class StaffController {
 	private ProjectService projectService;
 
 	@GetMapping("/staff")
-	public String list(Model model) {
-		model.addAttribute("staffs", staffService.findAll());
-		return "liststaff";
+	public ModelAndView list() {
+		ModelAndView modelAndView = new ModelAndView();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); // get logged in username
+		modelAndView.addObject("username", name);
+		
+		modelAndView.addObject("staffs", staffService.findAll());
+		modelAndView.setViewName("liststaff");
+		return modelAndView;
 	}
 
 	@GetMapping("/staff/add")
-	public String add(Model model) {
-//		staff.setDepartmentId(departmentId);
+	public ModelAndView add() {
+		ModelAndView modelAndView = new ModelAndView();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); // get logged in username
+		modelAndView.addObject("username", name);
+		
 		List<Account> listAccount = accountService.findAllAccount();
 		Map<Integer, String> accounts = new HashMap<>();
 		listAccount.forEach(item -> accounts.put(item.getAccountId(), item.getAccountName()));
-		model.addAttribute("accounts", accounts);
+		modelAndView.addObject("accounts", accounts);
 
 		List<Department> listDepartment = departmentService.findAllDepartment();
 		Map<Integer, String> departments = new HashMap<>();
 		listDepartment.forEach(item -> departments.put(item.getDepartmentId(), item.getDepartmentName()));
-		model.addAttribute("departments", departments);
+		modelAndView.addObject("departments", departments);
 		
-		model.addAttribute("staff", new Staff());
-		return "staffform";
+		modelAndView.addObject("staff", new Staff());
+		modelAndView.setViewName("staffform");
+		return modelAndView;
 	}
 
 	@GetMapping("/staff/{id}/edit")
-	public String edit(@PathVariable("id") int id, Model model) {
-		model.addAttribute("staff", staffService.findOne(id));
-		model.addAttribute("departments", departmentService.findAllDepartment());
-		model.addAttribute("accounts", accountService.findAllAccount());
-		return "staffform";
+	public ModelAndView edit(@PathVariable("id") int id) {
+		ModelAndView modelAndView = new ModelAndView();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); // get logged in username
+		modelAndView.addObject("username", name);
+		
+		modelAndView.addObject("staff", staffService.findOne(id));
+		modelAndView.addObject("departments", departmentService.findAllDepartment());
+		modelAndView.addObject("accounts", accountService.findAllAccount());
+		modelAndView.setViewName("staffform");
+		return modelAndView;
 	}
 
 	@RequestMapping(value = "/staff/save", method = RequestMethod.POST)
-	public ModelAndView save(@ModelAttribute("staff") Staff staff) {
-
+	public ModelAndView save(@ModelAttribute("staff") Staff staff,RedirectAttributes redirect) {
+		ModelAndView modelAndView = new ModelAndView();
 		staffService.save(staff);
-
-		return new ModelAndView("redirect:/staff");
+		redirect.addFlashAttribute("successMessage", "Saved staff successfully!");
+		modelAndView.setViewName("redirect:/staff");
+		return modelAndView;
 	}
 
 	@GetMapping("/staff/{id}/delete")
-	public String delete(@PathVariable int id, RedirectAttributes redirect) {
+	public String delete(@PathVariable int id,RedirectAttributes redirect) {
 		staffService.delete(id);
-		redirect.addFlashAttribute("successMessage", "Deleted staff successfully!");
+		redirect.addFlashAttribute("successMessage", "Delete staff successfully!");
 		return "redirect:/staff";
 	}
 
@@ -94,23 +113,32 @@ public class StaffController {
 
 	@RequestMapping(value = "/staff/detail/{id}", method = RequestMethod.GET)
 	public ModelAndView detail(@PathVariable int id) {
-
+		
 		ModelAndView modelAndView = new ModelAndView();
-
-		modelAndView.addObject("staff", staffService.findOne(id));
-
-		modelAndView.setViewName("detailstaff");
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); // get logged in username
+		modelAndView.addObject("username", name);
+		if(staffService.findOne(id) == null) {
+			modelAndView.setViewName("error/404");
+		}else {
+			modelAndView.addObject("staff", staffService.findOne(id));
+			modelAndView.setViewName("detailstaff");
+		}
 		return modelAndView;
 	}
 
 	@GetMapping(value = "project/{id}/staff/{idstaff}/task")
 	public ModelAndView getTask(@PathVariable int id, @PathVariable int idstaff) {
-		ModelAndView model = new ModelAndView();
-		model.addObject("project", projectService.getProjecByiD(id));
-		model.addObject("staff", staffService.findOne(idstaff));
-		model.addObject("tasks", staffService.getListTask(idstaff));
-		model.setViewName("listtaskofstaff");
-		return model;
+		ModelAndView modelAndView = new ModelAndView();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); // get logged in username
+		modelAndView.addObject("username", name);
+		
+		modelAndView.addObject("project", projectService.getProjecByiD(id));
+		modelAndView.addObject("staff", staffService.findOne(idstaff));
+		modelAndView.addObject("tasks", staffService.getListTask(idstaff));
+		modelAndView.setViewName("listtaskofstaff");
+		return modelAndView;
 
 	}
 }

@@ -45,12 +45,12 @@ function checkmaxsize() {
 	var skill;
 	var possition;
 
-	var firstName = document.getElementById("firstname").value;
-	var lastName = document.getElementById("lastname").value;
-	var fullName = document.getElementById("fullname").value;
-	var discription = document.getElementById("discription").value;
-	var skill = document.getElementById("skill").value;
-	var possition = document.getElementById("possition").value;
+	 firstName = document.getElementById("firstname").value;
+	 lastName = document.getElementById("lastname").value;
+	 fullName = document.getElementById("fullname").value;
+	 discription = document.getElementById("discription").value;
+	 skill = document.getElementById("skill").value;
+	 possition = document.getElementById("possition").value;
 
 	if (firstName.length > 50 || lastName.length > 50) {
 		alert("max size of first name and last name is 50 character !");
@@ -66,4 +66,25 @@ function checkmaxsize() {
 		return false;
 	}
 	return true;
+}
+function checkmaxdepartment(){
+	var discription;
+	discription = document.getElementById("discription").value;
+	if (discription.length > 255) {
+		alert("max size of description is 255 character !");
+		return false;
+	}
+	return true;
+}
+function checkemailissame(){
+	var email;
+	var accounName;
+	email = document.getElementById("email").value;
+	accounName = document.getElementById("").value;
+	if(email != accounName){
+		alert("email của staff phải giống với account name !");
+		return false;
+	}else{
+		return true;
+	}
 }

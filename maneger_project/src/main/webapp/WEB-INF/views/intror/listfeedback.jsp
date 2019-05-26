@@ -11,7 +11,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html>
 <head>
-<base href="http://localhost:8080/" target="_blank">
+<base href="http://localhost:8080/" >
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>AdminLTE 2 | Starter</title>
@@ -165,7 +165,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							data-toggle="dropdown"> <!-- The user image in the navbar-->
 								<img src="dist/img/hung.jpg" class="user-image" alt="User Image">
 								<!-- hidden-xs hides the username on small devices so only the image appears. -->
-								<span class="hidden-xs">Lê Tử Hùng</span>
+								<span class="hidden-xs">${username}</span>
 						</a>
 							<ul class="dropdown-menu">
 								<!-- The user image in the menu -->
@@ -173,7 +173,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 									class="img-circle" alt="User Image">
 
 									<p>
-										Lê Tử Hùng - Web Developer <small>Member since Nov.
+										${username} - Web Developer <small>Member since Nov.
 											2019</small>
 									</p></li>
 								<!-- Menu Body -->
@@ -223,7 +223,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<img src="dist/img/hung.jpg" class="img-circle" alt="User Image">
 					</div>
 					<div class="pull-left info">
-						<p>Lê Tử Hùng</p>
+						<p>${username}</p>
 						<!-- Status -->
 						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
 					</div>
@@ -247,38 +247,40 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				<ul class="sidebar-menu">
 					<li class="header">HEADER</li>
 					<!-- Optionally, you can add icons to the links -->
-					<li class="active"><a href="/account" th:href="@{/account}"><i
-							class="glyphicon glyphicon-lock"></i> <span>Account Management</span></a></li>
-							
-					<li class="active"><spring:url value="/department"
-							var="listURL" /> <a class="" href="${listURL}" ><i
-							class="glyphicon glyphicon-home"></i>
-							 <span>Department Management</span></a></li>
-							
-					<li class="active"><spring:url value="/staff" var="listURL" />
-						<a class="" href="${listURL}"><i
-							class="glyphicon glyphicon-user"></i> <span>Staff Management</span></a></li>
-							
+					<li class="active"><a href="/account"><i
+							class="glyphicon glyphicon-lock"></i> <span>Account
+								Management</span></a></li>
+					<li class="active"><a class="" href="/department"><i
+							class="glyphicon glyphicon-home"></i> <span>Department
+								Management</span></a></li>
+
+					<li class="active"><a class="" href="/staff"><i
+							class="glyphicon glyphicon-user"></i> <span>Staff
+								Management</span></a></li>
+
 					<li class="treeview"><a href="/project"><i
 							class="glyphicon glyphicon-glass"></i> <span>Project
 								Management</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
-							<li><a href="/project"><i class="glyphicon glyphicon-folder-open"></i> Project Management</a></li>
-							<li><a href="#"><i class="glyphicon glyphicon-folder-open"></i> Task Management</a></li>
-						</ul>
-					</li>
-					
-					<li class="active"><spring:url value="/aboutapp" var="listURL" />
-						<a class="" href="${listURL}" ><i class="glyphicon glyphicon-info-sign"></i> 
-						<span>Introduce About Web</span></a></li>
-							
-					<li class="active"><spring:url value="/aboutteam"
-							var="listURL" /> <a class="" href="${listURL}" ><i class="glyphicon glyphicon-camera"></i>
-							<span>Introduce About Team</span></a></li>
-							
-					<li class="active"><spring:url value="/feedback" var="listURL" />
-						<a class="" href="${listURL}" ><i class="glyphicon glyphicon-question-sign"></i>
-						<span>Help Us !</span></a></li>
+							<li><a href="/project"><i
+									class="glyphicon glyphicon-folder-open"></i> Project Management</a></li>
+							<li><a href="#"><i
+									class="glyphicon glyphicon-folder-open"></i> Task Management</a></li>
+						</ul></li>
+					<li class="active"><a class="" href="/getfeedback"><i
+							class="glyphicon glyphicon-wrench"></i> <span>FeedBack
+								Management</span></a></li>
+					<li class="active"><a class="" href="/aboutapp"><i
+							class="glyphicon glyphicon-info-sign"></i> <span>Introduce
+								About Web</span></a></li>
+
+					<li class="active"><a class="" href="/aboutteam"><i
+							class="glyphicon glyphicon-camera"></i> <span>Introduce
+								About Team</span></a></li>
+
+					<li class="active"><a class="" href="/feedback/add"><i
+							class="glyphicon glyphicon-question-sign"></i> <span>Help
+								Us !</span></a></li>
 				</ul>
 				<!-- /.sidebar-menu -->
 			</section>
@@ -306,7 +308,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							<div class="box-header">
 								<h3 class="box-title">Data Table FeedBack</h3>
 							</div>
-						
+							<div class="box-header">
+								<spring:url value="/displayPieChart" var="addURL" />
+								<a class="btn btn-info" href="${addURL}" role="button"><i
+									class="glyphicon glyphicon-print"></i> View Result Vote</a>
+							</div>
 							<!-- /.box-header -->
 							<div class="box-body">
 								<table id="example1" class="table table-bordered table-striped">
@@ -316,8 +322,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 											<th>Name</th>
 											<th>Email</th>
 											<th>Experience</th>
+											<th>Review</th>
 											<th>Comment</th>
-											<th>Action</th>
+											<th>Phản Hồi</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -327,13 +334,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 												<td><c:out value="${feedback.name}" /></td>
 												<td><c:out value="${feedback.email}" /></td>
 												<td><c:out value="${feedback.experience}" /></td>
+												<td><c:out value="${feedback.review}" /></td>
 												<td><c:out value="${feedback.comment}" /></td>
-											
+												<td><a href="/getfeedback/${feedback.id}/feedack">phản hồi</a></td>
 											</tr>
 										</c:forEach>
 									</tbody>
 								</table>
-
 							</div>
 							<!-- /.box-body -->
 						</div>

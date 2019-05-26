@@ -1,10 +1,15 @@
 package com.example.demo.controller;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +25,6 @@ import com.example.demo.entity.Project;
 import com.example.demo.entity.Staff;
 import com.example.demo.entity.Task;
 import com.example.demo.service.ProjectService;
-import com.example.demo.service.StaffService;
 
 @Controller
 public class ProjectController {
@@ -28,28 +32,41 @@ public class ProjectController {
 	@Autowired
 	private ProjectService projectService;
 
-	@Autowired
-	private StaffService staffService;
-
 	@GetMapping("/project")
-	public String list(Model model) {
-		model.addAttribute("projects", projectService.getListProject());
-		return "listproject";
+	public ModelAndView list() {
+		ModelAndView modelAndView = new ModelAndView();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); // get logged in username
+		modelAndView.addObject("username", name);
+		
+		modelAndView.addObject("projects", projectService.getListProject());
+		modelAndView.setViewName("listproject");
+		return modelAndView;
 	}
 
 	@GetMapping("/project/add")
-	public String add(Model model) {
+	public ModelAndView add() {
 //		staff.setDepartmentId(departmentId);
-		model.addAttribute("project", new Project());
-
-		return "projectform";
+		ModelAndView modelAndView = new ModelAndView();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); // get logged in username
+		modelAndView.addObject("username", name);
+		
+		modelAndView.addObject("project", new Project());
+		modelAndView.setViewName("projectform");
+		return modelAndView;
 	}
 
 	@GetMapping("/project/{id}/edit")
-	public String edit(@PathVariable("id") int id, Model model) {
-		model.addAttribute("project", projectService.getProjecByiD(id));
-
-		return "projectform";
+	public ModelAndView edit(@PathVariable("id") int id) {
+		ModelAndView modelAndView = new ModelAndView();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); // get logged in username
+		modelAndView.addObject("username", name);
+		
+		modelAndView.addObject("project", projectService.getProjecByiD(id));
+		modelAndView.setViewName("projectform");
+		return modelAndView;
 	}
 
 	@RequestMapping(value = "/project/save", method = RequestMethod.POST)
@@ -79,6 +96,9 @@ public class ProjectController {
 	public ModelAndView detail(@PathVariable int id) {
 
 		ModelAndView modelAndView = new ModelAndView();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); // get logged in username
+		modelAndView.addObject("username", name);
 
 		modelAndView.addObject("project", projectService.getProjecByiD(id));
 
@@ -88,59 +108,76 @@ public class ProjectController {
 
 	@GetMapping(value = "/project/{id}/task")
 	public ModelAndView getTask(@PathVariable int id) {
-		ModelAndView model = new ModelAndView();
-		model.addObject("project", projectService.getProjecByiD(id));
-		model.addObject("tasks", projectService.getListTaskOfProject(id));
-		model.setViewName("listtaskofproject");
-		return model;
+		ModelAndView modelAndView = new ModelAndView();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); // get logged in username
+		modelAndView.addObject("username", name);
+		
+		modelAndView.addObject("project", projectService.getProjecByiD(id));
+		modelAndView.addObject("tasks", projectService.getListTaskOfProject(id));
+		modelAndView.setViewName("listtaskofproject");
+		return modelAndView;
 
 	}
 
 	@GetMapping(value = "/project/{id}/staff")
 	public ModelAndView getstaff(@PathVariable int id) {
-		ModelAndView model = new ModelAndView();
-		model.addObject("project", projectService.getProjecByiD(id));
-		model.addObject("staffs", projectService.getListStaffOfProject(id));
-		model.setViewName("liststaffofproject");
-		return model;
+		ModelAndView modelAndView = new ModelAndView();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); // get logged in username
+		modelAndView.addObject("username", name);
+		
+		modelAndView.addObject("project", projectService.getProjecByiD(id));
+		modelAndView.addObject("staffs", projectService.getListStaffOfProject(id));
+		modelAndView.setViewName("liststaffofproject");
+		return modelAndView;
 
 	}
 
 	@GetMapping(value = "/project/{id}/staff/add")
 	public ModelAndView addStaffProject(@PathVariable int id) {
 		ModelAndView modelAndView = new ModelAndView();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); // get logged in username
+		modelAndView.addObject("username", name);
+		
 		modelAndView.addObject("project", projectService.getProjecByiD(id));
 		List<Staff> listStaff = projectService.getListStaffNotInProject(id);
-		if(listStaff.isEmpty()) {
-			modelAndView.setViewName("404");
+		if (listStaff.isEmpty()) {
+			modelAndView.setViewName("error/404");
 			return modelAndView;
 		}
 		Map<Integer, String> staffs = new HashMap<>();
 		listStaff.forEach(item -> staffs.put(item.getStaffId(), item.getFullName()));
 
 		modelAndView.addObject("staffs", staffs);
-		for (int i = 0; i < listStaff.size() - 1; i++) {
+		for (int i = 0; i < listStaff.size(); i++) {
 			modelAndView.addObject("staff", listStaff.get(i));
 		}
 		modelAndView.setViewName("addstaffinproject");
 		return modelAndView;
 	}
 
-	@PostMapping(value = "/project/{id}/staff/{idStaff}/add")
-	public String addStaffInproject(@PathVariable int id, @PathVariable int idStaff) {
+	@PostMapping(value = "/project/{id}/staff/add/{idStaff}")
+	public String addStaffInproject(@PathVariable int id, @PathVariable int idStaff,RedirectAttributes redirect) {
 		projectService.addStaffInProject(id, idStaff);
+		
+		redirect.addFlashAttribute("notification","bạn đã thêm nhân viên thành công !");
 		return "redirect:/project/{id}/staff";
 	}
 
-	@GetMapping(value = "/project/{id}/progess")
-	public ModelAndView progessProject(@PathVariable int id) {
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("progessproject");
-		return modelAndView;
-	}
+//	@GetMapping(value = "/project/{id}/progess")
+//	public ModelAndView progessProject(@PathVariable int id) {
+//		ModelAndView modelAndView = new ModelAndView();
+//		modelAndView.setViewName("progessproject");
+//		return modelAndView;
+//	}
 
 	@GetMapping(value = "/project/{id}/addtask")
-	public String addTask(@PathVariable("id") int id, Model model) {
+	public String addTask(@PathVariable("id") int id, Model model,HttpServletRequest request) {
+		Principal principal = request.getUserPrincipal();
+		model.addAttribute("username",principal.getName());
+		
 		List<Staff> listStaff = projectService.getListStaffOfProject(id);
 		Map<Integer, String> staffs = new HashMap<>();
 		listStaff.forEach(item -> staffs.put(item.getStaffId(), item.getFullName()));
@@ -152,8 +189,24 @@ public class ProjectController {
 	}
 
 	@GetMapping(value = "/project/{id}/staff/{idStaff}/delete")
-	public String deleteStaffInProject(@PathVariable int id, @PathVariable int idStaff) {
+	public String deleteStaffInProject(@PathVariable int id, @PathVariable int idStaff,RedirectAttributes redirect) {
 		projectService.deleteStaffIdInProject(idStaff, id);
+		redirect.addFlashAttribute("notification","bạn đã xóa nhân viên thành công !");
 		return "redirect:/project/{id}/staff";
 	}
+
+//	@GetMapping(value = "/project/{id}/progress")
+//	public String detailProject(@PathVariable int id, Model model) {
+//		List<WorkLog> workLogList = workLogService.findByProjectIDOrderByDateCreateAsc(id);
+//		Project project = projectService.getProjecByiD(id);
+//		List<Date> listDate = Util.getListDate(project.getStartDate(), project.getFinishDate(),
+//				workLogList.get(workLogList.size()-1).getDateCreate());
+//		List<Double> listProgress = Util.getListExpectProgress(project.getStartDate(), project.getFinishDate());
+//		List<Double> listActualProgress = Util.getListActualProgress(project.getStartDate(), workLogList);
+//		List<String> listLabel = Util.getLabelFromListDate(listDate);
+//		model.addAttribute("listProgress", listProgress);
+//		model.addAttribute("listActualProgress", listActualProgress);
+//		model.addAttribute("listLabel", listLabel);
+//		return "progressproject";
+//	}
 }

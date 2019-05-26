@@ -11,7 +11,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html>
 <head>
-<base href="http://localhost:8080/" target="_blank">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>AdminLTE 2 | Starter</title>
@@ -165,7 +164,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							data-toggle="dropdown"> <!-- The user image in the navbar-->
 								<img src="dist/img/hung.jpg" class="user-image" alt="User Image">
 								<!-- hidden-xs hides the username on small devices so only the image appears. -->
-								<span class="hidden-xs">Lê Tử Hùng</span>
+								<span class="hidden-xs">${username}</span>
 						</a>
 							<ul class="dropdown-menu">
 								<!-- The user image in the menu -->
@@ -173,7 +172,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 									class="img-circle" alt="User Image">
 
 									<p>
-										Lê Tử Hùng - Web Developer <small>Member since Nov.
+										${username} - Web Developer <small>Member since Nov.
 											2019</small>
 									</p></li>
 								<!-- Menu Body -->
@@ -223,7 +222,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<img src="dist/img/hung.jpg" class="img-circle" alt="User Image">
 					</div>
 					<div class="pull-left info">
-						<p>Lê Tử Hùng</p>
+						<p>${username}</p>
 						<!-- Status -->
 						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
 					</div>
@@ -247,38 +246,40 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				<ul class="sidebar-menu">
 					<li class="header">HEADER</li>
 					<!-- Optionally, you can add icons to the links -->
-					<li class="active"><a href="/account" th:href="@{/account}"><i
-							class="glyphicon glyphicon-lock"></i> <span>Account Management</span></a></li>
-							
-					<li class="active"><spring:url value="/department"
-							var="listURL" /> <a class="" href="${listURL}" ><i
-							class="glyphicon glyphicon-home"></i>
-							 <span>Department Management</span></a></li>
-							
-					<li class="active"><spring:url value="/staff" var="listURL" />
-						<a class="" href="${listURL}" ><i
-							class="glyphicon glyphicon-user"></i> <span>Staff Management</span></a></li>
-							
+					<li class="active"><a href="/account"><i
+							class="glyphicon glyphicon-lock"></i> <span>Account
+								Management</span></a></li>
+					<li class="active"><a class="" href="/department"><i
+							class="glyphicon glyphicon-home"></i> <span>Department
+								Management</span></a></li>
+
+					<li class="active"><a class="" href="/staff"><i
+							class="glyphicon glyphicon-user"></i> <span>Staff
+								Management</span></a></li>
+
 					<li class="treeview"><a href="/project"><i
 							class="glyphicon glyphicon-glass"></i> <span>Project
 								Management</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
-							<li><a href="/project"><i class="glyphicon glyphicon-folder-open"></i> Project Management</a></li>
-							<li><a href="#"><i class="glyphicon glyphicon-folder-open"></i> Task Management</a></li>
-						</ul>
-					</li>
-					
-					<li class="active"><spring:url value="/aboutapp" var="listURL" />
-						<a class="" href="${listURL}" ><i class="glyphicon glyphicon-info-sign"></i> 
-						<span>Introduce About Web</span></a></li>
-							
-					<li class="active"><spring:url value="/aboutteam"
-							var="listURL" /> <a class="" href="${listURL}" ><i class="glyphicon glyphicon-camera"></i>
-							<span>Introduce About Team</span></a></li>
-							
-					<li class="active"><spring:url value="/feedback/add" var="listURL" />
-						<a class="" href="${listURL}" ><i class="glyphicon glyphicon-question-sign"></i>
-						<span>Help Us !</span></a></li>
+							<li><a href="/project"><i
+									class="glyphicon glyphicon-folder-open"></i> Project Management</a></li>
+							<li><a href="#"><i
+									class="glyphicon glyphicon-folder-open"></i> Task Management</a></li>
+						</ul></li>
+					<li class="active"><a class="" href="/getfeedback"><i
+							class="glyphicon glyphicon-wrench"></i> <span>FeedBack
+								Management</span></a></li>
+					<li class="active"><a class="" href="/aboutapp"><i
+							class="glyphicon glyphicon-info-sign"></i> <span>Introduce
+								About Web</span></a></li>
+
+					<li class="active"><a class="" href="/aboutteam"><i
+							class="glyphicon glyphicon-camera"></i> <span>Introduce
+								About Team</span></a></li>
+
+					<li class="active"><a class="" href="/feedback/add"><i
+							class="glyphicon glyphicon-question-sign"></i> <span>Help
+								Us !</span></a></li>
 				</ul>
 				<!-- /.sidebar-menu -->
 			</section>
@@ -300,6 +301,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 			<!-- Main content -->
 			<section class="content">
+				<c:if test="${not empty notification}">
+					<div class="callout callout-info lead">
+						<h4>Notification !</h4>
+						<p>${notification}</p>
+					</div>
+				</c:if>
 				<div class="row">
 					<div class="col-xs-12">
 						<div class="box">
@@ -307,9 +314,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 								<h3 class="box-title">Data Table Department</h3>
 							</div>
 							<div class="box-header">
-								<spring:url value="/project/add" var="addURL" />
-								<a class="btn btn-primary" href="${addURL}" role="button"><i class="glyphicon glyphicon-plus"></i> Create
-									Department</a>
+								<spring:url value="/department/add" var="addURL" />
+								<a class="btn btn-primary" href="${addURL}" role="button"><i
+									class="glyphicon glyphicon-plus"></i> Create Department</a>
 							</div>
 							<!-- /.box-header -->
 							<div class="box-body">
@@ -319,25 +326,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
 											<th>#</th>
 											<th>Department Name</th>
 											<th>Management</th>
-											<th>Amount of Staff</th>
 											<th>Description</th>
 											<th>Action</th>
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach items="${departments }" var="department" varStatus="s">
+										<c:forEach items="${departments }" var="department"
+											varStatus="s">
 											<tr>
 												<td><c:out value="${s.index + 1}" /></td>
 												<td><c:out value="${department.departmentName}" /></td>
 												<td><c:out value="${department.managerName}" /></td>
-												<td><c:out value="${department.managerName}" /></td>
 												<td><c:out value="${department.discription}" /></td>
-												<td><spring:url value="/department/${department.departmentId}/edit"
-														var="editURL" /> <a href="${editURL}"><i class="glyphicon glyphicon-pencil"></i></a> <spring:url
-														value="/department/${department.departmentId}/delete" var="deleteURL" />
-													<a href="${deleteURL}"
-													onclick="return confirm('Bạn chắc chắn xoá Project có tên : ${project.projectName} ?');"><i class="glyphicon glyphicon-trash"></i>
-												</a> <a href="/project/detail/${project.projectId}"><i class="glyphicon glyphicon-list-alt"></i> </a></td>
+												<td><spring:url
+														value="/department/${department.departmentId}/edit"
+														var="editURL" /> <a href="${editURL}"><i
+														class="glyphicon glyphicon-pencil"></i></a> <spring:url
+														value="/department/${department.departmentId}/delete"
+														var="deleteURL" /> <a href="${deleteURL}"
+													onclick="return confirm('Bạn chắc chắn xoá Project có tên : ${project.projectName} ?');"><i
+														class="glyphicon glyphicon-trash"></i> </a> <a
+													href="/department/detail/${department.departmentId}"><i
+														class="glyphicon glyphicon-list-alt"></i> </a></td>
 											</tr>
 										</c:forEach>
 									</tbody>

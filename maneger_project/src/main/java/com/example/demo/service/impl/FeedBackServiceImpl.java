@@ -26,4 +26,10 @@ public class FeedBackServiceImpl implements FeedBackService{
 		return feedbackRepo.save(feedback);
 	}
 
+	@Override
+	public Feedback getFeedBack(int id) {
+		// TODO Auto-generated method stub
+		return feedbackRepo.getOne(id);
+	}
+
 }

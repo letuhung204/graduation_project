@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -11,7 +10,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html>
 <head>
-<base href="http://localhost:8080/" target="_blank">
+<base href="http://localhost:8080/">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>AdminLTE 2 | Starter</title>
@@ -44,17 +43,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- Custom style -->
 <link href="../static/css/style.css" href="@{/css/style.css}"
 	rel="stylesheet" />
-<style>
-.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p,
-	.bootstrap-iso form {
-	font-family: Arial, Helvetica, sans-serif;
-	color: black
-}
-
-.bootstrap-iso form button, .bootstrap-iso form button:hover {
-	color: white !important;
-}
-
+<script src="../../js/checkValidate.js"></script>
+<style type="text/css">
 .asteriskField {
 	color: red;
 }
@@ -66,7 +56,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 		<header class="main-header">
 
 			<!-- Logo -->
-			<a href="#" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
+			<a href="/welcome" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
 				<span class="logo-mini"><b>R</b>Đ</span> <!-- logo for regular state and mobile devices -->
 				<span class="logo-lg"><b>Rạng Đông</b> Company</span>
 			</a>
@@ -174,7 +164,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							data-toggle="dropdown"> <!-- The user image in the navbar-->
 								<img src="dist/img/hung.jpg" class="user-image" alt="User Image">
 								<!-- hidden-xs hides the username on small devices so only the image appears. -->
-								<span class="hidden-xs">Lê Tử Hùng</span>
+								<span class="hidden-xs">${username}</span>
 						</a>
 							<ul class="dropdown-menu">
 								<!-- The user image in the menu -->
@@ -182,7 +172,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 									class="img-circle" alt="User Image">
 
 									<p>
-										Lê Tử Hùng - Web Developer <small>Member since Nov.
+										${username} - Web Developer <small>Member since Nov.
 											2019</small>
 									</p></li>
 								<!-- Menu Body -->
@@ -232,7 +222,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<img src="dist/img/hung.jpg" class="img-circle" alt="User Image">
 					</div>
 					<div class="pull-left info">
-						<p>Lê Tử Hùng</p>
+						<p>${username}</p>
 						<!-- Status -->
 						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
 					</div>
@@ -256,38 +246,40 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				<ul class="sidebar-menu">
 					<li class="header">HEADER</li>
 					<!-- Optionally, you can add icons to the links -->
-					<li class="active"><a href="/account" th:href="@{/account}"><i
-							class="glyphicon glyphicon-lock"></i> <span>Account Management</span></a></li>
-							
-					<li class="active"><spring:url value="/department"
-							var="listURL" /> <a class="" href="${listURL}" ><i
-							class="glyphicon glyphicon-home"></i>
-							 <span>Department Management</span></a></li>
-							
-					<li class="active"><spring:url value="/staff" var="listURL" />
-						<a class="" href="${listURL}" ><i
-							class="glyphicon glyphicon-user"></i> <span>Staff Management</span></a></li>
-							
+					<li class="active"><a href="/account"><i
+							class="glyphicon glyphicon-lock"></i> <span>Account
+								Management</span></a></li>
+					<li class="active"><a class="" href="/department"><i
+							class="glyphicon glyphicon-home"></i> <span>Department
+								Management</span></a></li>
+
+					<li class="active"><a class="" href="/staff"><i
+							class="glyphicon glyphicon-user"></i> <span>Staff
+								Management</span></a></li>
+
 					<li class="treeview"><a href="/project"><i
 							class="glyphicon glyphicon-glass"></i> <span>Project
 								Management</span> <i class="fa fa-angle-left pull-right"></i></a>
 						<ul class="treeview-menu">
-							<li><a href="/project"><i class="glyphicon glyphicon-folder-open"></i> Project Management</a></li>
-							<li><a href="#"><i class="glyphicon glyphicon-folder-open"></i> Task Management</a></li>
-						</ul>
-					</li>
-					
-					<li class="active"><spring:url value="/aboutapp" var="listURL" />
-						<a class="" href="${listURL}" ><i class="glyphicon glyphicon-info-sign"></i> 
-						<span>Introduce About Web</span></a></li>
-							
-					<li class="active"><spring:url value="/aboutteam"
-							var="listURL" /> <a class="" href="${listURL}" ><i class="glyphicon glyphicon-camera"></i>
-							<span>Introduce About Team</span></a></li>
-							
-					<li class="active"><spring:url value="/feedback/add" var="listURL" />
-						<a class="" href="${listURL}" ><i class="glyphicon glyphicon-question-sign"></i>
-						<span>Help Us !</span></a></li>
+							<li><a href="/project"><i
+									class="glyphicon glyphicon-folder-open"></i> Project Management</a></li>
+							<li><a href="#"><i
+									class="glyphicon glyphicon-folder-open"></i> Task Management</a></li>
+						</ul></li>
+					<li class="active"><a class="" href="/getfeedback"><i
+							class="glyphicon glyphicon-wrench"></i> <span>FeedBack
+								Management</span></a></li>
+					<li class="active"><a class="" href="/aboutapp"><i
+							class="glyphicon glyphicon-info-sign"></i> <span>Introduce
+								About Web</span></a></li>
+
+					<li class="active"><a class="" href="/aboutteam"><i
+							class="glyphicon glyphicon-camera"></i> <span>Introduce
+								About Team</span></a></li>
+
+					<li class="active"><a class="" href="/feedback/add"><i
+							class="glyphicon glyphicon-question-sign"></i> <span>Help
+								Us !</span></a></li>
 				</ul>
 				<!-- /.sidebar-menu -->
 			</section>
@@ -310,106 +302,133 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<!-- Main content -->
 			<section class="content">
 				<div class="container">
-		<table class="table table-striped">
-			<tbody>
-				<tr>
-					<td colspan="1"><img alt="this is logo"
-						src="/images/account.png"
-						style="width: 50%; display: block;">
-						<h2>Account Form</h2> <spring:url value="/account/save"
-							var="saveURL" />
-						<fieldset>
-							<form:form modelAttribute="account" method="POST"
-								action="${saveURL}" cssClass="well form-horizontal"
-								onsubmit="return validateEmail()">
+					<table class="table table-striped">
+						<tbody>
+							<tr>
+								<td colspan="1"><img alt="this is logo"
+									src="/images/account.png" style="width: 50%; display: block;">
+									<h2>Account Form</h2> <spring:url value="/account/save"
+										var="saveURL" />
+									<fieldset>
+										<form:form modelAttribute="account" method="POST"
+											action="${saveURL}" cssClass="well form-horizontal"
+											onsubmit="return validateEmail()">
+											<div class="input-group" style="display: none">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-user"></i></span>
+												<form:input path="check" cssClass="form-control"
+													required="required" readonly="true" />
+											</div>
+											<div class="form-group">
+												<label class="control-label col-sm-2 requiredField">
+													ID Account <span class="asteriskField"> * </span>
+												</label>
+												<c:choose>
+													<c:when test="${not empty account.accountId }">
+														<div class="col-md-8 inputGroupContainer">
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-user"></i></span>
+																<form:input path="accountId" cssClass="form-control"
+																	required="required" readonly="true" />
+															</div>
+														</div>
+													</c:when>
+													<c:otherwise>
+														<div class="col-md-8 inputGroupContainer">
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-user"></i></span>
+																<form:input id="accountId" path="accountId"
+																	cssClass="form-control" readonly="true" />
+															</div>
+														</div>
 
-								<div class="form-group">
-									<label class="control-label col-sm-2 requiredField"> ID
-										Account <span class="asteriskField"> * </span>
-									</label>
-									<c:choose>
-										<c:when test="${not empty account.accountId }">
-											<div class="col-md-8 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-user"></i></span>
-													<form:input path="accountId" cssClass="form-control"
-														required="required" readonly="true" />
+													</c:otherwise>
+												</c:choose>
+											</div>
+											<c:choose>
+												<c:when test="${not empty account.accountName }">
+													<div class="form-group">
+														<label class="control-label col-sm-2 requiredField"
+															for="date"> Account Name <span
+															class="asteriskField"> * </span>
+														</label>
+														<div class="col-md-8 inputGroupContainer">
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-user"></i></span>
+																<form:input path="accountName" cssClass="form-control"
+																	id="email" placeholder="Account name" readonly="true" />
+															</div>
+														</div>
+													</div>
+												</c:when>
+												<c:otherwise>
+													<div class="form-group">
+														<label class="control-label col-sm-2 requiredField"
+															for="date"> Account Name <span
+															class="asteriskField"> * </span>
+														</label>
+														<div class="col-md-8 inputGroupContainer">
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-user"></i></span>
+																<form:input path="accountName" cssClass="form-control"
+																	id="email" placeholder="Account name" require="true" />
+															</div>
+														</div>
+													</div>
+
+												</c:otherwise>
+											</c:choose>
+											<div class="form-group">
+												<label class="control-label col-sm-2 requiredField">
+													PassWord <span class="asteriskField"> *</span>
+												</label>
+												<div class="col-md-8 inputGroupContainer">
+													<div class="input-group">
+														<span class="input-group-addon"><i
+															class="glyphicon glyphicon-list-alt"></i></span>
+														<form:input path="password" id="password"
+															placeholder="password" class="form-control"
+															required="true" type="password"></form:input>
+													</div>
 												</div>
 											</div>
-										</c:when>
-										<c:otherwise>
-											<div class="col-md-8 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-user"></i></span>
-													<form:input id="accountId" path="accountId"
-														cssClass="form-control" readonly="true" />
+											<div class="form-group">
+												<label class="control-label col-sm-2 requiredField">
+													Account role <span class="asteriskField"> * </span>
+												</label>
+												<div class="col-md-8 inputGroupContainer">
+													<div class="input-group">
+														<span class="input-group-addon"><i
+															class="glyphicon glyphicon-th-list"></i></span>
+														<form:select path="roleId" class="form-control" id="sel1"
+															style="height:30px" required="required">
+															<form:option value="1" label="--- Select ---" />
+															<form:option value="1" label="ADMIN" />
+															<form:option value="2" label="MANAGER" />
+															<form:option value="3" label="STAFF" />
+														</form:select>
+													</div>
 												</div>
 											</div>
+											<div class="text-center">
+												<button type="submit" class="btn btn-primary">Save</button>
+												<a type="button" class="btn btn-primary" href="/account"
+													onclick="return confirm('Bạn chắc chắn muốn ngừng thực hiện tác vụ không ?')">Cancel</a>
+											</div>
 
-										</c:otherwise>
-									</c:choose>
-								</div>
-								<div class="form-group">
-									<label class="control-label col-sm-2 requiredField" for="date">
-										Account Name <span class="asteriskField"> * </span>
-									</label>
-									<div class="col-md-8 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-user"></i></span>
-											<form:input path="accountName" cssClass="form-control"
-												id="email" placeholder="Account name" required="true" />
-										</div>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="control-label col-sm-2 requiredField">
-										PassWord <span class="asteriskField"> *</span></label>
-									<div class="col-md-8 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-list-alt"></i></span>
-											<form:input path="password" id="password"
-												placeholder="password" class="form-control" required="true"
-												type="password"></form:input>
-										</div>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="control-label col-sm-2 requiredField">
-										Account role <span class="asteriskField"> * </span>
-									</label>
-									<div class="col-md-8 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-th-list"></i></span>
-											<form:select path="roleId" class="form-control" id="sel1"
-												style="height:30px" required="required">
-												<form:option value="" label="--- Select ---" />
-												<form:option value="1" label="ADMIN" />
-												<form:option value="2" label="MANAGER" />
-												<form:option value="3" label="STAFF" />
-											</form:select>
-										</div>
-									</div>
-								</div>
-								<div class="text-center">
-									<button type="submit" class="btn btn-primary">Save</button>
-									<button type="button" class="btn btn-primary"
-										onclick="return window.location='/project';">Cancel</button>
-								</div>
-
-							</form:form>
-						</fieldset></td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+										</form:form>
+									</fieldset></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</section>
 
-			
+
 			<!-- /.content -->
 		</div>
 		<!-- /.content-wrapper -->
@@ -419,8 +438,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<!-- To the right -->
 			<div class="pull-right hidden-xs">GVHD: Nguyễn Thanh Bình</div>
 			<!-- Default to the left -->
-			<strong>Team Graduation Project <a href="#">Rạng Đông
-					Company</a>
+			<strong>Team Graduation Project <a href="/welcome">Rạng
+					Đông Company</a>
 			</strong> Hùng - Thành - Đại.
 		</footer>
 
@@ -511,27 +530,5 @@ scratch. This page gets rid of all links and provides the needed markup only.
      Both of these plugins are recommended to enhance the
      user experience. Slimscroll is required when using the
      fixed layout. -->
- 	<!-- Extra JavaScript/CSS added manually in "Settings" tab -->
-	<!-- Include jQuery -->
-	<script type="text/javascript"
-		src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-
-	<!-- Include Date Range Picker -->
-	<script type="text/javascript"
-		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-	<script>
-		$(document).ready(
-				function() {
-					var date_input = $('input[name="date"]'); //our date input has the name "date"
-					var container = $('.bootstrap-iso form').length > 0 ? $(
-							'.bootstrap-iso form').parent() : "body";
-					date_input.datepicker({
-						format : 'yyyy-mm-dd',
-						container : container,
-						todayHighlight : true,
-						autoclose : true,
-					})
-				})
-	</script>
 </body>
 </html>
