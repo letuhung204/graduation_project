@@ -70,10 +70,10 @@ public class ProjectController {
 	}
 
 	@RequestMapping(value = "/project/save", method = RequestMethod.POST)
-	public ModelAndView save(@ModelAttribute("project") Project project) {
+	public ModelAndView save(@ModelAttribute("project") Project project,RedirectAttributes redirect) {
 
 		projectService.saveProject(project);
-
+		redirect.addFlashAttribute("notification","bạn đã thực hiện thành công !");
 		return new ModelAndView("redirect:/project");
 	}
 
@@ -107,7 +107,7 @@ public class ProjectController {
 	}
 
 	@GetMapping(value = "/project/{id}/task")
-	public ModelAndView getTask(@PathVariable int id) {
+	public ModelAndView getTask(@PathVariable int id,RedirectAttributes redirect) {
 		ModelAndView modelAndView = new ModelAndView();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String name = auth.getName(); // get logged in username
@@ -116,6 +116,7 @@ public class ProjectController {
 		modelAndView.addObject("project", projectService.getProjecByiD(id));
 		modelAndView.addObject("tasks", projectService.getListTaskOfProject(id));
 		modelAndView.setViewName("listtaskofproject");
+		redirect.addFlashAttribute("notification","bạn đã thực hiện thêm task thành công !");
 		return modelAndView;
 
 	}

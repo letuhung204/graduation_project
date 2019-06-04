@@ -61,7 +61,7 @@
 				<div class="row">
 					<div class="col-xs-8">
 						<div class="checkbox icheck">
-							<label style="margin-left: 20px"> <input type="checkbox">
+							<label style="margin-left: 20px"> <input type="checkbox" name="remember-me">
 								Remember Me
 							</label>
 						</div>

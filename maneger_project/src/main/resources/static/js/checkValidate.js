@@ -45,12 +45,12 @@ function checkmaxsize() {
 	var skill;
 	var possition;
 
-	 firstName = document.getElementById("firstname").value;
-	 lastName = document.getElementById("lastname").value;
-	 fullName = document.getElementById("fullname").value;
-	 discription = document.getElementById("discription").value;
-	 skill = document.getElementById("skill").value;
-	 possition = document.getElementById("possition").value;
+	firstName = document.getElementById("firstname").value;
+	lastName = document.getElementById("lastname").value;
+	fullName = document.getElementById("fullname").value;
+	discription = document.getElementById("discription").value;
+	skill = document.getElementById("skill").value;
+	possition = document.getElementById("possition").value;
 
 	if (firstName.length > 50 || lastName.length > 50) {
 		alert("max size of first name and last name is 50 character !");
@@ -67,7 +67,7 @@ function checkmaxsize() {
 	}
 	return true;
 }
-function checkmaxdepartment(){
+function checkmaxdepartment() {
 	var discription;
 	discription = document.getElementById("discription").value;
 	if (discription.length > 255) {
@@ -76,15 +76,51 @@ function checkmaxdepartment(){
 	}
 	return true;
 }
-function checkemailissame(){
+function checkemailissame() {
 	var email;
 	var accounName;
 	email = document.getElementById("email").value;
 	accounName = document.getElementById("").value;
-	if(email != accounName){
+	if (email != accounName) {
 		alert("email của staff phải giống với account name !");
 		return false;
-	}else{
+	} else {
 		return true;
 	}
+}
+function validatedate() {
+	var startDate = document.getElementById("dateCreate").value;
+	var endDate = document.getElementById("deadlineDate").value;
+	var finishDate = document.getElementById("finishDate").value;
+
+	if ((Date.parse(endDate) <= Date.parse(startDate))) {
+		alert("Thời gian deadline phải sau thời gian dateCreate !");
+		return false;
+	}
+	if ((Date.parse(finishDate) <= Date.parse(startDate))) {
+		alert("Thời gian finishdate phải sau thời gian dateCreate !");
+		return false;
+	}
+	return true;
+}
+
+function validatedateproject() {
+	var create = document.getElementById("createDate").value;
+	var start = document.getElementById("startDate").value;
+	var dateline = document.getElementById("deadlineDate").value;
+	var finishDate = document.getElementById("finishDate").value;
+
+	if ((Date.parse(start) <= Date.parse(create))) {
+		alert("Thời gian bắt đầu dự án phải sau thời gian tạo dự án !");
+		return false;
+	}
+	if ((Date.parse(dateline) <= Date.parse(start))) {
+		alert("Thời gian dateline phải sau thời gian start dự án !");
+		return false;
+	}
+	if ((Date.parse(finishDate) <= Date.parse(start))) {
+		alert("Thời gian finish date phải sau thời gian start dự án !");
+		return false;
+	}
+	return true;
 }

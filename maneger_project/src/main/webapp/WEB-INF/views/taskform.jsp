@@ -312,7 +312,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 									<fieldset>
 										<form:form modelAttribute="task" method="POST"
 											action="project/${task.projectId.projectId}/task/save" cssClass="well form-horizontal"
-											onsubmit="return checkPhone() && validateEmail() && validateGender() && checkmaxsize()">
+											onsubmit="return validatedate() && validatedateproject()">
 											<div id="staffCombobox">
 												<div class="form-group">
 													<label class="control-label col-sm-2 requiredField">
@@ -331,13 +331,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 												</div>
 											</div>
 											<div id="taskInfo">
-												<div class="form-group">
+												<div class="form-group" style="display: none">
 													<label class="control-label col-sm-2 requiredField">
 														ID Task <span class="asteriskField"> * </span>
 													</label>
 													<c:choose>
 														<c:when test="${not empty task.taskId }">
-															<div class="col-md-8 inputGroupContainer">
+															<div class="col-md-8 inputGroupContainer" style="">
 																<div class="input-group">
 																	<span class="input-group-addon"><i
 																		class="glyphicon glyphicon-tags"></i></span>

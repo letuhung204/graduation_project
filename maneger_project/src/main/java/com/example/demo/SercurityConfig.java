@@ -52,7 +52,10 @@ public class SercurityConfig extends WebSecurityConfigurerAdapter {
 				.authenticated().and().csrf().disable()
 				.formLogin().loginPage("/login").failureUrl("/login?error=true")
 				.defaultSuccessUrl("/welcome").usernameParameter("email").passwordParameter("password").and()
-				.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login?logout=true").and()
+				.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login?logout=true").deleteCookies("JSESSIONID").and()
+				
+				.rememberMe().rememberMeParameter("remember-me").key("uniqueAndSecret").tokenValiditySeconds(86400).and()
+				
 				.exceptionHandling().accessDeniedPage("/error/403");
 		
 	}

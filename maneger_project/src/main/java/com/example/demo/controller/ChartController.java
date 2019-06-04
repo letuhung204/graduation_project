@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class ChartController {
@@ -100,10 +101,16 @@ public class ChartController {
 	}
 
 	@RequestMapping(value = "/task/{id}/taskprogress/save", method = RequestMethod.POST)
-	public ModelAndView save(@PathVariable("id") int id, @ModelAttribute("taskprogress") TaskProgress taskprogress) {
+	public ModelAndView save(@PathVariable("id") int id, @ModelAttribute("taskprogress") TaskProgress taskprogress,RedirectAttributes redirect) {
+		ModelAndView modelAndView = new ModelAndView();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); // get logged in username
+		modelAndView.addObject("username", name);
+		
 		taskProgressService.save(taskprogress);
-
-		return new ModelAndView("redirect:/task/{id}/displayBarGraph");
+		redirect.addFlashAttribute("notification","bạn đã thực hiện log work thành công !");
+		modelAndView.setViewName("redirect:/task/{id}/displayBarGraph");
+		return modelAndView;
 	}
 
 	@RequestMapping(value = "/task/{id}/taskprogress/save", method = RequestMethod.GET)

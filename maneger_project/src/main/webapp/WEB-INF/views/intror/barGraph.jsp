@@ -302,6 +302,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 			<!-- Main content -->
 			<section class="content">
+					<c:if test="${not empty notification}">
+					<div class="callout callout-info lead">
+						<h4>Notification !</h4>
+						<p>
+							${notification} 
+						</p>
+					</div>
+				</c:if>
 					<script
 						src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 					<!-- Latest compiled and minified JavaScript -->

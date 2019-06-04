@@ -83,17 +83,6 @@ public class InforController {
 		return modelAndView;
 	}
 
-	@GetMapping(value = "/timework")
-	public ModelAndView getInfoTime() {
-		ModelAndView modelAndView = new ModelAndView();
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String name = auth.getName(); // get logged in username
-		modelAndView.addObject("username", name);
-		
-		modelAndView.setViewName("timework/timework");
-		return modelAndView;
-	}
-
 	@GetMapping(value = "/thankyou")
 	public String thank() {
 		return "intror/thankyou";

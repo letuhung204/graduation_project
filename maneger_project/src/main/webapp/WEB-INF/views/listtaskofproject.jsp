@@ -330,6 +330,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					</div>
 				</c:if>
 				<div class="row">
+					<c:if test="${not empty notification1}">
+						<div class="callout callout-info lead">
+							<h4>Notification !</h4>
+							<p>${notification1}</p>
+						</div>
+					</c:if>
 					<div class="col-xs-12">
 						<div class="box">
 							<div class="box-header">

@@ -376,7 +376,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 												<td><a
 													href="project/${project.projectId}/staff/${staff.staffId}/task/add">tạo
 														task cho staff</a></td>
-												<td><a href="/timework">log work</a></td>
+												<td><a href="/staff/${staff.staffId}/timeworks">log work</a></td>
 												<td><a
 													href="project/${project.projectId}/staff/${staff.staffId}/delete"
 													onclick="return confirm('Bạn chắc chắn xoá Staff có tên : ${staff.fullName} ?');"><i
