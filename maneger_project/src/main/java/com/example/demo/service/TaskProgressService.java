@@ -17,5 +17,9 @@ public interface TaskProgressService {
 	List<TaskProgress> findByTaskIDOrderByDateCreateAsc(int taskId);
 	
 	TaskProgress save(TaskProgress taskProgress);
+
+	TaskProgress findLastTaskProgressOfTaskBefore(Date moment, Integer taskId);
+
+	void createTaskProgress(TaskProgress taskProgress);
 	
 }

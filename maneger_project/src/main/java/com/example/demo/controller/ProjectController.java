@@ -112,7 +112,6 @@ public class ProjectController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String name = auth.getName(); // get logged in username
 		modelAndView.addObject("username", name);
-		
 		modelAndView.addObject("project", projectService.getProjecByiD(id));
 		modelAndView.addObject("tasks", projectService.getListTaskOfProject(id));
 		modelAndView.setViewName("listtaskofproject");
@@ -178,11 +177,14 @@ public class ProjectController {
 	public String addTask(@PathVariable("id") int id, Model model,HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();
 		model.addAttribute("username",principal.getName());
-		
+		List<Task> taskList = projectService.getListBigTaskOfProject(id);
 		List<Staff> listStaff = projectService.getListStaffOfProject(id);
 		Map<Integer, String> staffs = new HashMap<>();
 		listStaff.forEach(item -> staffs.put(item.getStaffId(), item.getFullName()));
 		model.addAttribute("staffs", staffs);
+		Map<Integer, String> listPreviousTask = new HashMap<>();
+		taskList.forEach(item -> listPreviousTask.put(item.getTaskId(), item.getTaskName()));
+		model.addAttribute("listPreviousTask", listPreviousTask);
 		Task task = new Task();
 		task.setProjectId(projectService.getProjecByiD(id));
 		model.addAttribute("task", task);

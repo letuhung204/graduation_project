@@ -351,7 +351,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				series : [
 						{
 							name : ' progress expect',
-							data : ${execpect}
+							data : ${expect}
 						},
 						{
 							name : 'progress actual',
@@ -386,7 +386,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${taskprogress }" var="taskprogress"
+									<c:forEach items="${taskprogress}" var="taskprogress"
 										varStatus="s">
 										<tr>
 											<td><c:out value="${s.index + 1}" /></td>

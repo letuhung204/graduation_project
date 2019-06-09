@@ -37,4 +37,7 @@ public interface ProjectRepo extends JpaRepository<Project, Integer> {
 	@Transactional
 	@Query(value= "delete sp from Staff_Project sp where sp.staff_id= :staffId AND sp.project_id= :project_id", nativeQuery = true)
 	void deleteStaffInProject(@Param("staffId") int staffId, @Param("project_id") int projectId);
+
+	@Query(value = "select t from Task t where t.projectId.projectId= :id and t.taskIdparent = null")
+	List<Task> getListBigTaskOfProject(int id);
 }

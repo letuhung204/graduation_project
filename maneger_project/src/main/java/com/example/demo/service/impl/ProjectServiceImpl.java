@@ -83,4 +83,16 @@ public class ProjectServiceImpl implements ProjectService{
 		return true;
 	}
 
+	@Override
+	public List<Task> getListBigTaskOfProject(int id) {
+		// TODO Auto-generated method stub
+		return projectRepo.getListBigTaskOfProject(id);
+	}
+
+	@Override
+	public Project findByProjectId(int id) {
+		// TODO Auto-generated method stub
+		return projectRepo.getOne(id);
+	}
+
 }

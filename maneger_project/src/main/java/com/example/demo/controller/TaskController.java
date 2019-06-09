@@ -1,21 +1,30 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.Staff;
-import com.example.demo.entity.Task;
-import com.example.demo.service.ProjectService;
-import com.example.demo.service.StaffService;
-import com.example.demo.service.TaskService;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.example.demo.entity.Staff;
+import com.example.demo.entity.Task;
+import com.example.demo.entity.TaskProgress;
+import com.example.demo.service.ProjectService;
+import com.example.demo.service.StaffService;
+import com.example.demo.service.TaskProgressService;
+import com.example.demo.service.TaskService;
 
 @Controller
 public class TaskController {
@@ -27,6 +36,9 @@ public class TaskController {
 
 	@Autowired
 	ProjectService projectService;
+
+	@Autowired
+	TaskProgressService taskProgressService;
 
 	@RequestMapping(value = "/project/{id}/task/save", method = RequestMethod.POST)
 	public ModelAndView save(@ModelAttribute("task") Task task, @PathVariable("id") int id) {
@@ -120,7 +132,7 @@ public class TaskController {
 			if (task.getTaskId() == listTaskOfProject.get(i).getTaskIdparent()) {
 				System.out.println("task nay dang co task con neen ban phai xoa task con truoc !");
 				redirect.addFlashAttribute("notification",
-						"Task "+task.getTaskName() +" có task con, Nếu muốn xóa bạn phải xóa task con trước !");
+						"Task " + task.getTaskName() + " có task con, Nếu muốn xóa bạn phải xóa task con trước !");
 				return modeleAndView;
 			}
 		}
@@ -134,8 +146,29 @@ public class TaskController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String name = auth.getName(); // get logged in username
 		modelAndView.addObject("username", name);
-
 		modelAndView.setViewName("/intror/viewtreetask");
 		return modelAndView;
 	}
+
+	@GetMapping(value = "task/{id}/worklog")
+	public ModelAndView createWorkLog(@PathVariable("id") int id) {
+		ModelAndView mav = new ModelAndView();
+		TaskProgress taskProgress = new TaskProgress();
+		Task task = taskService.findById(id);
+		Set<Task> previousTasks = task.getPreviousTask();
+		for (Task previousTask : previousTasks) {
+			if(previousTask.getTaskState()<100) {
+				mav.setViewName("/error/403");
+				return mav;
+			}
+		}
+		taskProgress.setTaskId(task);
+		taskProgress.setDateLog(new Date());
+		taskProgress.setConfirm(0);
+		mav.addObject("taskprogress", taskProgress);
+		mav.addObject(task);
+		mav.setViewName("progresstaskform");
+		return mav;
+	}
+
 }

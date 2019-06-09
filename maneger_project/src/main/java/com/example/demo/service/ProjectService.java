@@ -28,4 +28,8 @@ public interface ProjectService {
 	
 	Boolean deleteStaffIdInProject(int idStaff,int idProject);
 
+	List<Task> getListBigTaskOfProject(int id);
+
+	Project findByProjectId(int id);
+
 }

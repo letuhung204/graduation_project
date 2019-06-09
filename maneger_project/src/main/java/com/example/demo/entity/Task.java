@@ -20,13 +20,19 @@ package com.example.demo.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -79,6 +85,11 @@ public class Task implements Serializable {
 	@DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm")
     private Date dateCreate;
     @Basic(optional = false)
+    @Column(name = "date_start")
+    @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private Date dateStart;
+    @Basic(optional = false)
     @Column(name = "deadline_date")
     @Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm")
@@ -87,7 +98,23 @@ public class Task implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm")
     private Date finishDate;
-    @Column(name = "task_state")
+    public Date getDateStart() {
+		return dateStart;
+	}
+
+	public void setDateStart(Date dateStart) {
+		this.dateStart = dateStart;
+	}
+
+	public Set<Task> getPreviousTask() {
+		return previousTask;
+	}
+
+	public void setPreviousTask(Set<Task> previousTask) {
+		this.previousTask = previousTask;
+	}
+
+	@Column(name = "task_state")
     private Integer taskState;
     @Basic(optional = false)
     @Column(name = "discription")
@@ -101,6 +128,9 @@ public class Task implements Serializable {
     @JoinColumn(name = "staff_id", referencedColumnName = "staff_id")
     @ManyToOne(optional = false)
     private Staff staffId;
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(name = "task_relation", joinColumns = {@JoinColumn(name = "task_id")}, inverseJoinColumns = {@JoinColumn(name = "previous_task_id")})
+    private Set<Task> previousTask = new HashSet<>();
     
     public Task() {
     }
@@ -245,7 +275,7 @@ public class Task implements Serializable {
 
     @Override
     public String toString() {
-        return "gdfgdfgdfg.Task[ taskId=" + taskId + " ]";
+        return "Task[ taskId=" + taskId + " ]";
     }
     
 }

@@ -38,7 +38,7 @@ public class EventsServiceImpl implements EventsService{
 
 	@Override
 	public boolean deleteEvent(long id) {
-		if(eventsRepo.findById(id).isEmpty()) {
+		if(eventsRepo.findById(id).equals(null)) {
 			return false;
 		}
 		eventsRepo.deleteById(id);
