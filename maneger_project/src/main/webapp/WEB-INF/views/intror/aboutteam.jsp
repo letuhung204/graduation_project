@@ -43,7 +43,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- Custom style -->
 <link href="css/style.css" rel="stylesheet" />
 <link href="css/inforteam.css" rel="stylesheet" />
-
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper" style="margin-top: -5.5%">
 
@@ -252,15 +251,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							class="glyphicon glyphicon-user"></i> <span>Staff
 								Management</span></a></li>
 
-					<li class="treeview"><a href="/project"><i
+					<li class="active"><a class="" href="/project"><i
 							class="glyphicon glyphicon-glass"></i> <span>Project
-								Management</span> <i class="fa fa-angle-left pull-right"></i></a>
-						<ul class="treeview-menu">
-							<li><a href="/project"><i
-									class="glyphicon glyphicon-folder-open"></i> Project Management</a></li>
-							<li><a href="#"><i
-									class="glyphicon glyphicon-folder-open"></i> Task Management</a></li>
-						</ul></li>
+								Management</span></a></li>
 					<li class="active"><a class="" href="/getfeedback"><i
 							class="glyphicon glyphicon-wrench"></i> <span>FeedBack
 								Management</span></a></li>
@@ -291,46 +284,34 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				<div class="container">
 					<div class="row">
 						<div class="text-center">
-							<h1>INFORMATION OF MEMBER IN THE TEAM</h1>
+							<h1>Thông Tin Về Các Thành Viên Trong Nhóm</h1>
 						</div>
 						<div class="row">
 							<div class="col-md-4">
 								<div class="well">
 									<img class="thumbnail img-responsive" alt="hung le"
-										src="images/hung.jpg" /> <span> My name is Hung Le, I
-										am 23 years old. I completed a bachelor of science in
-										Telecommunications Engineering in 2018. I have an on job
-										training experience at power and Network through huawei
-										technology limited as a field Maintanance Engineer since
-										February 2019 upto date. I want to do the job in your company
-										to improve my skills in telecommunication and also to make
-										sure your company attain its goals. </span>
+										src="images/hung.jpg" /> <span> Tôi là Lê Tử Hùng,
+										Sinh viên năm 5 hệ kỹ sư chuyên ngành Điện Tử - Truyền Thông Trường đại
+										học Bách Khoa hà nội. Định hướng nghề nghiệp của tôi là trở
+										thành lập trình viên giàu kinh nghiệm, kỹ năng ngôn ngữ chính của tôi là Java-Web và Angular.  </span>
 								</div>
 							</div>
 							<div class="col-md-4">
 								<div class="well">
 									<img class="thumbnail img-responsive" alt="thanh"
-										src="images/thanh2.jpg" /> <span> My name is Hung Le,
-										I am 23 years old. I completed a bachelor of science in
-										Telecommunications Engineering in 2018. I have an on job
-										training experience at power and Network through huawei
-										technology limited as a field Maintanance Engineer since
-										February 2019 upto date. I want to do the job in your company
-										to improve my skills in telecommunication and also to make
-										sure your company attain its goals. </span>
+										src="images/thanh2.jpg" /> <span>Tôi là Nguyễn Tiến Thành,
+										Sinh viên năm 5 hệ kỹ sư chuyên ngành Điện Tử - Truyền Thông Trường đại
+										học Bách Khoa hà nội. Định hướng nghề nghiệp của tôi là trở
+										thành lập kỹ sư thiết kế hệ thống nhúng và lập trình phần cứng FPGA. </span>
 								</div>
 							</div>
 							<div class="col-md-4">
 								<div class="well">
 									<img class="thumbnail img-responsive" alt="dai"
-										src="images/daitran.jpg" /> <span> My name is Hung Le,
-										I am 23 years old. I completed a bachelor of science in
-										Telecommunications Engineering in 2018. I have an on job
-										training experience at power and Network through huawei
-										technology limited as a field Maintanance Engineer since
-										February 2019 upto date. I want to do the job in your company
-										to improve my skills in telecommunication and also to make
-										sure your company attain its goals.</span>
+										src="images/daitran.jpg" /> <span> Tôi là Trần Trọng Đại,
+										Sinh viên năm 4 hệ cử nhân chuyên ngành Điện Tử - Truyền Thông Trường đại
+										học Bách Khoa hà nội. Định hướng nghề nghiệp của tôi là trở
+										thành lập trình viên và ngôn ngữ định hướng của tôi là Java Web</span>
 								</div>
 							</div>
 						</div>

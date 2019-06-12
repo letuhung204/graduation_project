@@ -24,7 +24,7 @@ public abstract class ObjectProgress {
 	
 	@Column(name = "datelog")
 	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateLog;
 
 	@Column(name = "progress")

@@ -10,7 +10,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html>
 <head>
-<base href="http://localhost:8080/" >
+<base href="http://localhost:8080/">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>AdminLTE 2 | Starter</title>
@@ -251,15 +251,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							class="glyphicon glyphicon-user"></i> <span>Staff
 								Management</span></a></li>
 
-					<li class="treeview"><a href="/project"><i
+					<li class="active"><a class="" href="/project"><i
 							class="glyphicon glyphicon-glass"></i> <span>Project
-								Management</span> <i class="fa fa-angle-left pull-right"></i></a>
-						<ul class="treeview-menu">
-							<li><a href="/project"><i
-									class="glyphicon glyphicon-folder-open"></i> Project Management</a></li>
-							<li><a href="#"><i
-									class="glyphicon glyphicon-folder-open"></i> Task Management</a></li>
-						</ul></li>
+								Management</span></a></li>
 					<li class="active"><a class="" href="/getfeedback"><i
 							class="glyphicon glyphicon-wrench"></i> <span>FeedBack
 								Management</span></a></li>
@@ -285,182 +279,183 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<!-- Content Header (Page header) -->
 			<!-- Main content -->
 			<section class="content">
-				
-					<nav class="navbar navbar-inverse">
-						<div class="container-fluid">
-							<div class="navbar-header">
-								<a class="navbar-brand" href="/project">PROJECT</a>
-							</div>
-							<ul class="nav navbar-nav">
-								<li class="active"><a
-									href="/project/detail/${project.projectId} ">Project width
-										name : ${project.projectName}</a></li>
 
-								<li class="dropdown"><a class="dropdown-toggle"
-									data-toggle="dropdown" href="#">Staff Of Project <span
-										class="caret"></span></a>
-									<ul class="dropdown-menu">
-										<li><a href="/project/${project.projectId}/staff">View
-												list staff of project</a></li>
-										<li><a href="/project/${project.projectId}/staff/add">Add
-												Staff In Project</a></li>
-									</ul></li>
+				<nav class="navbar navbar-inverse">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<a class="navbar-brand" href="/project">PROJECT</a>
+						</div>
+						<ul class="nav navbar-nav">
+							<li class="active"><a
+								href="/project/detail/${project.projectId} ">Project width
+									name : ${project.projectName}</a></li>
 
-								<li class="dropdown"><a class="dropdown-toggle"
-									data-toggle="dropdown" href="#">Task Of Project<span
-										class="caret"></span></a>
-									<ul class="dropdown-menu">
-										<li><a href="/project/${project.projectId}/task">View
-												list task of project</a></li>
-										<li><a href="/project/${project.projectId}/addtask">Create
-												Task In Project</a></li>
-									</ul></li>
-								<li><a href="/project/${project.projectId}/progess">Progess
-										Project </a></li>
-							</ul>
-						</div>
-					</nav>
-					<img alt="" src="images/project1.png"
-						style="width: 100%; height: 400px;">
-					<h3 style="color: green;">DETAIL PROJECT INFORMATION</h3>
-					<!-- Info Boxes -->
-					<div class="row">
-						<div class="col-md-3 col-sm-6 col-xs-12">
-							<div class="info-box">
-								<span class="info-box-icon bg-green"><i
-									class="fa fa-flag-o"></i></span>
-								<div class="info-box-content">
-									<span class="info-box-text">Project Name</span> <span
-										class="info-box-number">${project.projectName}</span>
-								</div>
-								<!-- /.info-box-content -->
-							</div>
-							<!-- /.info-box -->
-						</div>
-						<div class="col-md-3 col-sm-6 col-xs-12">
-							<div class="info-box">
-								<span class="info-box-icon bg-aqua"><i
-									class="fa fa-clock-o"></i></span>
-								<div class="info-box-content">
-									<span class="info-box-text">Create Date</span> <span
-										class="info-box-number">${project.createDate}</span>
-								</div>
-								<!-- /.info-box-content -->
-							</div>
-							<!-- /.info-box -->
-						</div>
-						<!-- /.col -->
+							<li class="dropdown"><a class="dropdown-toggle"
+								data-toggle="dropdown" href="#">Staff Of Project <span
+									class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li><a href="/project/${project.projectId}/staff">View
+											list staff of project</a></li>
+									<li><a href="/project/${project.projectId}/staff/add">Add
+											Staff In Project</a></li>
+								</ul></li>
 
-						<!-- /.col -->
-						<div class="col-md-3 col-sm-6 col-xs-12">
-							<div class="info-box">
-								<span class="info-box-icon bg-yellow"><i
-									class="fa fa-files-o"></i></span>
-								<div class="info-box-content">
-									<span class="info-box-text">Start Date</span> <span
-										class="info-box-number">${project.startDate}</span>
-								</div>
-								<!-- /.info-box-content -->
-							</div>
-							<!-- /.info-box -->
-						</div>
-						<!-- /.col -->
-						<div class="col-md-3 col-sm-6 col-xs-12">
-							<div class="info-box">
-								<span class="info-box-icon bg-pink"><i
-									class="fa fa-calendar"></i></span>
-								<div class="info-box-content">
-									<span class="info-box-text">Date Line</span> <span
-										class="info-box-number">${project.deadlineDate}</span>
-								</div>
-								<!-- /.info-box-content -->
-							</div>
-							<!-- /.info-box -->
-						</div>
-						<!-- /.col -->
+							<li class="dropdown"><a class="dropdown-toggle"
+								data-toggle="dropdown" href="#">Task Of Project<span
+									class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li><a href="/project/${project.projectId}/task">View
+											list task of project</a></li>
+									<li><a href="/project/${project.projectId}/addtask">Create
+											Task In Project</a></li>
+								</ul></li>
+							<li><a href="/project/${project.projectId}/progress">Project Progress
+									 </a></li>
+						</ul>
 					</div>
-					<div class="row">
-						<div class="col-md-3 col-sm-6 col-xs-12">
-							<div class="info-box">
-								<span class="info-box-icon bg-blue"><i
-									class="fa fa-calendar-o"></i></span>
-								<div class="info-box-content">
-									<span class="info-box-text">Finish Date</span> <span
-										class="info-box-number">${project.finishDate}</span>
-								</div>
-								<!-- /.info-box-content -->
+				</nav>
+				<!-- 					<img alt="" src="images/project1.png" -->
+				<!-- 						style="width: 100%; height: 400px;"> -->
+				<h3 style="color: green;">Thông Tin Chi Tiết Của Project : ${project.projectName} </h3>
+				<!-- Info Boxes -->
+				<div class="row">
+					<div class="col-md-6">
+						<div class="info-box">
+							<span class="info-box-icon bg-green"><i
+								class="fa fa-flag-o"></i></span>
+							<div class="info-box-content">
+								<span class="info-box-text">Project Name</span> <span
+									class="info-box-number">${project.projectName}</span>
 							</div>
-							<!-- /.info-box -->
+							<!-- /.info-box-content -->
 						</div>
-						<div class="col-md-3 col-sm-6 col-xs-12">
-							<div class="info-box">
-								<span class="info-box-icon bg-yellow"><i
-									class="fa fa-sort-amount-desc"></i></span>
-								<div class="info-box-content">
-									<span class="info-box-text">Amount Staff</span> <span
-										class="info-box-number">${project.staffProject.size()}</span>
-								</div>
-								<!-- /.info-box-content -->
-							</div>
-							<!-- /.info-box -->
-						</div>
-						<div class="col-md-3 col-sm-6 col-xs-12">
-							<div class="info-box">
-								<span class="info-box-icon bg-red"><i
-									class="fa fa-sort-amount-desc"></i></span>
-								<div class="info-box-content">
-									<span class="info-box-text">Amount Task</span> <span
-										class="info-box-number">${project.task.size()}</span>
-								</div>
-								<!-- /.info-box-content -->
-							</div>
-							<!-- /.info-box -->
-						</div>
-						<div class="col-md-3 col-sm-6 col-xs-12">
-							<div class="info-box">
-								<span class="info-box-icon bg-aqua"><i
-									class="fa fa-desktop"></i></span>
-								<div class="info-box-content">
-									<span class="info-box-text">Project Output</span> <span
-										class="info-box-number">${project.projectOutput}</span>
-								</div>
-								<!-- /.info-box-content -->
-							</div>
-							<!-- /.info-box -->
-						</div>
+						<!-- /.info-box -->
 					</div>
-					<div class="row">
-						<div class="col-sm-6">
-							<div class="info-box bg-aqua">
-								<span class="info-box-icon"><i class="fa fa-bookmark-o"></i></span>
-								<div class="info-box-content">
-									<span class="info-box-text">Project Progress</span> <span
-										class="info-box-number">${project.projectState}</span>
-									<div class="progress">
-										<div class="progress-bar"
-											style="width: <c:out value="${project.projectState}" />%"></div>
-									</div>
-									<span class="progress-description"> progress is
-										${project.projectState}% </span>
-								</div>
-								<!-- /.info-box-content -->
+					<div class="col-md-6">
+						<div class="info-box">
+							<span class="info-box-icon bg-aqua"><i
+								class="fa fa-clock-o"></i></span>
+							<div class="info-box-content">
+								<span class="info-box-text">Create Date</span> <span
+									class="info-box-number">${project.createDate}</span>
 							</div>
-							<!-- /.info-box -->
+							<!-- /.info-box-content -->
 						</div>
-						<!-- /.col -->
-						<div class="col-sm-6">
-							<div class="info-box">
-								<span class="info-box-icon bg-green"><i
-									class="fa fa-star-o"></i></span>
-								<div class="info-box-content">
-									<span class="info-box-text">Project Description</span> <span
-										class="info-box-number">${project.discription}</span>
-								</div>
-								<!-- /.info-box-content -->
-							</div>
-							<!-- /.info-box -->
-						</div>
+						<!-- /.info-box -->
 					</div>
+					<!-- /.col -->
+
+					<!-- /.col -->
+					<div class="col-md-6">
+						<div class="info-box">
+							<span class="info-box-icon bg-yellow"><i
+								class="fa fa-files-o"></i></span>
+							<div class="info-box-content">
+								<span class="info-box-text">Start Date</span> <span
+									class="info-box-number">${project.startDate}</span>
+							</div>
+							<!-- /.info-box-content -->
+						</div>
+						<!-- /.info-box -->
+					</div>
+					<!-- /.col -->
+					<div class="col-md-6">
+						<div class="info-box">
+							<span class="info-box-icon bg-pink"><i
+								class="fa fa-calendar"></i></span>
+							<div class="info-box-content">
+								<span class="info-box-text">DeadLine</span> <span
+									class="info-box-number">${project.deadlineDate}</span>
+							</div>
+							<!-- /.info-box-content -->
+						</div>
+						<!-- /.info-box -->
+					</div>
+					<!-- /.col -->
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="info-box">
+							<span class="info-box-icon bg-red"><i
+								class="fa fa-calendar-o"></i></span>
+							<div class="info-box-content">
+								<span class="info-box-text">Finish Date</span> <span
+									class="info-box-number">${project.finishDate}</span>
+							</div>
+							<!-- /.info-box-content -->
+						</div>
+						<!-- /.info-box -->
+					</div>
+					<div class="col-md-3 col-sm-6 col-xs-12">
+						<div class="info-box">
+							<span class="info-box-icon bg-yellow"><i
+								class="fa fa-sort-amount-desc"></i></span>
+							<div class="info-box-content">
+								<span class="info-box-text">Amount Staff</span> <span
+									class="info-box-number">${project.staffProject.size()}</span>
+							</div>
+							<!-- /.info-box-content -->
+						</div>
+						<!-- /.info-box -->
+					</div>
+					<div class="col-md-3 col-sm-6 col-xs-12">
+						<div class="info-box">
+							<span class="info-box-icon bg-red"><i
+								class="fa fa-sort-amount-desc"></i></span>
+							<div class="info-box-content">
+								<span class="info-box-text">Amount Task</span> <span
+									class="info-box-number">${project.task.size()}</span>
+							</div>
+							<!-- /.info-box-content -->
+						</div>
+						<!-- /.info-box -->
+					</div>
+					<div class="col-md-6">
+						<div class="info-box">
+							<span class="info-box-icon bg-aqua"><i
+								class="fa fa-desktop"></i></span>
+							<div class="info-box-content">
+								<span class="info-box-text">Project Output</span> <span
+									class="info-box-number">${project.projectOutput}</span>
+							</div>
+							<!-- /.info-box-content -->
+						</div>
+						<!-- /.info-box -->
+					</div>
+					<div class="col-sm-6">
+						<div class="info-box bg-aqua">
+							<span class="info-box-icon"><i class="fa fa-bookmark-o"></i></span>
+							<div class="info-box-content">
+								<span class="info-box-text">Project Progress</span> <span
+									class="info-box-number">${project.projectState}</span>
+								<div class="progress">
+									<div class="progress-bar"
+										style="width: <c:out value="${project.projectState}" />%"></div>
+								</div>
+								<span class="progress-description"> progress is
+									${project.projectState}% </span>
+							</div>
+							<!-- /.info-box-content -->
+						</div>
+						<!-- /.info-box -->
+					</div>
+				</div>
+				<div class="row">
+
+					<!-- /.col -->
+					<div class="col-sm-6">
+						<div class="info-box">
+							<span class="info-box-icon bg-green"><i
+								class="fa fa-star-o"></i></span>
+							<div class="info-box-content">
+								<span class="info-box-text">Project Description</span> <span
+									class="info-box-number">${project.discription}</span>
+							</div>
+							<!-- /.info-box-content -->
+						</div>
+						<!-- /.info-box -->
+					</div>
+				</div>
 				<!-- /.row -->
 			</section>
 		</div>

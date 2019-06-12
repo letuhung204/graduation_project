@@ -42,8 +42,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
 	crossorigin="anonymous" />
 <!-- Custom style -->
-<link href="../static/css/style.css" href="@{/css/style.css}"
-	rel="stylesheet" />
+ <script src="../../js/checkValidate.js"></script>
+
 <style>
 .bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p,
 	.bootstrap-iso form {
@@ -267,15 +267,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							class="glyphicon glyphicon-user"></i> <span>Staff
 								Management</span></a></li>
 
-					<li class="treeview"><a href="/project"><i
-							class="glyphicon glyphicon-glass"></i> <span>Project
-								Management</span> <i class="fa fa-angle-left pull-right"></i></a>
-						<ul class="treeview-menu">
-							<li><a href="/project"><i
-									class="glyphicon glyphicon-folder-open"></i> Project Management</a></li>
-							<li><a href="#"><i
-									class="glyphicon glyphicon-folder-open"></i> Task Management</a></li>
-						</ul></li>
+					<li class="active"><a class="" href="/project"><i
+							class="glyphicon glyphicon-glass"></i> <span>Project Management</span></a></li>
 					<li class="active"><a class="" href="/getfeedback"><i
 							class="glyphicon glyphicon-wrench"></i> <span>FeedBack
 								Management</span></a></li>
@@ -322,10 +315,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 										var="saveURL" />
 									<fieldset>
 										<form:form modelAttribute="project" method="POST"
-											action="${saveURL}" cssClass="well form-horizontal"
-											onsubmit="return checkPhone() && validateEmail() && validateGender() && checkmaxsize()">
+											action="/project/save" cssClass="well form-horizontal"
+											onsubmit="return validatedateproject();">
 
-											<div class="form-group">
+											<div class="form-group" style="display: none">
 												<label class="control-label col-sm-2 requiredField">
 													ID Project <span class="asteriskField"> * </span>
 												</label>
@@ -379,7 +372,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 															<i class="fa fa-calendar"> </i>
 														</div>
 														<form:input class="form-control" id="createDate"
-															name="createDate" path="createDate" type="datetime-local" />
+															name="createDate" path="createDate" type="date" />
 													</div>
 												</div>
 											</div>
@@ -394,7 +387,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 															<i class="fa fa-calendar"> </i>
 														</div>
 														<form:input class="form-control" id="startDate"
-															name="startDate" path="startDate" type="datetime-local" />
+															name="startDate" path="startDate" type="date" />
 													</div>
 												</div>
 											</div>
@@ -410,14 +403,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 														</div>
 														<form:input class="form-control" id="deadlineDate"
 															name="deadlineDate" path="deadlineDate"
-															type="datetime-local" />
+															type="date" />
 													</div>
 												</div>
 											</div>
-											<div class="form-group">
+											<div class="form-group" style="display: none">
 												<label class="control-label col-sm-2 requiredField"
-													for="date"> Finish Actual Date <span
-													class="asteriskField"> * </span>
+													for="date"> Finish Actual Date 
 												</label>
 												<div class="col-md-8 inputGroupContainer">
 													<div class="input-group">
@@ -425,7 +417,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 															<i class="fa fa-calendar"> </i>
 														</div>
 														<form:input class="form-control" id="finishDate"
-															name="finishDate" path="finishDate" type="datetime-local" />
+															name="finishDate" path="finishDate" type="date" />
 													</div>
 												</div>
 											</div>
@@ -445,7 +437,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 												</div>
 											</div>
 
-											<div class="form-group">
+											<div class="form-group" style="display: none">
 												<label class="control-label col-sm-2 requiredField">
 													Project Process <span class="asteriskField"> * </span>
 												</label>
@@ -455,7 +447,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 															class="glyphicon glyphicon-th-list"></i></span>
 														<form:select path="projectState" class="form-control"
 															id="sel1" style="height:30px" required="required">
-															<form:option value="" label="--- Select ---" />
+															<form:option value="0" label="--- Select ---" />
 															<form:option value="0" label="0%" />
 															<form:option value="10" label="10%" />
 															<form:option value="20" label="20%" />
@@ -474,14 +466,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 											<div class="form-group">
 												<label class="control-label col-sm-2 requiredField">
-													Project Ouput <span class="asteriskField"> * </span>
+													Project Ouput 
 												</label>
 												<div class="col-md-8 inputGroupContainer">
 													<div class="input-group">
 														<span class="input-group-addon"><i
 															class="glyphicon glyphicon-folder-open"></i></span>
 														<form:input path="projectOutput" cssClass="form-control"
-															required="required" placeholder="Project Ouput" />
+															 placeholder="Project Ouput" />
 													</div>
 												</div>
 											</div>

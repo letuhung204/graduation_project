@@ -82,21 +82,21 @@ public class Task implements Serializable {
     @Basic(optional = false)
     @Column(name = "date_create")
     @Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
     private Date dateCreate;
     @Basic(optional = false)
     @Column(name = "date_start")
     @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateStart;
     @Basic(optional = false)
     @Column(name = "deadline_date")
     @Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
     private Date deadlineDate;
     @Column(name = "finish_date")
     @Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
     private Date finishDate;
     public Date getDateStart() {
 		return dateStart;

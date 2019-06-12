@@ -79,22 +79,21 @@ public class Project implements Serializable {
 	@Basic(optional = false)
 	@Column(name = "create_date")
 	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createDate;
 	@Basic(optional = false)
 	@Column(name = "start_date")
 	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date startDate;
 	@Basic(optional = false)
 	@Column(name = "deadline_date")
 	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date deadlineDate;
-	@Basic(optional = false)
 	@Column(name = "finish_date")
 	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date finishDate;
 	@Column(name = "discription")
 	private String discription;

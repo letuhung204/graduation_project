@@ -256,15 +256,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							class="glyphicon glyphicon-user"></i> <span>Staff
 								Management</span></a></li>
 
-					<li class="treeview"><a href="/project"><i
-							class="glyphicon glyphicon-glass"></i> <span>Project
-								Management</span> <i class="fa fa-angle-left pull-right"></i></a>
-						<ul class="treeview-menu">
-							<li><a href="/project"><i
-									class="glyphicon glyphicon-folder-open"></i> Project Management</a></li>
-							<li><a href="#"><i
-									class="glyphicon glyphicon-folder-open"></i> Task Management</a></li>
-						</ul></li>
+					<li class="active"><a class="" href="/project"><i
+							class="glyphicon glyphicon-glass"></i> <span>Project Management</span></a></li>
 					<li class="active"><a class="" href="/getfeedback"><i
 							class="glyphicon glyphicon-wrench"></i> <span>FeedBack
 								Management</span></a></li>
@@ -304,8 +297,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					<table class="table table-striped">
 						<tbody>
 							<tr>
-								<td colspan="1"><img alt="" src="/images/staff.png"
-									style="width: 100%; height: 120%">
+								<td colspan="1">
+<!-- 								<img alt="" src="/images/staff.png" -->
+<!-- 									style="width: 100%; height: 120%"> -->
 									<h2>Staff Form</h2> <spring:url value="/staff/save"
 										var="saveURL" />
 									<fieldset>
@@ -313,7 +307,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 											action="${saveURL}" cssClass="well form-horizontal"
 											onsubmit="return checkPhone() && validateEmail() && validateGender() && checkmaxsize() && checkemailissame()">
 
-											<div class="form-group">
+											<div class="form-group" style="display: none">
 												<label class="col-md-2 control-label">ID Staff<span
 													style="color: red"> * </span></label>
 												<c:choose>

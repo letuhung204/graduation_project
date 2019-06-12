@@ -257,15 +257,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							class="glyphicon glyphicon-user"></i> <span>Staff
 								Management</span></a></li>
 
-					<li class="treeview"><a href="/project"><i
-							class="glyphicon glyphicon-glass"></i> <span>Project
-								Management</span> <i class="fa fa-angle-left pull-right"></i></a>
-						<ul class="treeview-menu">
-							<li><a href="/project"><i
-									class="glyphicon glyphicon-folder-open"></i> Project Management</a></li>
-							<li><a href="#"><i
-									class="glyphicon glyphicon-folder-open"></i> Task Management</a></li>
-						</ul></li>
+					<li class="active"><a class="" href="/project"><i
+							class="glyphicon glyphicon-glass"></i> <span>Project Management</span></a></li>
 					<li class="active"><a class="" href="/getfeedback"><i
 							class="glyphicon glyphicon-wrench"></i> <span>FeedBack
 								Management</span></a></li>
@@ -325,9 +318,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 										<tr>
 											<th>#</th>
 											<th>Project Name</th>
-											<th>Create Date</th>
 											<th>Start Date</th>
-											<th>Dateline</th>
+											<th>Deadline</th>
+											<th>Description</th>
 											<th>Action</th>
 										</tr>
 									</thead>
@@ -336,9 +329,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 											<tr>
 												<td><c:out value="${s.index + 1}" /></td>
 												<td><c:out value="${project.projectName}" /></td>
-												<td><c:out value="${project.createDate}" /></td>
 												<td><c:out value="${project.startDate}" /></td>
 												<td><c:out value="${project.deadlineDate}" /></td>
+												<td><c:out value="${project.discription}" /></td>
 												<td><spring:url
 														value="/project/${project.projectId}/edit" var="editURL" />
 													<a href="${editURL}"><i

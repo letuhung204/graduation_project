@@ -255,15 +255,8 @@
 							class="glyphicon glyphicon-user"></i> <span>Staff
 								Management</span></a></li>
 
-					<li class="treeview"><a href="/project"><i
-							class="glyphicon glyphicon-glass"></i> <span>Project
-								Management</span> <i class="fa fa-angle-left pull-right"></i></a>
-						<ul class="treeview-menu">
-							<li><a href="/project"><i
-									class="glyphicon glyphicon-folder-open"></i> Project Management</a></li>
-							<li><a href="#"><i
-									class="glyphicon glyphicon-folder-open"></i> Task Management</a></li>
-						</ul></li>
+					<li class="active"><a class="" href="/project"><i
+							class="glyphicon glyphicon-glass"></i> <span>Project Management</span></a></li>
 
 					<li class="active"><spring:url value="/aboutapp" var="listURL" />
 						<a class="" href="${listURL}" role="list"><i
@@ -597,7 +590,7 @@
 															center : 'title',
 															right : 'month,agendaWeek,agendaDay'
 														},
-														defaultDate : '2019-05-29',
+														defaultDate : '2019-06-12',
 														editable : true,
 														eventLimit : true, // allow "more" link when too many events
 														events : {
@@ -606,7 +599,7 @@
 																	+ '/timework',
 															type : 'GET',
 															error : function() {
-																alert('there was an error while fetching events!');
+																alert('Lịch làm việc của bạn chưa có sự kiện nào.!');
 															},
 															color : 'red', // a non-ajax option
 															textColor : 'white' // a non-ajax option

@@ -11,7 +11,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html>
 <head>
-<base href="http://localhost:8080/" >
+<base href="http://localhost:8080/">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>AdminLTE 2 | Starter</title>
@@ -252,15 +252,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							class="glyphicon glyphicon-user"></i> <span>Staff
 								Management</span></a></li>
 
-					<li class="treeview"><a href="/project"><i
-							class="glyphicon glyphicon-glass"></i> <span>Project
-								Management</span> <i class="fa fa-angle-left pull-right"></i></a>
-						<ul class="treeview-menu">
-							<li><a href="/project"><i
-									class="glyphicon glyphicon-folder-open"></i> Project Management</a></li>
-							<li><a href="#"><i
-									class="glyphicon glyphicon-folder-open"></i> Task Management</a></li>
-						</ul></li>
+					<li class="active"><a class="" href="/project"><i
+							class="glyphicon glyphicon-glass"></i> <span>Project Management</span></a></li>
 					<li class="active"><a class="" href="/getfeedback"><i
 							class="glyphicon glyphicon-wrench"></i> <span>FeedBack
 								Management</span></a></li>
@@ -297,7 +290,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<!-- Main content -->
 			<section class="content">
 				<div class="container">
-					<img alt="" src="images/addStaff.png">
+					<img alt="" src="images/addStaff.png" style="width:40%">
 					<table class="table table-striped">
 						<tbody>
 							<tr>
@@ -309,29 +302,48 @@ scratch. This page gets rid of all links and provides the needed markup only.
 											action="project/${project.projectId}/staff/add/${staff.staffId}"
 											cssClass="well form-horizontal">
 
-											<div class="form-group">
-												<label class="col-md-2 control-label">Select Staff<span
-													style="color: red"> * : </span></label>
-												<div class="col-md-8 inputGroupContainer">
-													<div class="input-group">
-														<span class="input-group-addon"><i
-															class="glyphicon glyphicon-th-list"></i></span>
-														<form:select path="staffId" class="form-control"
-															style="height:30px" id="sel1" required="required">
-															<form:option value="" label="--- Select ---" />
-															<form:options items="${staffs}" />
-														</form:select>
-														<p>
+											<c:choose>
+												<c:when test="${not empty staff }">
+													<div class="form-group">
+														<label class="col-md-2 control-label">Select Staff<span
+															style="color: red"> * : </span></label>
+														<div class="col-md-8 inputGroupContainer">
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-th-list"></i></span>
+																<form:select path="staffId" class="form-control"
+																	style="height:30px" id="sel1" required="required">
+																	<form:option value="" label="--- Select ---" />
+																	<form:options items="${staffs}" />
+																</form:select>
+																<p>
+															</div>
+														</div>
 													</div>
-												</div>
-											</div>
 
-											<div class="text-center">
-												<button type="submit" class="btn btn-primary">Add
-													Staff In project</button>
-												<a type="button" class="btn btn-primary" href="/project/${project.projectId}/staff"
-													onclick="return confirm('Bạn chắc chắn muốn ngừng thực hiện tác vụ không ?')">Cancel</a>
-											</div>
+													<div class="text-center">
+														<button type="submit" class="btn btn-primary">Add
+															Staff In project</button>
+														<a type="button" class="btn btn-primary"
+															href="/project/${project.projectId}/staff"
+															onclick="return confirm('Bạn chắc chắn muốn ngừng thực hiện tác vụ không ?')">Cancel</a>
+													</div>
+												</c:when>
+												<c:otherwise>
+													<div class="alert alert-danger alert-dismissible">
+														<button type="button" class="close" data-dismiss="alert"
+															aria-hidden="true">&times;</button>
+														<h4>
+															<i class="icon fa fa-ban"></i> Không có nhân viên !
+														</h4>
+														Các nhân viên hiện tại đều đã nằm trong dự án hoặc không
+														có nhân viên nào trong công ty.
+
+													</div>
+													<a type="button" href="project/${project.projectId}/staff">Quay
+														lại trang quản lý nhân viên !</a>
+												</c:otherwise>
+											</c:choose>
 										</form:form>
 									</fieldset>
 								</td>

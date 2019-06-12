@@ -259,15 +259,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							class="glyphicon glyphicon-user"></i> <span>Staff
 								Management</span></a></li>
 
-					<li class="treeview"><a href="/project"><i
+					<li class="active"><a class="" href="/project"><i
 							class="glyphicon glyphicon-glass"></i> <span>Project
-								Management</span> <i class="fa fa-angle-left pull-right"></i></a>
-						<ul class="treeview-menu">
-							<li><a href="/project"><i
-									class="glyphicon glyphicon-folder-open"></i> Project Management</a></li>
-							<li><a href="#"><i
-									class="glyphicon glyphicon-folder-open"></i> Task Management</a></li>
-						</ul></li>
+								Management</span></a></li>
+					<li class="active"><a class="" href="/getfeedback"><i
+							class="glyphicon glyphicon-wrench"></i> <span>FeedBack
+								Management</span></a></li>
 
 					<li class="active"><spring:url value="/aboutapp" var="listURL" />
 						<a class="" href="${listURL}"><i
@@ -319,8 +316,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 									Project</a></li>
 							<li><a href="/project/${project.projectId}/staff/add">Add
 									Staff In Project</a></li>
-							<li><a href="/project/${project.projectId}/progess">Progess
-									Project </a></li>
+							<li><a href="/project/${project.projectId}/progress">Project
+									Progress </a></li>
 
 						</ul>
 					</div>
@@ -376,7 +373,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 												<td><a
 													href="project/${project.projectId}/staff/${staff.staffId}/task/add">tạo
 														task cho staff</a></td>
-												<td><a href="/staff/${staff.staffId}/timeworks">log work</a></td>
+												<td><a href="/staff/${staff.staffId}/timeworks">log
+														work</a></td>
 												<td><a
 													href="project/${project.projectId}/staff/${staff.staffId}/delete"
 													onclick="return confirm('Bạn chắc chắn xoá Staff có tên : ${staff.fullName} ?');"><i

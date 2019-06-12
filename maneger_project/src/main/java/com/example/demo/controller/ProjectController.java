@@ -143,10 +143,10 @@ public class ProjectController {
 		
 		modelAndView.addObject("project", projectService.getProjecByiD(id));
 		List<Staff> listStaff = projectService.getListStaffNotInProject(id);
-		if (listStaff.isEmpty()) {
-			modelAndView.setViewName("error/404");
-			return modelAndView;
-		}
+//		if (listStaff.isEmpty()) {
+//			modelAndView.setViewName("error/404");
+//			return modelAndView;
+//		}
 		Map<Integer, String> staffs = new HashMap<>();
 		listStaff.forEach(item -> staffs.put(item.getStaffId(), item.getFullName()));
 

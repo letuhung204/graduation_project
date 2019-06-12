@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.demo.entity.ProjectProgress;
 import com.example.demo.entity.Task;
 import com.example.demo.repository.TaskRepo;
 import com.example.demo.service.ProjectProgressService;

@@ -113,8 +113,9 @@ public class ChartController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String name = auth.getName(); // get logged in username
 		modelAndView.addObject("username", name);
+		
 		taskProgressService.createTaskProgress(taskprogress);
-		redirect.addFlashAttribute("notification", "bạn đã thực hiện log work thành công !");
+		redirect.addFlashAttribute("notification", "bạn đã thực hiện ghi tiến độ thành công !");
 		modelAndView.setViewName("redirect:/task/{id}/displayBarGraph");
 		return modelAndView;
 	}
@@ -139,7 +140,7 @@ public class ChartController {
 		return modelAndView;
 	}
 
-	@GetMapping("/project/{id}/displayBarGraph")
+	@GetMapping("/project/{id}/progress")
 	public String projectBarGraph(@PathVariable("id") int id, Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String name = auth.getName(); // get logged in username

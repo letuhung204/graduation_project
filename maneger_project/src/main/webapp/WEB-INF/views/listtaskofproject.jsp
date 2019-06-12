@@ -258,15 +258,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							class="glyphicon glyphicon-user"></i> <span>Staff
 								Management</span></a></li>
 
-					<li class="treeview"><a href="/project"><i
+					<li class="active"><a class="" href="/project"><i
 							class="glyphicon glyphicon-glass"></i> <span>Project
-								Management</span> <i class="fa fa-angle-left pull-right"></i></a>
-						<ul class="treeview-menu">
-							<li><a href="/project"><i
-									class="glyphicon glyphicon-folder-open"></i> Project Management</a></li>
-							<li><a href="#"><i
-									class="glyphicon glyphicon-folder-open"></i> Task Management</a></li>
-						</ul></li>
+								Management</span></a></li>
 					<li class="active"><a class="" href="/getfeedback"><i
 							class="glyphicon glyphicon-wrench"></i> <span>FeedBack
 								Management</span></a></li>
@@ -317,8 +311,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 									Project</a></li>
 							<li><a href="/project/${project.projectId}/staff/add">Add
 									Staff In Project</a></li>
-							<li><a href="/project/${project.projectId}/progess">Progess
-									Project </a></li>
+							<li><a href="/project/${project.projectId}/progress">Project
+									Progress </a></li>
 
 						</ul>
 					</div>
@@ -354,14 +348,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 									<thead>
 										<tr>
 											<th>#</th>
-											<th>ID Task</th>
 											<th>Task Name</th>
 											<th>Name Create</th>
 											<th>Name Assign</th>
 											<th>Date Create</th>
-											<th>Status</th>
-											<th>Detail task</th>
-											<th>Delete task</th>
+											<th>DeadLine</th>
+											<th>Progress</th>
+											<th>Action</th>
+											<th>Action</th>
 											<th>Sub task</th>
 										</tr>
 									</thead>
@@ -369,19 +363,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
 										<c:forEach items="${tasks }" var="task" varStatus="s">
 											<tr>
 												<td><c:out value="${s.index + 1}" /></td>
-												<td><c:out value="${task.taskId}" /></td>
 												<td><c:out value="${task.taskName}" /></td>
 												<td><c:out value="${task.nameCreate}" /></td>
 												<td style="color: green"><c:out
 														value="${task.nameAssign}" /></td>
 												<td><c:out value="${task.dateCreate}" /></td>
+												<td><c:out value="${task.deadlineDate}" /></td>
 												<td><div class="progress"
 														style="background-color: yellow">
 														<div class="progress-bar" role="progressbar"
 															style="width: <c:out value="${task.taskState}" />; color: red"
 															aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-															<c:out value="${task.taskState}" />
-															%
+															<c:out value="${task.taskState}" />%
 														</div>
 													</div></td>
 												<td><a href="/task/detail/${task.taskId}">Chi tiết
@@ -389,10 +382,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 												<td><a
 													href="project/${project.projectId}/task/delete/${task.taskId}"
 													onclick="return confirm('Bạn chắc chắn xoá Task có tên : ${task.taskName} ?');"><i
-														class="glyphicon glyphicon-trash"></i> </a></td>
+														class="glyphicon glyphicon-trash"></i> </a>
+													
+													<a
+													href="#">
+													<i class="glyphicon glyphicon-pencil"></i> </a>
+												</td>
 												<c:choose>
 													<c:when test="${not empty task.taskIdparent }">
-														<td></td>
+														<td>Đang là Sub Task</td>
 													</c:when>
 													<c:otherwise>
 														<td><a

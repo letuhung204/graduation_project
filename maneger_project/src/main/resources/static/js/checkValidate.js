@@ -108,7 +108,6 @@ function validatedateproject() {
 	var create = document.getElementById("createDate").value;
 	var start = document.getElementById("startDate").value;
 	var dateline = document.getElementById("deadlineDate").value;
-	var finishDate = document.getElementById("finishDate").value;
 
 	if ((Date.parse(start) <= Date.parse(create))) {
 		alert("Thời gian bắt đầu dự án phải sau thời gian tạo dự án !");
@@ -118,9 +117,15 @@ function validatedateproject() {
 		alert("Thời gian dateline phải sau thời gian start dự án !");
 		return false;
 	}
-	if ((Date.parse(finishDate) <= Date.parse(start))) {
-		alert("Thời gian finish date phải sau thời gian start dự án !");
-		return false;
-	}
+
 	return true;
+}
+function validatenumber() {
+	var progress = document.getElementById("progress").value;
+	if (isNaN(progress) || progress < 1 || progress > 100) {
+		alert("Tiến độ phải là 1 sô nguyên và nằm trong khoảng từ 1 đến 100");
+		return false;
+	} else {
+		return true;
+	}
 }

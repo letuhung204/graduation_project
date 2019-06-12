@@ -253,15 +253,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							class="glyphicon glyphicon-user"></i> <span>Staff
 								Management</span></a></li>
 
-					<li class="treeview"><a href="/project"><i
-							class="glyphicon glyphicon-glass"></i> <span>Project
-								Management</span> <i class="fa fa-angle-left pull-right"></i></a>
-						<ul class="treeview-menu">
-							<li><a href="/project"><i
-									class="glyphicon glyphicon-folder-open"></i> Project Management</a></li>
-							<li><a href="#"><i
-									class="glyphicon glyphicon-folder-open"></i> Task Management</a></li>
-						</ul></li>
+					<li class="active"><a class="" href="/project"><i
+							class="glyphicon glyphicon-glass"></i> <span>Project Management</span></a></li>
 					<li class="active"><a class="" href="/getfeedback"><i
 							class="glyphicon glyphicon-wrench"></i> <span>FeedBack
 								Management</span></a></li>
@@ -290,8 +283,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<section class="content"
 				style="background-image: url(images/backgroud.jpg)">
 				<div class="content">
-					<h1>Feedback Widget</h1>
-					<div class="main">
+					<div class="main" style="width: 35%; margin-top: -3%">
+						<h1>Feedback Widget</h1>
 						<spring:url value="/feedback/save" var="saveURL" />
 						<form:form class="form-horizontal" modelAttribute="feedback"
 							var="feedback" action="${saveURL}" method="POST">
@@ -329,7 +322,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							<form:textarea path="comment" id="comment" placeholder="comment"
 								class="form-control" required="true" rows="5"></form:textarea>
 							<input type="submit" value="Send Feedback">
-
 						</form:form>
 					</div>
 				</div>

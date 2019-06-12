@@ -84,8 +84,8 @@ public class TaskProgressServiceImpl implements TaskProgressService {
 	public void createTaskProgress(TaskProgress taskProgress) {
 		Task task = taskProgress.getTaskId();
 		Date latestDate = taskProgressRepo.getLastDate(task.getTaskId());
-		TaskProgress sameTimeTaskProgress = taskProgressRepo.findByTaskIdAndDateLog(taskProgress.getTaskId().getTaskId(),
-				taskProgress.getDateLog());
+		TaskProgress sameTimeTaskProgress = taskProgressRepo
+				.findByTaskIdAndDateLog(taskProgress.getTaskId().getTaskId(), taskProgress.getDateLog());
 		if (sameTimeTaskProgress == null) {
 			taskProgressRepo.save(taskProgress);
 		} else {

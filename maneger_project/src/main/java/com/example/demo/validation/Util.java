@@ -10,7 +10,6 @@ import com.example.demo.entity.ProjectProgress;
 import com.example.demo.entity.TaskProgress;
 
 public final class Util {
-	@SuppressWarnings("deprecation")
 	public static List<Date> getListDate(Date startDate, Date finishDate, Date lastDateFromLog) {
 		List<Date> listDate = new ArrayList<>();
 		Calendar c = Calendar.getInstance();
@@ -32,7 +31,6 @@ public final class Util {
 		return listDate;
 	}
 
-	@SuppressWarnings("deprecation")
 	public static List<Double> getListExpectProgress(Date startDate, Date finishDate) {
 		List<Double> listProgress = new ArrayList<>();
 		Calendar c = Calendar.getInstance();
@@ -53,6 +51,7 @@ public final class Util {
 		return listProgress;
 	}
 
+	@SuppressWarnings("deprecation")
 	public static List<Double> getListActualProgress(Date startDate, List<TaskProgress> workLogList) {
 		List<Double> listProgress = new ArrayList<>();
 		/*
@@ -109,6 +108,7 @@ public final class Util {
 		return listLabel;
 	}
 
+	@SuppressWarnings("deprecation")
 	public static List<Double> getListActualProjectProgress(Date startDate, List<ProjectProgress> workLogList) {
 		List<Double> listProgress = new ArrayList<>();
 		Calendar c = Calendar.getInstance();

@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 public final class Util {
+	@SuppressWarnings("deprecation")
 	public static List<Date> getListDate(Date startDate, Date finishDate, Date lastDateFromLog) {
 		List<Date> listDate = new ArrayList<>();
 		Calendar c = Calendar.getInstance();
@@ -54,6 +55,7 @@ public final class Util {
 		return listProgress;
 	}
 
+	@SuppressWarnings("deprecation")
 	public static List<Double> getListActualProgress(Date startDate, List<TaskProgress> taskProgressList) {
 		List<Double> listProgress = new ArrayList<>();
 		startDate.setHours(0);
@@ -91,6 +93,7 @@ public final class Util {
 		return listProgress;
 	}
 
+	@SuppressWarnings("deprecation")
 	public static List<String> getLabelFromListDate(List<Date> listDate) {
 		List<String> listLabel = new ArrayList<>();
 		StringBuilder label = new StringBuilder();

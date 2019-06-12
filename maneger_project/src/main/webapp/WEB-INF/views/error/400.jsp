@@ -275,11 +275,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 					<div class="error-content">
 						<h3>
-							<i class="fa fa-warning text-yellow"></i> Oops! No Data.
+							<i class="fa fa-warning text-yellow"></i> Oops! Danh sách nhân viên cần thêm trống.
 						</h3>
 
 						<p>
-							Dữ liệu bạn định tạo mới đã tồn tại trong DB vui lòng thử lại
+							Các nhân viên trong công ty đã thuộc dự án hoặc Không có nhân viên trong công ty để thêm vào dự án !
 							 <a href="/welcome">return to home page</a> or try
 							using the search form.
 						</p>

@@ -250,16 +250,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					<li class="active"><a class="" href="/staff"><i
 							class="glyphicon glyphicon-user"></i> <span>Staff
 								Management</span></a></li>
-
-					<li class="treeview"><a href="/project"><i
-							class="glyphicon glyphicon-glass"></i> <span>Project
-								Management</span> <i class="fa fa-angle-left pull-right"></i></a>
-						<ul class="treeview-menu">
-							<li><a href="/project"><i
-									class="glyphicon glyphicon-folder-open"></i> Project Management</a></li>
-							<li><a href="#"><i
-									class="glyphicon glyphicon-folder-open"></i> Task Management</a></li>
-						</ul></li>
+					
+					<li class="active"><a class="" href="/project"><i
+							class="glyphicon glyphicon-glass"></i> <span>Project Management</span></a></li>
+					
 					<li class="active"><a class="" href="/getfeedback"><i
 							class="glyphicon glyphicon-wrench"></i> <span>FeedBack
 								Management</span></a></li>
@@ -285,194 +279,212 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<!-- Content Header (Page header) -->
 			<!-- main content -->
 			<section class="content">
-					<nav class="navbar navbar-expand-lg navbar-light bg-light"
-						style="background-color: #3c8dbc; color: black">
-						<div class="container-fluid">
-							<div class="navbar-header">
-								<a class="navbar-brand"
-									href="/task/detail/${task.taskId}" style="color: bLACK">TASK</a>
-							</div>
-							<ul class="nav navbar-nav">
-								<li class="active"><a href="/task/detail/${task.taskId} " style="color: black">Information
-										Detail Task</a></li>
-								<li><a href="/task/viewtreetask" style="color: black">View Tree Task</a></li>
-								<li><a href="/task/${task.taskId}/displayBarGraph" style="color: black">Progress
-										Task</a></li>
-								<li><a href="/task/${task.taskId}/taskprogress/save" style="color: black">Update Progress
-										Task</a></li>
-								<li><a href="/project/${project.projectId}/staff/add" style="color: black">Task
-										Report</a></li>
-							</ul>
+				<nav class="navbar navbar-expand-lg navbar-light bg-light"
+					style="background-color: #3c8dbc; color: black">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<a class="navbar-brand" href="/task/detail/${task.taskId}"
+								style="color: bLACK">TASK</a>
 						</div>
-					</nav>
-					<img alt="" src="images/taskdetail.jpg"
-						style="width: 100%; height: 500px;">
-					<h3 style="color: green;">DETAIL TASK INFORMATION</h3>
-					<!-- Info Boxes -->
-					<div class="row">
-						<div class="col-md-3 col-sm-6 col-xs-12">
-							<div class="info-box">
-								<span class="info-box-icon bg-maroon"><i
-									class="fa fa-codepen"></i></span>
-								<div class="info-box-content">
-									<span class="info-box-text">Task ID</span> <span
-										class="info-box-number">${task.taskId}</span>
-								</div>
-								<!-- /.info-box-content -->
-							</div>
-							<!-- /.info-box -->
-						</div>
-						<div class="col-md-3 col-sm-6 col-xs-12">
-							<div class="info-box">
-								<span class="info-box-icon bg-aqua"><i
-									class="fa fa-id-card-o"></i></span>
-								<div class="info-box-content">
-									<span class="info-box-text">Task Parent</span> <span
-										class="info-box-number">${task.taskIdparent}</span>
-								</div>
-								<!-- /.info-box-content -->
-							</div>
-							<!-- /.info-box -->
-						</div>
-						<div class="col-sm-6 ">
-							<div class="info-box">
-								<span class="info-box-icon bg-green"><i
-									class="fa fa-user-o"></i></span>
-								<div class="info-box-content">
-									<span class="info-box-text">Task Name</span> <span
-										class="info-box-number">${task.taskName}</span>
-								</div>
-								<!-- /.info-box-content -->
-							</div>
-							<!-- /.info-box -->
-						</div>
-
-						<!-- /.col -->
-
-						<!-- /.col -->
-						<div class=" col-sm-6 ">
-							<div class="info-box">
-								<span class="info-box-icon bg-red"><i class="fa fa-user"></i></span>
-								<div class="info-box-content">
-									<span class="info-box-text">Name Create</span> <span
-										class="info-box-number">${task.nameCreate}</span>
-								</div>
-								<!-- /.info-box-content -->
-							</div>
-							<!-- /.info-box -->
-						</div>
-						<!-- /.col -->
-						<div class=" col-sm-6 ">
-							<div class="info-box">
-								<span class="info-box-icon bg-navy"><i
-									class="fa fa-address-book"></i></span>
-								<div class="info-box-content">
-									<span class="info-box-text">Name Assign</span> <span
-										class="info-box-number">${task.nameAssign}</span>
-								</div>
-								<!-- /.info-box-content -->
-							</div>
-							<!-- /.info-box -->
-						</div>
-
-						<!-- /.col -->
+						<ul class="nav navbar-nav">
+							<li class="active"><a href="/task/detail/${task.taskId} "
+								style="color: black">Information Detail Task</a></li>
+							<li><a href="/task/${task.taskId}/displayBarGraph"
+								style="color: black">Progress Task</a></li>
+							<li><a href="/task/${task.taskId}/taskprogress/save"
+								style="color: black">Update Progress Task</a></li>
+						</ul>
 					</div>
-					<div class="row">
-						<div class=" col-sm-6 ">
-							<div class="info-box">
-								<span class="info-box-icon bg-teal"><i
-									class="fa fa-clock-o"></i></span>
-								<div class="info-box-content">
-									<span class="info-box-text">Date Create</span> <span
-										class="info-box-number">${task.dateCreate}</span>
-								</div>
-								<!-- /.info-box-content -->
+				</nav>
+				<!-- 					<img alt="" src="images/taskdetail.jpg" -->
+				<!-- 						style="width: 100%; height: 500px;"> -->
+				<h3 style="color: green;">Thông Tin Chi Tiết Của Task : ${task.taskName}</h3>
+				<!-- Info Boxes -->
+				<div class="row">
+					<div class="col-md-3 col-sm-6 col-xs-12">
+						<div class="info-box">
+							<span class="info-box-icon bg-maroon"><i
+								class="fa fa-codepen"></i></span>
+							<div class="info-box-content">
+								<span class="info-box-text">Task ID</span> <span
+									class="info-box-number">${task.taskId}</span>
 							</div>
-							<!-- /.info-box -->
+							<!-- /.info-box-content -->
 						</div>
-						<div class=" col-sm-6 ">
-							<div class="info-box">
-								<span class="info-box-icon bg-blue"><i
-									class="fa fa-calendar-o"></i></span>
-								<div class="info-box-content">
-									<span class="info-box-text">DateLine </span> <span
-										class="info-box-number">${task.deadlineDate}</span>
-								</div>
-								<!-- /.info-box-content -->
+						<!-- /.info-box -->
+					</div>
+					<div class="col-md-3 col-sm-6 col-xs-12">
+						<div class="info-box">
+							<span class="info-box-icon bg-aqua"><i
+								class="fa fa-id-card-o"></i></span>
+							<div class="info-box-content">
+								<span class="info-box-text">Task Parent</span>
+								<c:choose>
+									<c:when test="${not empty task.taskIdparent }">
+									<span class="info-box-number">${task.taskIdparent}</span>
+									</c:when>
+									<c:otherwise>
+									<span class="info-box-number">không có task parent</span>
+									</c:otherwise>
+								</c:choose>
 							</div>
-							<!-- /.info-box -->
+							<!-- /.info-box-content -->
 						</div>
+						<!-- /.info-box -->
+					</div>
+					<div class="col-sm-6 ">
+						<div class="info-box">
+							<span class="info-box-icon bg-green"><i
+								class="fa fa-user-o"></i></span>
+							<div class="info-box-content">
+								<span class="info-box-text">Task Name</span> <span
+									class="info-box-number">${task.taskName}</span>
+							</div>
+							<!-- /.info-box-content -->
+						</div>
+						<!-- /.info-box -->
+					</div>
 
+					<!-- /.col -->
+
+					<!-- /.col -->
+					<div class=" col-sm-6 ">
+						<div class="info-box">
+							<span class="info-box-icon bg-red"><i class="fa fa-user"></i></span>
+							<div class="info-box-content">
+								<span class="info-box-text">Name Create</span> <span
+									class="info-box-number">${task.nameCreate}</span>
+							</div>
+							<!-- /.info-box-content -->
+						</div>
+						<!-- /.info-box -->
 					</div>
-					<div class="row">
-						<div class="col-md-3 col-sm-6 col-xs-12">
-							<div class="info-box">
-								<span class="info-box-icon bg-maroon"><i
-									class="fa fa-address-book"></i></span>
-								<div class="info-box-content">
-									<span class="info-box-text">Task output</span> <span
-										class="info-box-number">${task.taskOutput}</span>
-								</div>
-								<!-- /.info-box-content -->
+					<!-- /.col -->
+					<div class=" col-sm-6 ">
+						<div class="info-box">
+							<span class="info-box-icon bg-navy"><i
+								class="fa fa-address-book"></i></span>
+							<div class="info-box-content">
+								<span class="info-box-text">Name Assign</span> <span
+									class="info-box-number">${task.nameAssign}</span>
 							</div>
-							<!-- /.info-box -->
+							<!-- /.info-box-content -->
 						</div>
-						<div class="col-md-3 col-sm-6 col-xs-12">
-							<div class="info-box">
-								<span class="info-box-icon bg-lime"><i
-									class="fa fa-flag-o"></i></span>
-								<div class="info-box-content">
-									<span class="info-box-text">Task of Project</span> <span
-										class="info-box-number">${task.projectId.projectName}</span>
-								</div>
-								<!-- /.info-box-content -->
-							</div>
-							<!-- /.info-box -->
-						</div>
-						<div class="col-sm-6">
-							<div class="info-box">
-								<span class="info-box-icon bg-yellow"><i
-									class="fa fa-calendar-check-o"></i></span>
-								<div class="info-box-content">
-									<span class="info-box-text">Finish Date</span> <span
-										class="info-box-number">${task.finishDate}</span>
-								</div>
-								<!-- /.info-box-content -->
-							</div>
-							<!-- /.info-box -->
-						</div>
+						<!-- /.info-box -->
 					</div>
-					<div class="row">
-						<div class="col-sm-6">
-							<div class="info-box bg-aqua">
-								<span class="info-box-icon"><i class="fa fa-bookmark-o"></i></span>
-								<div class="info-box-content">
-									<span class="info-box-text">Task Progress</span> <span
-										class="info-box-number">${task.taskState}</span>
-									<div class="progress">
-										<div class="progress-bar"
-											style="width: <c:out value="${task.taskState}" />%"></div>
-									</div>
-									<span class="progress-description"> task is
-										${task.taskState}% </span>
-								</div>
-								<!-- /.info-box-content -->
+
+					<!-- /.col -->
+				</div>
+				<div class="row">
+					<div class=" col-sm-6 ">
+						<div class="info-box">
+							<span class="info-box-icon bg-teal"><i
+								class="fa fa-clock-o"></i></span>
+							<div class="info-box-content">
+								<span class="info-box-text">Date Create</span> <span
+									class="info-box-number">${task.dateCreate}</span>
 							</div>
-							<!-- /.info-box -->
+							<!-- /.info-box-content -->
 						</div>
-						<div class=" col-sm-6 ">
-							<div class="info-box">
-								<span class="info-box-icon bg-purple"><i
-									class="fa fa-book"></i></span>
-								<div class="info-box-content">
-									<span class="info-box-text">Description</span> <span
-										class="info-box-number">${task.discription}</span>
-								</div>
-								<!-- /.info-box-content -->
-							</div>
-							<!-- /.info-box -->
-						</div>
+						<!-- /.info-box -->
 					</div>
+					<div class=" col-sm-6 ">
+						<div class="info-box">
+							<span class="info-box-icon bg-blue"><i
+								class="fa fa-calendar-o"></i></span>
+							<div class="info-box-content">
+								<span class="info-box-text">Date Start </span> <span
+									class="info-box-number">${task.dateStart}</span>
+							</div>
+							<!-- /.info-box-content -->
+						</div>
+						<!-- /.info-box -->
+					</div>
+				</div>
+				<div class="row">
+					<div class=" col-sm-6 ">
+						<div class="info-box">
+							<span class="info-box-icon bg-red"><i
+								class="fa fa-calendar-o"></i></span>
+							<div class="info-box-content">
+								<span class="info-box-text">DeadLine </span> <span
+									class="info-box-number">${task.deadlineDate}</span>
+							</div>
+							<!-- /.info-box-content -->
+						</div>
+						<!-- /.info-box -->
+					</div>
+					<div class="col-sm-6">
+						<div class="info-box">
+							<span class="info-box-icon bg-yellow"><i
+								class="fa fa-calendar-check-o"></i></span>
+							<div class="info-box-content">
+								<span class="info-box-text">Finish Date</span> <span
+									class="info-box-number">${task.finishDate}</span>
+							</div>
+							<!-- /.info-box-content -->
+						</div>
+						<!-- /.info-box -->
+					</div>
+
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="info-box">
+							<span class="info-box-icon bg-maroon"><i
+								class="fa fa-address-book"></i></span>
+							<div class="info-box-content">
+								<span class="info-box-text">Task output</span> <span
+									class="info-box-number">${task.taskOutput}</span>
+							</div>
+							<!-- /.info-box-content -->
+						</div>
+						<!-- /.info-box -->
+					</div>
+					<div class="col-sm-6">
+						<div class="info-box bg-aqua">
+							<span class="info-box-icon"><i class="fa fa-bookmark-o"></i></span>
+							<div class="info-box-content">
+								<span class="info-box-text">Task Progress</span> <span
+									class="info-box-number">${task.taskState}</span>
+								<div class="progress">
+									<div class="progress-bar"
+										style="width: <c:out value="${task.taskState}" />%"></div>
+								</div>
+								<span class="progress-description"> task is
+									${task.taskState}% </span>
+							</div>
+							<!-- /.info-box-content -->
+						</div>
+						<!-- /.info-box -->
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="info-box">
+							<span class="info-box-icon bg-lime"><i
+								class="fa fa-flag-o"></i></span>
+							<div class="info-box-content">
+								<span class="info-box-text">Task of Project</span> <span
+									class="info-box-number">${task.projectId.projectName}</span>
+							</div>
+							<!-- /.info-box-content -->
+						</div>
+						<!-- /.info-box -->
+					</div>
+					<div class=" col-sm-6 ">
+						<div class="info-box">
+							<span class="info-box-icon bg-purple"><i
+								class="fa fa-book"></i></span>
+							<div class="info-box-content">
+								<span class="info-box-text">Description</span> <span
+									class="info-box-number">${task.discription}</span>
+							</div>
+							<!-- /.info-box-content -->
+						</div>
+						<!-- /.info-box -->
+					</div>
+				</div>
 				<!-- /.row -->
 			</section>
 		</div>

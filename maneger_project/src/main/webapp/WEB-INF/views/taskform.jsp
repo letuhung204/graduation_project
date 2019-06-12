@@ -11,7 +11,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html>
 <head>
-    <base href="http://localhost:8080/" target="_blank">
+    <base href="http://localhost:8080/">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>AdminLTE 2 | Starter</title>
@@ -168,7 +168,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                        data-toggle="dropdown"> <!-- The user image in the navbar-->
                         <img src="dist/img/hung.jpg" class="user-image" alt="User Image">
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                        <span class="hidden-xs">Lê Tử Hùng</span>
+                        <span class="hidden-xs">${username}</span>
                     </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
@@ -176,7 +176,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                          class="img-circle" alt="User Image">
 
                                 <p>
-                                    Lê Tử Hùng - Web Developer
+                                    ${username} - Web Developer
                                     <small>Member since Nov.
                                         2019
                                     </small>
@@ -230,7 +230,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <img src="dist/img/hung.jpg" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
-                    <p>Lê Tử Hùng</p>
+                    <p>${username}</p>
                     <!-- Status -->
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
@@ -268,16 +268,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             class="glyphicon glyphicon-user"></i> <span>Staff
 								Management</span></a></li>
 
-                <li class="treeview"><a href="/project"><i
-                        class="glyphicon glyphicon-glass"></i> <span>Project
-								Management</span> <i class="fa fa-angle-left pull-right"></i></a>
-                    <ul class="treeview-menu">
-                        <li><a href="/project"><i
-                                class="glyphicon glyphicon-folder-open"></i> Project Management</a></li>
-                        <li><a href="#"><i
-                                class="glyphicon glyphicon-folder-open"></i> Task Management</a></li>
-                    </ul>
-                </li>
+                <li class="active"><a class="" href="/project"><i
+							class="glyphicon glyphicon-glass"></i> <span>Project Management</span></a></li>
 
                 <li class="active"><spring:url value="/aboutapp" var="listURL"/>
                     <a class="" href="${listURL}"><i
@@ -325,7 +317,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <fieldset>
                                 <form:form modelAttribute="task" method="POST"
                                            action="${saveURL}" cssClass="well form-horizontal"
-                                           onsubmit="return checkPhone() && validateEmail() && validateGender() && checkmaxsize()">
+                                           onsubmit="return validatedate()">
                                     <div id="staffCombobox">
                                         <div class="form-group">
                                             <label class="control-label col-sm-2 requiredField">
@@ -361,7 +353,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         </div>
                                     </div>
                                     <div id="taskInfo">
-                                        <div class="form-group">
+                                        <div class="form-group" style="display: none">
                                             <label class="control-label col-sm-2 requiredField">
                                                 ID Task <span class="asteriskField"> * </span>
                                             </label>
@@ -397,7 +389,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 <div class="input-group">
 															<span class="input-group-addon"><i
                                                                     class="glyphicon glyphicon-user"></i></span>
-                                                    <form:input path="nameCreate" value="lay tren session"
+                                                    <form:input path="nameCreate"  value="${username}"
                                                                 cssClass="form-control" required="required"
                                                                 readonly="true"/>
                                                 </div>
@@ -429,7 +421,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     </div>
                                                     <form:input class="form-control" id="dateCreate"
                                                                 name="dateCreate" path="dateCreate"
-                                                                type="datetime-local"/>
+                                                                type="date"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -445,7 +437,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     </div>
                                                     <form:input class="form-control" id="dateStart"
                                                                 name="dateStart" path="dateStart"
-                                                                type="datetime-local"/>
+                                                                type="date"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -461,7 +453,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     </div>
                                                     <form:input class="form-control" id="deadlineDate"
                                                                 name="deadlineDate" path="deadlineDate"
-                                                                type="datetime-local"/>
+                                                                type="date"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -477,7 +469,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     </div>
                                                     <form:input class="form-control" id="finishDate"
                                                                 name="finishDate" path="finishDate"
-                                                                type="datetime-local"/>
+                                                                type="date"/>
                                                 </div>
                                             </div>
                                         </div>
